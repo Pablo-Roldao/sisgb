@@ -2,24 +2,25 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 .nav{
-    background-color: #006a5e;
+    background-image: linear-gradient(to left, #fff, #006a5d);
     box-shadow: 3px 3px 8px 8px rgba(0, 0, 0, 0.24);
     font-family: 'Poppins', sans-serif;
     font-size: 20px;
     font-weight: 500;
+    color: black;
 }
 
 
 .welcome{
-   background-color: #006a5d;
+    background-image: linear-gradient(to left, #fff, #006a5d);
     padding: 9%;
 
 
 }
 
 .secondScreen{
-    background-color: #7272728e;
     font-family: 'Poppins', sans-serif; 
+    padding: 4px;
 }
 
 .logline{
@@ -74,7 +75,24 @@
     color: #006a5d;
    
   }
-  
+  .btngetstarted {
+   
+    font-weight: 500;
+    font-size: 15px;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 14px 40px;
+    border-radius: 50px;
+    transition: 0.3s;
+    color: #fff;
+    background: #006a5d;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    border: 2px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .btngetstarted:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+  }
  
   
   
@@ -109,10 +127,14 @@
     .nav{
         font-size: small;
     }
+    .faq h2{
+        font-weight: bold;
+        font-size: 20px;
+      }
 }
   
 .portfolio{
-    background-color: #cecccc8c;
+   background-color:#fff;
     font-family: 'Poppins', sans-serif; 
 
 }
@@ -123,15 +145,16 @@
     
 .portfolio p{
     font-weight: 500;
-    font-size: 15px;
+    font-size: 17px;
 
 }
+
   .portfoliowrap {
     box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
     border-radius: 10px;
     margin-left: 2%;
   
-    background-color: #fff;
+    background-image: linear-gradient(to top, #fff -50%, #006a5d);
 
   }
   
@@ -155,4 +178,32 @@
     transform: scale(1.1);
   }
   
+  .faq{
+    font-family: 'Poppins', sans-serif;
+    padding: 5%;
+    background-image: linear-gradient(to left, #fff, #006a5d);
+    font-weight: 600;
+    color: #ffffff;
+
+  }
+
+  .faq h2{
+    font-weight: bold;
+    font-size: 50px;
+  }
+
+
+  .accordionitem p{
+
+    font-weight: 600;
+    text-indent: 25px;
+    font-size: larger;
+    padding: 10px;
+    background-color: #fff;
+    margin-top: 5%;
+    border-radius: 9px;
+    color: #006a5d;
+
+  }
+
   
