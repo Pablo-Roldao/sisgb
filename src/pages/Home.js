@@ -17,16 +17,18 @@ export default class Home extends Component {
         <Container id='welcome-area' className={styles.welcome} fluid>
           <Container className='p-5' fluid>
             <Row>
-              <Col>
+              <Col className='col-sm-7'>
                 <Container className={styles.logline}>
                   <h1>Bem vindo ao Sistema Gerenciador de Bibliotecas (SisGB)!</h1>
                   <p>Um lugar onde você pode fazer e gerenciar empréstimos de livros da melhor forma possível...</p>
-                  <Button className={styles.logline}>
+                 <br></br>
+                   <Button className='p-3 btn'>
+                   
                     <a href='/bookCollection' className='text-decoration-none'>Conheça nosso acervo...</a>
                   </Button>
                 </Container>
               </Col>
-              <Col>
+              <Col className='p-3'>
                 <Container id='login-form' className={styles.loginforns}>
                   <h1 className='text-center'>Login</h1>
                   <Form>
@@ -58,28 +60,28 @@ export default class Home extends Component {
 
         </Container>
 
-        <Container id='popular-books' className='border p-3'>
-          <div className='text-center'>
+        <Container fluid id='popular-books ' className={styles.portfolio}>
+          <div className='text-center p-5' >
             <h1>Livros em alta</h1>
             <p>Navegue pela imensidão de livros presentes em nossa biblioteca...</p>
           </div>
           <div>
             <Container>
               <Row>
-                <Col>
+                <Col className={styles.portfoliowrap}>
+                  <Book className='img-fluid' imgSrc='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' title='Aprenda Programação Orientada a Objetos em 21 dias' authors='Sintes, Anthony' />
+                </Col>
+                <Col className={styles.portfoliowrap}>
                   <Book imgSrc='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' title='Aprenda Programação Orientada a Objetos em 21 dias' authors='Sintes, Anthony' />
                 </Col>
-                <Col>
+                <Col className={styles.portfoliowrap}>
                   <Book imgSrc='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' title='Aprenda Programação Orientada a Objetos em 21 dias' authors='Sintes, Anthony' />
                 </Col>
-                <Col>
-                  <Book imgSrc='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' title='Aprenda Programação Orientada a Objetos em 21 dias' authors='Sintes, Anthony' />
-                </Col>
-                <Col>
+                <Col className={styles.portfoliowrap}>
                   <Book imgSrc='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' title='Aprenda Programação Orientada a Objetos em 21 dias' authors='Sintes, Anthony' />
                 </Col>
               </Row>
-              <div className='text-center'>
+              <div className='text-center p-3'>
                 <Link to={'/bookCollection'}>Navegue pelo acervo...</Link>
               </div>
             </Container>
