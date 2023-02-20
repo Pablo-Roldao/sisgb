@@ -1,6 +1,7 @@
 import React, { Component } from 'react';
 import { Button, Col, Container, Form, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+import styles from '../pages/Home.module.css'
 
 import Navbar from '../components/NavbarComponent';
 import Footer from '../components/Footer';
@@ -11,19 +12,20 @@ export default class Home extends Component {
 
     return (
       <>
-        <Navbar about={true} bookCollection={true} signUp={true} />
+        <Navbar className={styles.nav} about={true} bookCollection={true} signUp={true} />
 
-        <Container id='welcome-area' className='border p-3'>
-          <Row>
-            <Col>
-              <Container>
+        <Container fluid id='welcome-area' className= {styles.welcome}>
+          <Row className='p-5 container-fluid'>
+            <Col  className='col-sm-6.5'>
+              <Container className= {styles.logline}>
                 <h1>Bem vindo ao Sistema Gerenciador de Bibliotecas (SisGB)!</h1>
                 <p>Um lugar onde você pode fazer e gerenciar empréstimos de livros da melhor forma possível...</p>
-                <Link to={'/bookCollection'}>Conheça nosso acervo...</Link>
+                <Button className = {styles.logline}>
+                <Link to={'/bookCollection'}>Conheça nosso acervo...</Link></Button>
               </Container>
             </Col>
-            <Col>
-              <Container id='login-form'>
+            <Col className='col-sm-5'>
+              <Container id='login-form' className= {styles.loginforns}>
                 <h1 className='text-center'>Login</h1>
                 <Form>
                   <Form.Group>
@@ -34,15 +36,15 @@ export default class Home extends Component {
                     <Form.Label>Senha</Form.Label>
                     <Form.Control type='password' placeholder='Insira sua senha...' />
                   </Form.Group>
-                  <Row className='text-center p-3'>
+                  <Row className='text-center p-3 '>
                     <Col className='m-1'>
-                      <Button type='submit'>
+                      <Button type='submit' className = {styles.button}>
                         Entrar
                       </Button>
                     </Col>
                     <Col className='m-1'>
-                      <Button>
-                        <Link to={"/signup"}>Cadastre-se</Link>
+                      <Button className = {styles.button}>
+                        <Link to={"/signup"} className='link-active'>Cadastre-se</Link>
                       </Button>
                     </Col>
                   </Row>
