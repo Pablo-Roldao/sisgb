@@ -13,7 +13,7 @@ export default class SignUp extends Component {
         <div className='p-3'>
           <Container className='border'>
             <h3 className='text-center'>Cadastre-se</h3>
-            <Form>
+            <Form action='sisgb-api.vercel.app/user/register'>
               <Form.Group>
                 <Form.Label>Nome</Form.Label>
                 <Form.Control type='text' placeholder='Insira seu nome...' />
