@@ -1,10 +1,10 @@
 import React, { Component } from 'react';
 
-export default class Home extends Component {
+export default class BookCollection extends Component {
   render() {
     return (
       <>
-        <h1>Home...</h1>
+        <h1>Book collection...</h1>
       </>
     );
   }
