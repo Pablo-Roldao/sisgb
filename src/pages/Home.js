@@ -14,44 +14,48 @@ export default class Home extends Component {
       <>
         <Navbar className={styles.nav} about={true} bookCollection={true} signUp={true} />
 
-        <Container fluid id='welcome-area' className= {styles.welcome}>
-          <Row className='p-5 container-fluid'>
-            <Col  className='col-sm-6.5'>
-              <Container className= {styles.logline}>
-                <h1>Bem vindo ao Sistema Gerenciador de Bibliotecas (SisGB)!</h1>
-                <p>Um lugar onde você pode fazer e gerenciar empréstimos de livros da melhor forma possível...</p>
-                <Button className = {styles.logline}>
-                <Link to={'/bookCollection'}>Conheça nosso acervo...</Link></Button>
-              </Container>
-            </Col>
-            <Col className='col-sm-5'>
-              <Container id='login-form' className= {styles.loginforns}>
-                <h1 className='text-center'>Login</h1>
-                <Form>
-                  <Form.Group>
-                    <Form.Label>E-mail</Form.Label>
-                    <Form.Control type='email' placeholder='Insira seu e-mail...' />
-                  </Form.Group>
-                  <Form.Group>
-                    <Form.Label>Senha</Form.Label>
-                    <Form.Control type='password' placeholder='Insira sua senha...' />
-                  </Form.Group>
-                  <Row className='text-center p-3 '>
-                    <Col className='m-1'>
-                      <Button type='submit' className = {styles.button}>
-                        Entrar
-                      </Button>
-                    </Col>
-                    <Col className='m-1'>
-                      <Button className = {styles.button}>
-                        <Link to={"/signup"} className='link-active'>Cadastre-se</Link>
-                      </Button>
-                    </Col>
-                  </Row>
-                </Form>
-              </Container>
-            </Col>
-          </Row>
+        <Container id='welcome-area' className={styles.welcome} fluid>
+          <Container className='p-5' fluid>
+            <Row>
+              <Col>
+                <Container className={styles.logline}>
+                  <h1>Bem vindo ao Sistema Gerenciador de Bibliotecas (SisGB)!</h1>
+                  <p>Um lugar onde você pode fazer e gerenciar empréstimos de livros da melhor forma possível...</p>
+                  <Button className={styles.logline}>
+                    <a href='/bookCollection' className='text-decoration-none'>Conheça nosso acervo...</a>
+                  </Button>
+                </Container>
+              </Col>
+              <Col>
+                <Container id='login-form' className={styles.loginforns}>
+                  <h1 className='text-center'>Login</h1>
+                  <Form>
+                    <Form.Group>
+                      <Form.Label>E-mail</Form.Label>
+                      <Form.Control type='email' placeholder='Insira seu e-mail...' />
+                    </Form.Group>
+                    <Form.Group>
+                      <Form.Label>Senha</Form.Label>
+                      <Form.Control type='password' placeholder='Insira sua senha...' />
+                    </Form.Group>
+                    <Row className='text-center p-3 '>
+                      <Col className='m-1'>
+                        <Button type='submit' className={styles.button}>
+                          Entrar
+                        </Button>
+                      </Col>
+                      <Col className='m-1'>
+                        <Button className={styles.button}>
+                          <a href='/signUp' className='text-decoration-none'>Cadastre-se</a>
+                        </Button>
+                      </Col>
+                    </Row>
+                  </Form>
+                </Container>
+              </Col>
+            </Row>
+          </Container>
+
         </Container>
 
         <Container id='popular-books' className='border p-3'>
