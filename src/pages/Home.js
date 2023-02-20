@@ -1,24 +1,15 @@
 import React, { Component } from 'react';
-import { Button, Col, Container, Form, Image, Nav, Navbar, Row } from 'react-bootstrap';
+import { Button, Col, Container, Form, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
+
+import Navbar from '../components/NavbarComponent';
 
 export default class Home extends Component {
   render() {
 
     return (
       <>
-        <Navbar id='navbar' className='border-bottom'>
-          <Container>
-            <Navbar.Brand href='/'>
-              <Image fluid src='https://icon-library.com/images/icon-for-books/icon-for-books-1.jpg' width='100px' />{' '}SisGB
-            </Navbar.Brand>
-            <Nav>
-              <Nav.Link href='/about'>Sobre nós</Nav.Link>
-              <Nav.Link href='/bookCollection'>Acervo</Nav.Link>
-              <Nav.Link href='/signUp'>Cadastre-se</Nav.Link>
-            </Nav>
-          </Container>
-        </Navbar>
+        <Navbar about={true} bookCollection={true} signUp={true}/>
 
         <Container id='welcome-area' className='border p-3'>
           <Row>
@@ -167,7 +158,7 @@ export default class Home extends Component {
         </Container>
 
         <Container id='footer' className='border text-center p-3'>
-            <p>&copy; Todos os direitos reservados a <strong>Paulo Cardoso, Pablo Santos e Maria Pontes.</strong></p>
+          <p>&copy; Todos os direitos reservados a <strong>Paulo Cardoso, Pablo Santos e Maria Pontes.</strong></p>
         </Container>
       </>
     );
