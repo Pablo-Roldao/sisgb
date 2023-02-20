@@ -3,13 +3,15 @@ import { Button, Col, Container, Form, Image, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
 import Navbar from '../components/NavbarComponent';
+import Footer from '../components/Footer';
+import Book from '../components/Book';
 
 export default class Home extends Component {
   render() {
 
     return (
       <>
-        <Navbar about={true} bookCollection={true} signUp={true}/>
+        <Navbar about={true} bookCollection={true} signUp={true} />
 
         <Container id='welcome-area' className='border p-3'>
           <Row>
@@ -59,24 +61,16 @@ export default class Home extends Component {
             <Container>
               <Row>
                 <Col>
-                  <Image src='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' fluid />
-                  <h4>Aprenda Programação Orientada a Objetos em 21 dias</h4>
-                  <p>Sintes, Anthony</p>
+                  <Book imgSrc='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' title='Aprenda Programação Orientada a Objetos em 21 dias' authors='Sintes, Anthony' />
                 </Col>
                 <Col>
-                  <Image src='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' fluid />
-                  <h4>Aprenda Programação Orientada a Objetos em 21 dias</h4>
-                  <p>Sintes, Anthony</p>
+                  <Book imgSrc='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' title='Aprenda Programação Orientada a Objetos em 21 dias' authors='Sintes, Anthony' />
                 </Col>
                 <Col>
-                  <Image src='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' fluid />
-                  <h4>Aprenda Programação Orientada a Objetos em 21 dias</h4>
-                  <p>Sintes, Anthony</p>
+                  <Book imgSrc='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' title='Aprenda Programação Orientada a Objetos em 21 dias' authors='Sintes, Anthony' />
                 </Col>
                 <Col>
-                  <Image src='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' fluid />
-                  <h4>Aprenda Programação Orientada a Objetos em 21 dias</h4>
-                  <p>Sintes, Anthony</p>
+                  <Book imgSrc='https://staticbv.am4.com.br/publicacoes/8/thumbs/thumbnail_397_x_595.jpg' title='Aprenda Programação Orientada a Objetos em 21 dias' authors='Sintes, Anthony' />
                 </Col>
               </Row>
               <div className='text-center'>
@@ -157,9 +151,7 @@ export default class Home extends Component {
           </Row>
         </Container>
 
-        <Container id='footer' className='border text-center p-3'>
-          <p>&copy; Todos os direitos reservados a <strong>Paulo Cardoso, Pablo Santos e Maria Pontes.</strong></p>
-        </Container>
+        <Footer />
       </>
     );
   }

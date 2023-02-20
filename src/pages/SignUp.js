@@ -1,10 +1,13 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
+import NavbarComponent from '../components/NavbarComponent';
 
 export default class SignUp extends Component {
   render() {
     return (
       <>
-        <h1>Sign up...</h1>
+        <NavbarComponent  about={true} bookCollection={true} />
+
+        
       </>
     );
   }
