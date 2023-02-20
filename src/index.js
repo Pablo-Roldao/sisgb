@@ -8,7 +8,6 @@ import About from './pages/About';
 import SignUp from './pages/SignUp';
 import BookCollection from './pages/BookCollection';
 import './index.css';
-import reportWebVitals from './reportWebVitals';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
