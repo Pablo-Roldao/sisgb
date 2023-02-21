@@ -1,15 +1,24 @@
-.welcome {
+.sign_up_form {
     background-image: linear-gradient(to left, #fff, #006a5d);
     color: #fff;
     padding: 9%;
 }
 
-.welcome h2 {
+.sign_up_form h2 {
     font-weight: bold;
     font-size: 40px;
 }
 
-.welcome button {
+.sign_up_form input {
+    color: #006a5d;
+}
+
+.sign_up_form ::placeholder {
+    color: #006a5d;
+    opacity: 1;
+}
+
+.sign_up_form button {
     font-weight: 500;
     font-size: 15px;
     letter-spacing: 1px;
@@ -23,7 +32,7 @@
     border: 2px solid rgba(255, 255, 255, 0.1);
 }
 
-.welcome button:hover {
+.sign_up_form button:hover {
     border-color: rgba(255, 255, 255, 0.5);
     background-color: #006a5d;
     transform: scale(1.1);

@@ -17,7 +17,7 @@ export default function SignUp() {
     <>
       <NavbarComponent about={true} bookCollection={true} />
 
-      <div className={styles.welcome}>
+      <div className={styles.sign_up_form}>
         <Container className={styles.form}>
           <h2 className='text-center'>Cadastre-se</h2>
           <Form onSubmit={handleSubmit(onSubmit)}>
