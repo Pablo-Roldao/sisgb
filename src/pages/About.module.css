@@ -8,9 +8,7 @@
   }
 
   h1{
-    color: #fff;
     font-weight: bold;
- 
   }
 
   h4{
@@ -23,6 +21,7 @@
     box-shadow: 8px 8px 8px #0000009f;
     border-radius: 9px;
     color: #fff;
+    text-align: justify;
   }
 
   .img{
