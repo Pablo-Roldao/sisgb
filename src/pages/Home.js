@@ -57,7 +57,7 @@ export default class Home extends Component {
                 </Col>
               </Row>
               <div className='text-center p-5'>
-                  <a href='/bookCollection' className={styles.btngetstarted + ' p-3 link link-light text-decoration-none'}>Navegue pelo acervo...</a>
+                <a href='/bookCollection' className={styles.btngetstarted + ' p-3 link link-light text-decoration-none'}>Navegue pelo acervo...</a>
               </div>
             </Container>
           </div>
@@ -71,44 +71,20 @@ export default class Home extends Component {
             </Col>
             <Col>
               <div className={styles.accordionitem}>
-                <p>
-
-                  1. Você incentiva a prática da leitura entre crianças e adultos que ainda não têm o hábito
-                </p>
-
-
+                <p>1. Você incentiva a prática da leitura entre crianças e adultos que ainda não têm o hábito</p>
               </div>
 
               <div className={styles.accordionitem}>
-                <p>
-
-                  2. Você espalha conhecimento
-
-                </p>
-
-
+                <p>2. Você espalha conhecimento</p>
               </div>
 
               <div className={styles.accordionitem}>
-                <p>
-
-
-                  3. Exercitar o desapego
-
-                </p>
-
+                <p>3. Exercitar o desapego</p>
               </div>
 
               <div className={styles.accordionitem}>
-                <p>
-
-
-                  4.  Doar é tão fácil e prático
-
-                </p>
-
+                <p>4.  Doar é tão fácil e prático</p>
               </div>
-
             </Col>
           </Row>
         </Container>
