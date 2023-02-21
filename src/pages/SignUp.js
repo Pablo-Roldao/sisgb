@@ -9,7 +9,7 @@ import Footer from '../components/Footer';
 
 export default function SignUp() {
 
-  const { register, handleSubmit, formState: { erros } } = useForm();
+  const { register, handleSubmit } = useForm();
 
   const onSubmit = data => console.log(data);
 
