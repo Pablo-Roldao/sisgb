@@ -1,0 +1,39 @@
+.welcome{
+    background-image: linear-gradient(to left, #fff, #006a5d);
+    color: #fff;
+    padding: 9%;
+}
+
+.welcome h2{
+    font-weight: bold;
+    font-size: 40px;
+}
+
+.welcome button{
+
+        font-weight: 500;
+        font-size: 15px;
+        letter-spacing: 1px;
+        display: inline-block;
+        padding: 14px 40px;
+        border-radius: 50px;
+        transition: 0.3s;
+        color: #fff;
+        background: #006a5d;
+        box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+        border: 2px solid rgba(255, 255, 255, 0.1);
+}
+    
+.welcome button:hover {
+        border-color: rgba(255, 255, 255, 0.5);
+        background-color: #006a5d;
+        transform: scale(1.1);
+        transition: all 0.5s;
+      }
+
+    
+      @media (max-width: 760px) {
+        .welcome{
+            padding: 20%;
+        }
+    }

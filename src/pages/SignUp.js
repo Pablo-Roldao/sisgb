@@ -2,6 +2,8 @@ import React from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 
+import styles from './SignUp.module.css'
+
 import NavbarComponent from '../components/NavbarComponent';
 import Footer from '../components/Footer';
 
@@ -15,9 +17,9 @@ export default function SignUp() {
     <>
       <NavbarComponent about={true} bookCollection={true} />
 
-      <div className='p-3'>
-        <Container className='border'>
-          <h3 className='text-center'>Cadastre-se</h3>
+      <div className={styles.welcome}>
+        <Container className={styles.form}>
+          <h2 className='text-center'>Cadastre-se</h2>
           <Form onSubmit={handleSubmit(onSubmit)}>
             <Form.Group>
               <Form.Label>Nome</Form.Label>
