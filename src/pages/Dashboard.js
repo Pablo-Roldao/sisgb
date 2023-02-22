@@ -23,7 +23,7 @@ export default function Dashboard() {
     
     return(
         <>
-          <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
+          <div className={styles.sed} >
       <CDBSidebar textColor="#fff" className={styles.nav} >
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
@@ -36,7 +36,7 @@ export default function Dashboard() {
             <NavLink exact to="/Dashboard" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/emprestimos" activeClassName="activeClicked">
+            <NavLink exact to="#emprestimos" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Emprestimos</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/bookColletionS" activeClassName="activeClicked">
@@ -98,14 +98,14 @@ export default function Dashboard() {
                 </Row>
 
 
-                <h1 className='text-center text-white p-5'>Empréstimos</h1>
+                <h1 className='text-center text-white p-5' id='emprestimos'>Empréstimos</h1>
 
-    
+    <div>
     <Button className={styles.btn} onClick={handleShow}> + Novo Empréstimo</Button>
-
+</div>
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Modal heading</Modal.Title>
+          <Modal.Title>Register Emprestimo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
