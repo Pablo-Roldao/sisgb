@@ -44,7 +44,7 @@ export default function Home() {
     <>
       <Navbar className={styles.nav} about={true} bookCollection={true} signUp={true} />
 
-      <Container id='welcome-area' className={styles.welcome} fluid>
+      <Container fluid id='welcome-area' className={styles.welcome} >
         <Container className='p-5' fluid>
           <Row>
             <Col className='col-sm-7'>

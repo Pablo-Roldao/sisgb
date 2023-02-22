@@ -2,30 +2,38 @@
 
 
 .welcome {
-    background-image: linear-gradient(to left, #fff, #006a5d);
+    background-color: #006a5d;
     padding: 5%;
     font-family: 'Poppins', sans-serif;
+    font-weight: bold;
   }
 
 .card{
-    background-image: linear-gradient(to top, #fff -50%, #006a5d);
+    background-color: #ffffffcb;
+    box-shadow: 8px 8px 8px #00000062;
     border-radius: 20px;
     text-align: center;
     padding: 5%;
-    color: #fff;
+    color: #006a5d;
     font-weight: bold;
 
 }
 
-h1, h2{
-    font-weight: bold;
-}
 
 .nav{
-    background-image: linear-gradient(to top, #fff, #006a5d)
+    background-image: linear-gradient(to top, #fff 10%, #006a5d);
+  
 }
 
+
+
 table{
-    background-image: linear-gradient(to top, #fff, #006a5d)
-    
+    background-color: #ffffffa6;
+}
+
+.btn{
+    background-color: green;
+    text-align: center;
+    border: none;
+    width: 20%;
 }

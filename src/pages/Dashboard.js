@@ -1,7 +1,7 @@
 import React from 'react';
-import { Button, Col, Container, Row, Table } from 'react-bootstrap';
+import { Button, Col, Container, Row, Table, Card, Form, Modal } from 'react-bootstrap';
 import Footer from '../components/Footer';
-
+import  { useState } from 'react';
 import styles from './Dashboard.module.css';
 
 import {
@@ -14,12 +14,17 @@ import {
   import { NavLink } from 'react-router-dom';
 
 export default function Dashboard() {
+    
+  const [show, setShow] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
 
     
     return(
         <>
           <div style={{ display: 'flex', height: '100vh', overflow: 'scroll initial' }}>
-      <CDBSidebar textColor="#fff" className={styles.nav}>
+      <CDBSidebar textColor="#fff" className={styles.nav} >
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
             SisGB
@@ -28,17 +33,20 @@ export default function Dashboard() {
 
         <CDBSidebarContent className="sidebar-content">
           <CDBSidebarMenu>
-            <NavLink exact to="/" activeClassName="activeClicked">
+            <NavLink exact to="/Dashboard" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/tables" activeClassName="activeClicked">
+            <NavLink exact to="/emprestimos" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Emprestimos</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/profile" activeClassName="activeClicked">
+            <NavLink exact to="/bookColletionS" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="book">Acervo</CDBSidebarMenuItem>
             </NavLink>
+            <NavLink exact to="/perfil" activeClassName="activeClicked">
+              <CDBSidebarMenuItem icon="user">Perfil</CDBSidebarMenuItem>
+            </NavLink>
             <NavLink exact to="/analytics" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="chart-line">Analytics</CDBSidebarMenuItem>
+              <CDBSidebarMenuItem icon="stop">Sair</CDBSidebarMenuItem>
             </NavLink>
 
             
@@ -90,8 +98,45 @@ export default function Dashboard() {
                 </Row>
 
 
-                <h1 className='text-center text-white p-5'>Ultimos Empréstimos</h1>
+                <h1 className='text-center text-white p-5'>Empréstimos</h1>
 
+    
+    <Button className={styles.btn} onClick={handleShow}> + Novo Empréstimo</Button>
+
+    <Modal show={show} onHide={handleClose}>
+        <Modal.Header closeButton>
+          <Modal.Title>Modal heading</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>
+          <Form>
+            <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
+              <Form.Label>Email address</Form.Label>
+              <Form.Control
+                type="email"
+                placeholder="name@example.com"
+                autoFocus
+              />
+            </Form.Group>
+            <Form.Group
+              className="mb-3"
+              controlId="exampleForm.ControlTextarea1"
+            >
+              <Form.Label>Example textarea</Form.Label>
+              <Form.Control as="textarea" rows={3} />
+            </Form.Group>
+          </Form>
+        </Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleClose}>
+            Close
+          </Button>
+          <Button variant="primary" onClick={handleClose}>
+            Save Changes
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    <br></br>
+        
     <Table striped bordered hover className='p-4'>
       <thead>
         <tr>
