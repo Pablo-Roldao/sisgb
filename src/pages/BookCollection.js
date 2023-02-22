@@ -1,4 +1,4 @@
-import React, { useEffect, useState, useMemo } from 'react';
+import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 
 import styles from './BookCollection.module.css'
