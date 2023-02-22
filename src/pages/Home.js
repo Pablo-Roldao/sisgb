@@ -34,7 +34,7 @@ export default function Home() {
 
   const popularBooksResult = (popularBooks).map((popularBook) => {
     return (
-      <Col className={styles.portfoliowrap}>
+      <Col className={' '}>
         <Book className='img-fluid' imgSrc={popularBook.imgSrc} title={popularBook.title} authors={popularBook.authors} />
       </Col>
     );

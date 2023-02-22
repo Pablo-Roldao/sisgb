@@ -41,7 +41,7 @@ export default function BookCollection() {
         <>
           <Row></Row>
           <Col className='col-sm-3'>
-            <Book className='img-fluid' imgSrc='https://ihc.fcsh.unl.pt/wp-content/uploads/2018/01/livro001.jpg' title={book.title} authors={book.authors}></Book>
+            <Book className='img-fluid' imgSrc={book.imgSrc} title={book.title} authors={book.authors}></Book>
           </Col>
         </>
       );
@@ -49,7 +49,7 @@ export default function BookCollection() {
       rowCounter++;
       return (
         <Col className='col-sm-3'>
-          <Book className='img-fluid' imgSrc='https://ihc.fcsh.unl.pt/wp-content/uploads/2018/01/livro001.jpg' title={book.title} authors={book.authors}></Book>
+          <Book className='img-fluid' imgSrc={book.imgSrc} title={book.title} authors={book.authors}></Book>
         </Col>
       );
     }

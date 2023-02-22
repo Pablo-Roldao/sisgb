@@ -12,10 +12,9 @@ export default function Book(props) {
     
 
     return (
-
-        <Container key={props.isbn} className={styles.portfoliowrap}>
+        <Container key={props.isbn} className={styles.portfoliowrap + ' p-2 m-2'}>
             <Image src={props.imgSrc} fluid className={styles.img} />
-            <h4 className={styles.h4}>{props.title}</h4>
+            <h5 className='fw-bold'>{props.title}</h5>
             <p>{authors}</p>
         </Container>
     );
