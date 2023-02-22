@@ -21,7 +21,7 @@ export default function SignUp() {
   }
 
   async function registerUser(name, cpf, birthDate, addres, email, password) {
-    axios.post('https://sisgb.vercel.app/user/register', {
+    await axios.post('https://sisgb.vercel.app/user/register/', {
       name: name,
       cpf: cpf,
       birthDate: birthDate,
@@ -29,7 +29,7 @@ export default function SignUp() {
       email: email,
       password: password,
       isFunctionary: true
-    }).then((response) => {
+    }, ).then((response) => {
       console.log(response);
     }).catch((error) => {
       console.log(error);
