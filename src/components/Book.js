@@ -12,8 +12,8 @@ export default function Book(props) {
     
 
     return (
-        <Container key={props.isbn} className={styles.portfoliowrap + ' p-2 m-2'}>
-            <Image src={props.imgSrc} fluid className={styles.img} />
+        <Container key={props.isbn} className={styles.portfoliowrap + ' m-3'}>
+            <Image src={props.imgSrc} className={styles.img} fluid/>
             <h5 className='fw-bold'>{props.title}</h5>
             <p>{authors}</p>
         </Container>

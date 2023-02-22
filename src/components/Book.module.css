@@ -1,9 +1,10 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 .portfoliowrap {
+  height: 95%;
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
   border-radius: 25px;
-  margin-left: 2%;
+  margin: 5%;
   color: #000;
   font-family: 'Poppins', sans-serif;
 }
@@ -12,6 +13,7 @@
   transition: 0.3s;
   position: relative;
   margin-top: 5%;
+  margin-bottom: 3%;
   border-radius: 9px;
   z-index: 1;
 }
