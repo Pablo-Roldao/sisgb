@@ -1,8 +1,11 @@
 import React from 'react';
 import { Button, Col, Container, Row, Table, Card, Form, Modal } from 'react-bootstrap';
 import Footer from '../components/Footer';
-import  { useState } from 'react';
-import styles from './Dashboard.module.css';
+
+  import styles from './Dashboard.module.css';
+
+import axios from 'axios';
+import { useEffect, useState } from 'react';
 
 import {
     CDBSidebar,
@@ -12,8 +15,73 @@ import {
     CDBSidebarMenuItem,
   } from 'cdbreact';
   import { NavLink } from 'react-router-dom';
+import Loan from '../components/Loan';
 
 export default function Dashboard() {
+
+
+  const [loan, setLoan] = useState([]);
+
+  const getLoan= async () => {
+    try {
+      const response = await axios.get("https://sisgb-api.vercel.app/loan/get-all");
+
+      const data = response.data;
+
+      console.log(data);
+      setLoan(data);
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  useEffect(() => {
+    getLoan()
+  }, []);
+
+
+ 
+
+  let rowCounter = 0;
+  const loanResult = loan.map((loan) => {
+    if (rowCounter === 4) {
+      rowCounter = 1;
+      return (
+        <>
+          <Row></Row>
+          <Col>
+            <Loan />
+          </Col>
+        </>
+      );
+    } else {
+      rowCounter++;
+      return (
+        <Col>
+        <Loan />
+      </Col>
+      );
+    }
+  })
+
+
+  function createPost() {
+    axios
+      .post("https://sisgb-api.vercel.app/loan/register", {
+        userCpf: "1235522",
+        bookIsbn:"55222",
+        startDate:"20/04/2023",
+        finishDate: "21/04/2023",
+      })
+      .then((response) => {
+        setLoan(response.data);
+      }); 
+       if (!loan) return "No post!"
+  }
+
+
+ 
+
     
   const [show, setShow] = useState(false);
 
@@ -24,7 +92,7 @@ export default function Dashboard() {
     return(
         <>
           <div className={styles.sed} >
-      <CDBSidebar textColor="#fff" className={styles.nav} >
+      <CDBSidebar textColor="#fff" className={styles.nav}  id="none" >
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
           <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
             SisGB
@@ -54,7 +122,7 @@ export default function Dashboard() {
         </CDBSidebarContent>
       </CDBSidebar>
   
-         
+       
 
         <Container fluid className={styles.welcome} >
 
@@ -110,33 +178,45 @@ export default function Dashboard() {
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>Email address</Form.Label>
+              <Form.Label>CPF</Form.Label>
               <Form.Control
-                type="email"
-                placeholder="name@example.com"
+               name='userCpf'
+                type="nunber"
+                placeholder="12345601256"
+                autoFocus
+              />
+               <Form.Label>isbn</Form.Label>
+              <Form.Control
+                type="nunber"
+                placeholder="12345601256"
+                autoFocus
+              />
+               <Form.Label>Data de Inicio</Form.Label>
+              <Form.Control
+                type='date'
+                autoFocus
+              />
+
+          <Form.Label>Data de termino</Form.Label>
+              <Form.Control
+                type='date'
                 autoFocus
               />
             </Form.Group>
-            <Form.Group
-              className="mb-3"
-              controlId="exampleForm.ControlTextarea1"
-            >
-              <Form.Label>Example textarea</Form.Label>
-              <Form.Control as="textarea" rows={3} />
-            </Form.Group>
+        
           </Form>
         </Modal.Body>
         <Modal.Footer>
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={handleClose}>
-            Save Changes
+          <Button variant="primary" onClick={createPost}>
+            Criar
           </Button>
         </Modal.Footer>
       </Modal>
     <br></br>
-        
+    
     <Table striped bordered hover className='p-4'>
       <thead>
         <tr>
@@ -166,11 +246,12 @@ export default function Dashboard() {
         </tr>
       </tbody>
     </Table>
+    {loanResult}
 
             </Container>
         </Container>
-       </div>
-
+       
+  </div>
         <Footer />
         
         </>

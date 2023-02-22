@@ -6,6 +6,7 @@
     padding: 5%;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
+    overflow-x: hidden !important; 
   }
 
 .card{
@@ -30,7 +31,13 @@
   
 }
 
+@media (max-width: 760px) {
+    .btn{
+        width: 70%;
+    }
 
+
+  }
 
 table{
     background-color: #ffffffa6;
@@ -41,7 +48,7 @@ table{
     text-align: center;
     border: none;
     border-radius: 9px;
-    width: 20%;
+    
     color: #006a5d;
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
