@@ -1,0 +1,31 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
+
+
+.welcome {
+    background-image: linear-gradient(to left, #fff, #006a5d);
+    padding: 5%;
+    font-family: 'Poppins', sans-serif;
+  }
+
+.card{
+    background-image: linear-gradient(to top, #fff -50%, #006a5d);
+    border-radius: 20px;
+    text-align: center;
+    padding: 5%;
+    color: #fff;
+    font-weight: bold;
+
+}
+
+h1, h2{
+    font-weight: bold;
+}
+
+.nav{
+    background-image: linear-gradient(to top, #fff, #006a5d)
+}
+
+table{
+    background-image: linear-gradient(to top, #fff, #006a5d)
+    
+}

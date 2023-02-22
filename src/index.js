@@ -7,6 +7,7 @@ import Home from './pages/Home';
 import About from './pages/About';
 import SignUp from './pages/SignUp';
 import BookCollection from './pages/BookCollection';
+import Dashboard from './pages/Dashboard';
 import './index.css';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
@@ -18,6 +19,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/about' element={<About />} />
           <Route path='/signup' element={<SignUp />} />
           <Route path='/bookCollection' element={<BookCollection />} />
+          <Route path='/dashboard' element={<Dashboard />} />
         </Route>
       </Routes>
     </BrowserRouter>
