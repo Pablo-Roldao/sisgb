@@ -1,5 +1,5 @@
 import React from 'react';
-import { Button, Col, Container, Row, Table, Card, Form, Modal } from 'react-bootstrap';
+import { Button, Col, Container, Row, Table, Form, Modal } from 'react-bootstrap';
 import Footer from '../components/Footer';
 
   import styles from './Dashboard.module.css';
@@ -107,7 +107,7 @@ export default function Dashboard() {
             <NavLink exact to="#emprestimos" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="table">Emprestimos</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/bookColletionS" activeClassName="activeClicked">
+            <NavLink exact to="/BookDsh" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="book">Acervo</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/perfil" activeClassName="activeClicked">

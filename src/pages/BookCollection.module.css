@@ -2,3 +2,13 @@
     background-image: linear-gradient(to left, #fff, #006a5d);
 
   }
+  .btn{
+    background-color: rgb(255, 255, 255);
+    text-align: center;
+    border: none;
+    border-radius: 9px;
+    
+    color: #006a5d;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}

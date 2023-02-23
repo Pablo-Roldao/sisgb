@@ -10,6 +10,7 @@ import BookCollection from './pages/BookCollection';
 import Dashboard from './pages/Dashboard';
 import './index.css';
 import Profile from './pages/Perfil';
+import BookCollectionDsh from './pages/BookCollectionDsh';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -22,6 +23,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/bookCollection' element={<BookCollection />} />
           <Route path='/dashboard' element={<Dashboard />} />
           <Route path='/profile' element={<Profile />} />
+          <Route path='/BookDsh' element={<BookCollectionDsh />} />
         </Route>
       </Routes>
     </BrowserRouter>
