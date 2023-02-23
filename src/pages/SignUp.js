@@ -12,7 +12,7 @@ import NavbarComponent from '../components/NavbarComponent';
 import Footer from '../components/Footer';
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
-const REGISTER_URL = '/user/register';
+const REGISTER_URL = '/user/';
 
 export default function SignUp() {
 
