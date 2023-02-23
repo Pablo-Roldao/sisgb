@@ -45,7 +45,7 @@ export default function Home() {
       <Navbar className={styles.nav} about={true} bookCollection={true} signUp={true} />
 
       <Container fluid id='welcome-area' className={styles.welcome} >
-        <Container className='p-5' fluid>
+        <Container className='p-5'>
           <Row>
             <Col className='col-sm-7'>
               <Container className={styles.logline}>
