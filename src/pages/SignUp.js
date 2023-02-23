@@ -42,7 +42,7 @@ export default function SignUp() {
       return;
     }
 
-    const { name, cpf, birthDate, addres, email, password } = data;
+    const { name, cpf, birthDate, addres, email } = data;
 
     try {
       const response = await axios.post(REGISTER_URL,
@@ -52,7 +52,7 @@ export default function SignUp() {
           birthDate: birthDate,
           addres: addres,
           email: email,
-          password: password,
+          password: pwd,
           isFunctionary: false
         }),
         {
