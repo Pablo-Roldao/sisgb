@@ -53,7 +53,9 @@ export default function BookCollection() {
           </Row>
 
           <Row className='p-4'>
-            {booksResult}
+            {books.length === 0 ? (
+              <h3 className='text-center'>Carregando...</h3>
+            ) : booksResult}
           </Row>
 
         </Container></Container>
