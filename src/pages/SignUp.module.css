@@ -39,6 +39,16 @@
     transition: all 0.5s;
 }
 
+.login_button {
+    color: #006a5d;
+    opacity: 0.75;
+}
+
+.login_button:hover {
+    color: #006a5d;
+    opacity: 1;
+}
+
 @media (max-width: 760px) {
     .welcome {
         padding: 20%;
