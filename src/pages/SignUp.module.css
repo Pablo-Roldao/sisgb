@@ -1,6 +1,5 @@
 .sign_up_form {
     background-image: linear-gradient(to left, #fff, #006a5d);
-    color: #fff;
     padding: 9%;
 }
 
@@ -9,8 +8,14 @@
     font-size: 40px;
 }
 
+.sign_up_form label {
+    font-weight: bold;
+}
+
 .sign_up_form input {
-    color: #006a5d;
+    color: #707070;
+    font-weight: bold;
+    border: none;
 }
 
 .sign_up_form ::placeholder {
@@ -19,14 +24,13 @@
 }
 
 .sign_up_form button {
-    font-weight: 500;
-    font-size: 15px;
+    color: black;
+    font-weight: bold;
     letter-spacing: 1px;
     display: inline-block;
     padding: 14px 40px;
-    border-radius: 50px;
+    border-radius: 0.7rem;
     transition: 0.3s;
-    color: #fff;
     background: #006a5d;
     box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
     border: 2px solid rgba(255, 255, 255, 0.1);
@@ -37,6 +41,13 @@
     background-color: #006a5d;
     transform: scale(1.1);
     transition: all 0.5s;
+}
+
+.sign_up_form button:disabled,
+.sign_up_form button[disabled] {
+    color: gray;
+    background-color: white;
+    border: none;
 }
 
 .login_button {
@@ -53,4 +64,24 @@
     .welcome {
         padding: 20%;
     }
+}
+
+.instructions {
+    font-size: 0.75rem;
+    border-radius: 0.5rem;
+    background: #fff;
+    color: black;
+    font-weight: bold;
+    padding: 0.25rem;
+    position: relative;
+    bottom: -10px;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.hide {
+    display: none;
 }
