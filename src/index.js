@@ -9,6 +9,7 @@ import SignUp from './pages/SignUp';
 import BookCollection from './pages/BookCollection';
 import Dashboard from './pages/Dashboard';
 import './index.css';
+import Profile from './pages/Perfil';
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
@@ -20,6 +21,7 @@ ReactDOM.createRoot(document.getElementById('root')).render(
           <Route path='/signup' element={<SignUp />} />
           <Route path='/bookCollection' element={<BookCollection />} />
           <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/Profile' element={<Profile />} />
         </Route>
       </Routes>
     </BrowserRouter>
