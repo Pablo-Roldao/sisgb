@@ -1,39 +1,46 @@
 import React from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
-import axios from 'axios';
+import axios from '../api/axios';
 
 import styles from './SignUp.module.css'
 
 import NavbarComponent from '../components/NavbarComponent';
 import Footer from '../components/Footer';
 
+const REGISTER_URL = '/user/register';
+
 export default function SignUp() {
 
   const { register, handleSubmit } = useForm();
-  const onSubmit = async data => {
-    const {name, cpf, birthDate, addres, email, password} = data;
-    try {
-      await registerUser(name, cpf, birthDate, addres, email, password);
-    } catch (error) {
-      console.log(error);
-    }
-  }
 
-  async function registerUser(name, cpf, birthDate, addres, email, password) {
-    axios.post('https://sisgb.vercel.app/user/register', {
-      name: name,
-      cpf: cpf,
-      birthDate: birthDate,
-      addres: addres,
-      email: email,
-      password: password,
-      isFunctionary: true
-    }).then((response) => {
-      console.log(response);
-    }).catch((error) => {
-      console.log(error);
-    })
+  const onSubmit = async data => {
+    const { name, cpf, birthDate, addres, email, password } = data;
+
+    try {
+      const response = await axios.post(REGISTER_URL,
+        JSON.stringify({
+          name: name,
+          cpf: cpf,
+          birthDate: birthDate,
+          addres: addres,
+          email: email,
+          password: password,
+          isFunctionary: false
+        }),
+        {
+          headers: { 'Content-Type': 'application/json' }
+        }
+      );
+      console.log(JSON.stringify(response));
+      
+    } catch (err) {
+      if (!err?.response) {
+        console.log("No Server Response!");
+      } else {
+        console.log('Registration Failed! ' + err);
+      }
+    }
   }
 
   return (
