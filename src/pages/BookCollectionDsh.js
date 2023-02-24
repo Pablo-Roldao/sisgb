@@ -1,23 +1,24 @@
 import React, { useEffect, useState } from 'react';
-import axios from 'axios';
-import { Col, Container, Row, Form , Modal, Button } from 'react-bootstrap';
+import axios from '../api/axios';
+
 import styles from './BookCollection.module.css'
 
-
+import { Col, Container, Row, Form, Modal, Button } from 'react-bootstrap';
 
 import Footer from '../components/Footer';
 import NavbarComponent from '../components/NavbarComponent';
 import Book from '../components/Book';
 
-export default function BookCollectionDsh() {
+const BOOK_URL = '/book'
+
+export default function BookDsh() {
 
   const [books, setBooks] = useState([]);
 
   const getBooks = async () => {
     try {
-      const response = await axios.get("https://sisgb-api.vercel.app/book/get-all");
+      const response = await axios.get(BOOK_URL);
       const data = response.data;
-      console.log(data);
       setBooks(data);
     } catch (error) {
       console.log(error);
@@ -30,13 +31,11 @@ export default function BookCollectionDsh() {
 
   const booksResult = books.map((book) => {
     return (
-      <Col sm={3}>
-        <Book className='img-fluid' imgSrc={book.imgSrc} title={book.title} authors={book.authors}></Book>
+      <Col sm={3} key={book.isbn}>
+        <Book className='img-fluid' imgSrc={book.imgSrc} title={book.title} authors={book.authors} ></Book>
       </Col>
     );
   })
-
-  const [loan, setLoan] = useState([]);
 
   function createPost() {
     axios
@@ -54,56 +53,56 @@ export default function BookCollectionDsh() {
 
 
  
-
+  const [loan, setLoan] = useState([]);
     
   const [show, setShow] = useState(false);
 
   const handleClose = () => setShow(false);
   const handleShow = () => setShow(true);
 
-return (
-  <>
-    <NavbarComponent about={true} signUp={true} />
+    
 
-    <Container fluid className={styles.welcome}>
-      <Container className='p-4'>
+  return (
+    <>
+      <NavbarComponent about={true} signUp={true} />
 
-        <Row className='p-4'>
-          <Col><h1 className='text-center'>Acervo</h1></Col>
+      <Container fluid className={styles.welcome}>
+        <Container className='p-4'>
 
-          <Col>
-          <div>
-    <Button className={styles.btn} onClick={handleShow}> + Novo Livro</Button>
+          <Row className='p-4'>
+            <Col><h1 className='text-center'>Acervo</h1></Col>
+            <Col className='p-2'>
+            <div>
+    <Button className={styles.btn} onClick={handleShow}> + Novo Empréstimo</Button>
 </div>
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
-          <Modal.Title>Register Emprestimo</Modal.Title>
+          <Modal.Title>Register Book</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           <Form>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
-              <Form.Label>CPF</Form.Label>
-              <Form.Control
-               name='userCpf'
-                type="nunber"
-                placeholder="12345601256"
-                autoFocus
-              />
-               <Form.Label>isbn</Form.Label>
+              <Form.Label>Titulo</Form.Label>
               <Form.Control
                 type="nunber"
                 placeholder="12345601256"
                 autoFocus
               />
-               <Form.Label>Data de Inicio</Form.Label>
+               <Form.Label>Isbn</Form.Label>
               <Form.Control
-                type='date'
+                type="nunber"
+                placeholder="12345601256"
+                autoFocus
+              />
+               <Form.Label>Autor</Form.Label>
+              <Form.Control
+                type='text'
                 autoFocus
               />
 
-          <Form.Label>Data de termino</Form.Label>
+          <Form.Label>Url da imagem</Form.Label>
               <Form.Control
-                type='date'
+                type='url'
                 autoFocus
               />
             </Form.Group>
@@ -120,20 +119,18 @@ return (
         </Modal.Footer>
       </Modal>
     <br></br>
-          
-          </Col>
-         
-        </Row>
+            </Col>
+          </Row>
 
-        <Row className='p-4'>
-          {booksResult}
-        </Row>
+          <Row className='p-4'>
+            {books.length === 0 ? (
+              <h3 className='text-center'>Carregando...</h3>
+            ) : booksResult}
+          </Row>
 
+        </Container></Container>
+      <Footer />
 
-
-      </Container></Container>
-    <Footer />
-
-  </>
-);
+    </>
+  );
 }

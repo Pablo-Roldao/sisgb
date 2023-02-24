@@ -1,5 +1,6 @@
 import React from 'react';
-import { Button, Col, Container, Row } from 'react-bootstrap';
+import { Button, Col, Container, Row} from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import Navbar from '../components/NavbarComponent';
 import Footer from '../components/Footer';
@@ -53,7 +54,7 @@ export default function Home() {
                 <p>Um lugar onde você pode fazer e gerenciar empréstimos de livros da melhor forma possível...</p>
                 <br></br>
                 <Button className={styles.button + ' w-50 p-3'}>
-                  <a href='/bookCollection' className='text-decoration-none link link-dark fw-bold'>Conheça nosso acervo...</a>
+                  <Link to='/bookCollection' className='text-decoration-none link link-dark fw-bold'>Conheça nosso acervo...</Link>
                 </Button>
               </Container>
             </Col>
@@ -88,7 +89,7 @@ export default function Home() {
   </Col>*/}
             </Row>
             <div className='text-center p-5'>
-              <a href='/bookCollection' className={styles.btngetstarted + ' p-3 link link-light text-decoration-none'}>Navegue pelo acervo...</a>
+              <Link to='/bookCollection' className={styles.btngetstarted + ' p-3 link link-light text-decoration-none'}>Navegue pelo acervo...</Link>
             </div>
           </Container>
         </div>
