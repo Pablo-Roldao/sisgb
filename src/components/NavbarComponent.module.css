@@ -11,14 +11,38 @@
     opacity: 0.8;
     text-decoration: none;
 }
+
 .navbar a:hover {
     color: black;
     opacity: 1;
     text-decoration: none;
 }
 
+.navbar_row {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+}
+
+@media (max-width: 760px) {
+    .navbar_row {
+        justify-content: center;
+    }
+}
+
+.navbar_nav {
+    display: flex;
+    justify-content: flex-end;
+}
+
 @media (max-width: 760px) {
     .brand_col {
         text-align: center;
+    }
+
+    .navbar_nav {
+        display: flex;
+        justify-content: center;
     }
 }

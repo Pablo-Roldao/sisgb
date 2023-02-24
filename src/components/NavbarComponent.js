@@ -19,7 +19,7 @@ export default function NavbarComponent(props) {
     return (
         <Navbar id='navbar' className={styles.navbar}>
             <Container>
-                <Row className='w-100 d-flex align-items-center'>
+                <Row className={styles.navbar_row}>
                     <Col sm={4} className={styles.brand_col}>
                         <Navbar.Brand>
                             <Link to='/'>
@@ -28,7 +28,7 @@ export default function NavbarComponent(props) {
                         </Navbar.Brand>
                     </Col>
                     <Col sm={8}>
-                        <Nav className='d-flex justify-content-end'>
+                        <Nav className={styles.navbar_nav}>
                             {nav}
                         </Nav>
                     </Col>
