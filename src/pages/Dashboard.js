@@ -1,12 +1,10 @@
-import React from 'react';
+import React from 'react';  
+import styles from './Dashboard.module.css'
 import { Button, Col, Container, Row, Table, Form, Modal } from 'react-bootstrap';
-import Footer from '../components/Footer';
-
-  import styles from './Dashboard.module.css';
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
-
+import Footer from '../components/Footer';
 import {
     CDBSidebar,
     CDBSidebarContent,
@@ -14,6 +12,7 @@ import {
     CDBSidebarMenu,
     CDBSidebarMenuItem,
   } from 'cdbreact';
+
   import { NavLink } from 'react-router-dom';
 import Loan from '../components/Loan';
 
