@@ -48,7 +48,7 @@ export default function Home() {
       <Container id='welcome-area' className={styles.welcome_area} fluid>
         <Container>
           <Row>
-            <Col id='welcome-message' className={styles.welcome_message}>
+            <Col id='welcome-message' className={styles.welcome_message} sm>
               <h1><strong>Bem vindo ao SisGB!</strong></h1>
               <p>Um lugar onde você pode fazer e gerenciar empréstimos de livros da melhor forma possível.</p>
               <Link to='/bookCollection'>
@@ -57,7 +57,7 @@ export default function Home() {
                 </Button>
               </Link>
             </Col>
-            <Col id='login-form' className={styles.login_form}>
+            <Col id='login-form' className={styles.login_form} sm>
               <LoginForm />
             </Col>
           </Row>

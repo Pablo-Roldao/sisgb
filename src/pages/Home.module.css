@@ -15,14 +15,10 @@
   padding: 5%;
 }
 
+
+
 .welcome_message p {
   text-align: justify;
-}
-
-@media (max-width: 760px) {
-  .welcome_message  {
-    padding: 13%;
-  }
 }
 
 .welcome_message button {
@@ -114,4 +110,13 @@ h6 {
 .donation_incentive_area p:hover {
   transform: scale(1.1);
   transition: 0.5s;
+}
+
+@media (max-width: 760px) {
+  .welcome_message,
+  .welcome_books_area,
+  .donation_incentive_area_message,
+  .donation_incentive_area p {
+    color: black;
+  }
 }
