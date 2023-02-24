@@ -1,4 +1,4 @@
-import React from 'react';
+import { useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
@@ -10,33 +10,37 @@ import styles from './Home.module.css';
 
 export default function Home() {
 
-  const welcomeBooks = [
+  const [books] = useState([
     {
+      isbn: "6549885a26165",
       title: "Algum título...",
       authors: ["Autor X", "Autor Y"],
       imgSrc: "https://ihc.fcsh.unl.pt/wp-content/uploads/2018/01/livro001.jpg"
     },
     {
+      isbn: "6549883126165",
       title: "Algum título...",
       authors: ["Autor X", "Autor Y"],
       imgSrc: "https://ihc.fcsh.unl.pt/wp-content/uploads/2018/01/livro001.jpg"
     },
     {
+      isbn: "6549885126165",
       title: "Algum título...",
       authors: ["Autor X", "Autor Y"],
       imgSrc: "https://ihc.fcsh.unl.pt/wp-content/uploads/2018/01/livro001.jpg"
     },
     {
+      isbn: "65498d5126165",
       title: "Algum título...",
       authors: ["Autor X", "Autor Y"],
       imgSrc: "https://ihc.fcsh.unl.pt/wp-content/uploads/2018/01/livro001.jpg"
     }
-  ]
+  ]);
 
-  const welcomeBooksResult = (welcomeBooks).map((welcomeBook) => {
+  const booksResult = (books).map((book) => {
     return (
-      <Col sm>
-        <Book imgSrc={welcomeBook.imgSrc} title={welcomeBook.title} authors={welcomeBook.authors} />
+      <Col sm  key={book.isbn}>
+        <Book imgSrc={book.imgSrc} title={book.title} authors={book.authors}/>
       </Col>
     );
   })
@@ -69,7 +73,7 @@ export default function Home() {
         <h1><strong>Livros em alta</strong></h1>
         <h6>Navegue pela imensidão de livros presentes em nossa biblioteca...</h6>
         <Row className='d-flex justify-content-center'>
-          {welcomeBooksResult}
+          {booksResult}
         </Row>
         <br />
         <div className='text-center'>
@@ -79,8 +83,8 @@ export default function Home() {
         </div>
       </Container>
 
-      <Container id='donation-incentive-area' className={styles.donation_incentive_area} fluid>
-        <Row >
+      <Container id='donation-incentive-area' className={styles.donation_incentive_area + ' d-flex justify-content-center'} fluid>
+        <Row className='container'>
           <Col sm className={styles.donation_incentive_area_message}>
             <h1><strong>4 motivos para doar livros</strong></h1>
             <h6>Passar o conhecimento adiante é algo necessário que pode ajudar muitas pessoas. Então confere esses 4 motivos para você doar os livros que você não usa mais.</h6>
