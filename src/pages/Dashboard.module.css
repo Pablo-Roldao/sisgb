@@ -7,6 +7,7 @@
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
     overflow-x: hidden !important; 
+   
   }
 
 .card{
@@ -26,6 +27,7 @@
     height: 100vh; 
     overflow: scroll initial;
 }
+
 .nav{
     background-image: linear-gradient(to top, #fff 10%, #006a5d);
   

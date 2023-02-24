@@ -54,7 +54,7 @@ export default function Home() {
                 <p>Um lugar onde você pode fazer e gerenciar empréstimos de livros da melhor forma possível...</p>
                 <br></br>
                 <Button className={styles.button + ' w-50 p-3'}>
-                  <Link to='/bookCollection' className='text-decoration-none link link-dark fw-bold'>Conheça nosso acervo...</Link>
+                  <Link to='/bookCollection' className={ 'text-black p-3 link link-light text-decoration-none'}>Conheça nosso acervo...</Link>
                 </Button>
               </Container>
             </Col>

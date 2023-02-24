@@ -1,6 +1,7 @@
 import React from 'react';  
 import styles from './Dashboard.module.css'
 import { Button, Col, Container, Row, Table, Form, Modal } from 'react-bootstrap';
+import { Link } from 'react-router-dom';
 
 import axios from 'axios';
 import { useEffect, useState } from 'react';
@@ -93,9 +94,9 @@ export default function Dashboard() {
           <div className={styles.sed} >
       <CDBSidebar textColor="#fff" className={styles.nav}  id="none" >
         <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-          <a href="/" className="text-decoration-none" style={{ color: 'inherit' }}>
+          <Link to="/" className="text-decoration-none text-white ">
             SisGB
-          </a>
+          </Link>
         </CDBSidebarHeader>
 
         <CDBSidebarContent className="sidebar-content">
@@ -109,7 +110,7 @@ export default function Dashboard() {
             <NavLink exact to="/BookDsh" activeClassName="activeClicked">
               <CDBSidebarMenuItem icon="book">Acervo</CDBSidebarMenuItem>
             </NavLink>
-            <NavLink exact to="/perfil" activeClassName="activeClicked">
+            <NavLink exact to="/profile" activeChreflassName="activeClicked">
               <CDBSidebarMenuItem icon="user">Perfil</CDBSidebarMenuItem>
             </NavLink>
             <NavLink exact to="/analytics" activeClassName="activeClicked">
