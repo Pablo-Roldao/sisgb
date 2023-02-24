@@ -9,12 +9,12 @@ export default function Book(props) {
     authors = authors.replace("[\"", "");
     authors = authors.replace("\"]", "");
     authors = authors.replaceAll("\",\"", ", ");
-    
+
 
     return (
-        <Container key={props.isbn} className={styles.portfoliowrap + ' m-3'}>
-            <Image src={props.imgSrc} className={styles.img} fluid/>
-            <h5 className='fw-bold'>{props.title}</h5>
+        <Container key={props.isbn} className={styles.book}>
+            <Image src={props.imgSrc} fluid />
+            <h3><strong>{props.title}</strong></h3>
             <p>{authors}</p>
         </Container>
     );

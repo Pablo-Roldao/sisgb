@@ -1,154 +1,117 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
-.welcome {
-  background-image: linear-gradient(to left, #fff, #006a5d);
-  padding: 9%;
-}
-
-.secondScreen {
+.home {
   font-family: 'Poppins', sans-serif;
-  padding: 4px;
-}
-
-.logline {
-  font-family: 'Poppins', sans-serif;
-  color: white;
-  margin-top: -10%;
-}
-
-.logline h1 {
   font-weight: bold;
 }
 
-.logline p {
-  font-weight: 500;
-  font-size: 15px;
+.welcome_area {
+  background-image: linear-gradient(to left, #fff, #006a5d);
+  padding: 5%;
 }
 
-.logline button {
-  border: none;
-  background-color: #ffffff;
-  border-radius: 15px;
-  padding: 5px;
-  box-shadow: 3px 3px rgba(0, 0, 0, 0.24);
-  font-family: 'Poppins', sans-serif;
-  color: black;
-}
-
-.logline button:hover {
-  background-color: #008d7d;
-  color: #ffffff;
-  transform: scale(1.1);
-  transition: all 0.5s;
-}
-
-.btngetstarted {
-  font-weight: 500;
-  font-size: 15px;
-  letter-spacing: 1px;
-  display: inline-block;
-  border-radius: 15px;
-  transition: 0.3s;
-  color: #fff;
-  background: #006a5d;
-  box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
-  border: 2px solid rgba(255, 255, 255, 0.1);
-}
-
-.btngetstarted:hover {
-  border-color: rgba(255, 255, 255, 0.5);
-  transform: scale(1.1);
-  transition: all 0.5s;
-}
-
-.button {
-  border: none;
-  background-color: #008d7d;
-  border-radius: 2px;
+.welcome_message {
   color: white;
-  margin-top: 5%;
-  width: 102%;
-  font-family: 'Poppins', sans-serif;
+  padding: 5%;
 }
 
-.button:hover {
-  background-color: #008d7d;
-  transform: scale(1.1);
-  transition: all 0.5s;
+.welcome_message p {
+  text-align: justify;
 }
 
 @media (max-width: 760px) {
-  .logline button {
+  .welcome_message  {
+    padding: 13%;
+  }
+}
+
+.welcome_message button {
+  background-color: #fff;
+  color: #006a5d;
+  font-weight: bold;
+  border: none;
+  border-radius: 0.5rem;
+  padding: 2%;
+  margin-top: 5%;
+}
+
+.welcome_message button:hover {
+  transform: scale(1.1);
+  transition: all 0.5s;
+  background-color: #008d7d;
+  color: white;
+}
+
+@media (max-width: 760px) {
+  .welcome_message button {
     display: none;
   }
+}
 
-  .faq h2 {
-    font-weight: bold;
-    font-size: 20px;
+.login_form {
+  padding: 5%;
+}
+
+.welcome_books_area {
+  padding: 5%;
+  color: #006a5d;
+  font-weight: bold;
+}
+
+.welcome_books_area h1,
+h6 {
+  text-align: center;
+  font-weight: bold;
+}
+
+.welcome_books_area button {
+  background-color: #006a5d;
+  border: 1px solid #006a5d;
+  font-weight: bold;
+  width: 25%;
+  padding: 1%;
+}
+
+.welcome_books_area button:hover {
+  transform: scale(1.1);
+  transition: all 0.5s;
+  background-color: #006a5d;
+  border: 1px solid #006a5d;
+  color: white;
+}
+
+@media (max-width: 760px) {
+  .welcome_books_area button {
+    padding: 3%;
+    width: 75%;
   }
 }
 
-.portfolio {
-  background-color: #fff;
-  font-family: 'Poppins', sans-serif;
-}
-
-.portfolio h1 {
-  font-weight: bold;
-}
-
-.portfolio p {
-  font-weight: 500;
-  font-size: 17px;
-}
-
-.portfoliowrap {
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 10px;
-  margin-left: 2%;
-
-  background-image: linear-gradient(to top, #fff -50%, #006a5d);
-}
-
-.portfolio .portfoliowrap img {
-  transition: 0.3s;
-  position: relative;
-  margin-top: 5%;
-  z-index: 1;
-}
-
-.portfolio .portfoliowrap .portfolio-info {
-  padding: 25px 20px;
-  background-color: #fff;
-  position: relative;
-  border-top: 1px solid #f3f3f3;
-  z-index: 2;
-}
-
-.portfolio .portfoliowrap:hover img {
-  transform: scale(1.1);
-}
-
-.faq {
-  font-family: 'Poppins', sans-serif;
-  padding: 5%;
+.donation_incentive_area {
   background-image: linear-gradient(to left, #fff, #006a5d);
-  font-weight: 600;
-  color: #ffffff;
+  padding: 5%;
+  color: white;
 }
 
-.faq h2 {
+@media (max-width: 760px) {
+  .donation_incentive_area_message {
+    padding: 13%;
+  }
+}
+
+.donation_incentive_area h6 {
+  text-align: justify;
   font-weight: bold;
-  font-size: 50px;
 }
 
-.accordionitem p {
-  font-weight: 600;
-  text-indent: 25px;
-  font-size: larger;
-  padding: 10px;
-  background-color: #fff;
-  margin-top: 5%;
-  border-radius: 9px;
+.donation_incentive_area p {
+  background-color: white;
   color: #006a5d;
+  padding: 1%;
+  border-radius: 0.5rem;
+}
+
+.donation_incentive_area p:hover {
+  transform: scale(1.1);
+  transition: 0.5s;
 }
