@@ -63,7 +63,7 @@ export default function LoginForm() {
   return (
     <>
       {success ? (
-        <h1>Sessão iniciada!</h1>
+        <h1 className='text-light'><strong>Sessão iniciada!</strong></h1>
       ) : (
         <Container id='login-form' className={styles.login_form + ' p-3'}>
           <h1><strong>Entrar</strong></h1>
