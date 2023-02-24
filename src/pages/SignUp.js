@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Button, Container, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
@@ -16,7 +16,11 @@ const REGISTER_URL = '/user/';
 
 export default function SignUp() {
 
+  const errRef = useRef();
+
   const { register, handleSubmit } = useForm();
+
+  const [cpf, setCpf] = useState('');
 
   const [pwd, setPwd] = useState('');
   const [validPwd, setValidPwd] = useState(false);
@@ -25,6 +29,7 @@ export default function SignUp() {
   const [matchPwd, setMatchPwd] = useState('');
   const [validMatch, setValidMatch] = useState(false);
 
+  const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
@@ -34,15 +39,19 @@ export default function SignUp() {
     setValidMatch(match);
   }, [pwd, matchPwd])
 
+  useEffect(() => {
+    setErrMsg('');
+  }, [cpf, pwd, matchPwd]);
+
   const onSubmit = async data => {
 
     const pwdIsValid = PWD_REGEX.test(pwd);
     if (!pwdIsValid) {
-      alert("Invalid Entry");
+      setErrMsg("Invalid Entry!");
       return;
     }
 
-    const { name, cpf, birthDate, addres, email } = data;
+    const { name, birthDate, addres, email } = data;
 
     try {
       const response = await axios.post(REGISTER_URL,
@@ -63,10 +72,13 @@ export default function SignUp() {
       setSuccess(true);
     } catch (err) {
       if (!err?.response) {
-        console.log("No Server Response!");
+        setErrMsg("Sem resposta do servidor!");
+      } else if (err.response?.status === 409) {
+        setErrMsg("Esse CPF já está cadastrado!")
       } else {
-        console.log('Registration Failed! ' + err);
+        setErrMsg('Falha no cadastro! ' + err);
       }
+      errRef.current.focus();
     }
   }
 
@@ -84,6 +96,7 @@ export default function SignUp() {
           ) : (
             <>
               <h2 className='text-center'>Cadastre-se</h2>
+              <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
               <Form onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group>
                   <Form.Label>Nome</Form.Label>
@@ -91,7 +104,7 @@ export default function SignUp() {
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>CPF</Form.Label>
-                  <Form.Control {...register("cpf")} type='text' name='cpf' placeholder='Insira seu CPF...' required />
+                  <Form.Control onChange={(e) => setCpf(e.target.value)} type='text' name='cpf' placeholder='Insira seu CPF...' required />
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Data de nascimento</Form.Label>
