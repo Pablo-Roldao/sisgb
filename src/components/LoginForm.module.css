@@ -1,39 +1,49 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
-.login_forms {
-    background-color: rgb(255, 255, 255);
-    box-shadow: 0px 2px 20px rgba(0, 0, 0, 0.479);
-    border-radius: 20px;
+.login_form {
+    background-color: white;
     color: #006a5d;
-    margin-top: -25%;
-    padding: 10%;
-    font-family: 'Poppins', sans-serif;
-}
-
-.login_forms h1 {
-    font-weight: 800;
-    color: #006a5d;
-}
-
-.login_forms button {
+    border-radius: 1rem;
     border: none;
-    background-color: #008d7d;
-    border-radius: 9px;
-    color: white;
-    margin-top: 5%;
-    width: 102%;
-    font-family: 'Poppins', sans-serif;
 }
 
-.button:hover {
-    background-color: #008d7d;
+.login_form h1 {
+    text-align: center;
+}
+
+.login_form button {
+    border: 1px solid #006a5d;
+    background-color: #006a5d;
+    color: white;
+    font-weight: bold;
+    margin: 5%;
+    width: 75%;
+}
+
+.login_form button:hover {
     transform: scale(1.1);
     transition: all 0.5s;
+    background-color: #006a5d;
+    color: white;
+    border: 1px solid #006a5d;
 }
 
 @media (max-width: 760px) {
-    .login_forms {
-        margin-top: 0%;
-        padding: 5%;
+    .login_form button {
+        width: 90%;
     }
+}
+
+.err_msg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+}
+
+.offscreen {
+    position: absolute;
+    left: -9999px;
 }
