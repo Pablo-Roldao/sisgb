@@ -4,82 +4,59 @@ import { Button, Col, Container, Row, Table, Form, Modal } from 'react-bootstrap
 import { Link } from 'react-router-dom';
 
 import axios from 'axios';
-import { useEffect, useState } from 'react';
+import {  useState, useEffect } from 'react';
 import Footer from '../components/Footer';
-import {
-    CDBSidebar,
-    CDBSidebarContent,
-    CDBSidebarHeader,
-    CDBSidebarMenu,
-    CDBSidebarMenuItem,
-  } from 'cdbreact';
-
-  import { NavLink } from 'react-router-dom';
 import Loan from '../components/Loan';
+import NavbarComponent from '../components/NavbarComponent';
 
 export default function Dashboard() {
 
 
-  const [loan, setLoan] = useState([]);
+  /*const [dataa, setData] = useState({
+    userCpf: '000.000.000-00',
+  bookIsbn: '000-00-0000-000-1',
+  startDate: 12/11/2023,
+  finishDate: 15/11/2023
+  });
 
-  const getLoan= async () => {
-    try {
-      const response = await axios.get("https://sisgb-api.vercel.app/loan/get-all");
+  const userData = {
+    userCpf: dataa.userCpf,
+    bookIsbn: dataa.bookIsbn,
+    startDate: dataa.startDate,
+    finishDate: dataa.finishDate
 
-      const data = response.data;
+  };
+  axios.post("https://sisgb-api.vercel.app/loan/", userData).then((response) => {
+    console.log(response.status);
+  });
+*/
 
-      console.log(data);
-      setLoan(data);
-    } catch (error) {
-      console.log(error);
-    }
+
+
+
+const [loans, setloans] = useState([]);
+
+const getloans = async () => {
+  try {
+    const response = await axios.get('https://sisgb-api.vercel.app/loan/');
+    const data = response.data;
+    setloans(data);
+  } catch (error) {
+    console.log(error);
   }
 
-  useEffect(() => {
-    getLoan()
-  }, []);
+}
+useEffect(() => {
+  getloans()
+}, []);
 
-
- 
-
-  let rowCounter = 0;
-  const loanResult = loan.map((loan) => {
-    if (rowCounter === 4) {
-      rowCounter = 1;
-      return (
-        <>
-          <Row></Row>
-          <Col>
-            <Loan />
-          </Col>
-        </>
-      );
-    } else {
-      rowCounter++;
-      return (
-        <Col>
-        <Loan />
-      </Col>
-      );
-    }
-  })
-
-
-  function createPost() {
-    axios
-      .post("https://sisgb-api.vercel.app/loan/register", {
-        userCpf: "1235522",
-        bookIsbn:"55222",
-        startDate:"20/04/2023",
-        finishDate: "21/04/2023",
-      })
-      .then((response) => {
-        setLoan(response.data);
-      }); 
-       if (!loan) return "No post!"
-  }
-
-
+const loansResult = loans.map((loan) => {
+  return (
+    <Col sm={3}>
+      <Loan userCpf={loan.userCpf}/>
+    </Col>
+  );
+})
  
 
     
@@ -91,92 +68,32 @@ export default function Dashboard() {
     
     return(
         <>
-          <div className={styles.sed} >
-      <CDBSidebar textColor="#fff" className={styles.nav}  id="none" >
-        <CDBSidebarHeader prefix={<i className="fa fa-bars fa-large"></i>}>
-          <Link to="/" className="text-decoration-none text-white ">
-            SisGB
-          </Link>
-        </CDBSidebarHeader>
+        <NavbarComponent contoleLoan={true} />
+ <Container fluid className={styles.welcome} >
 
-        <CDBSidebarContent className="sidebar-content">
-          <CDBSidebarMenu>
-            <NavLink exact to="/Dashboard" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="columns">Dashboard</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink exact to="#emprestimos" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="table">Emprestimos</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink exact to="/BookDsh" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="book">Acervo</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink exact to="/profile" activeChreflassName="activeClicked">
-              <CDBSidebarMenuItem icon="user">Perfil</CDBSidebarMenuItem>
-            </NavLink>
-            <NavLink exact to="/analytics" activeClassName="activeClicked">
-              <CDBSidebarMenuItem icon="stop">Sair</CDBSidebarMenuItem>
-            </NavLink>
+          
+                <h1 className='text-center  p-5' id='emprestimos'>Empréstimos</h1>
+    <Row>
+      
+      
+      <Col >    
+      <Button className={styles.btn} onClick={handleShow}> ➕ Novo Empréstimo</Button>
+      <Button className={styles.btn2} onClick={handleShow}> ✏️ Editar Empréstimo</Button>
+      <Button className={styles.btn3} onClick={handleShow}> 🗑️ Deletar Empréstimo</Button>
+      </Col>
+      
+    
+    
+    </Row>
 
-            
-          </CDBSidebarMenu>
-        </CDBSidebarContent>
-      </CDBSidebar>
-  
-       
+    
 
-        <Container fluid className={styles.welcome} >
-
-            <h1 className='text-center text-white'> Dasboard SisGB</h1>
-
-            <Container className='p-4'>
-              
-                <Row className='p-4'>
- 
-                <Col className='col-sm-3'>
-                        <div className={styles.card}>
-                            <h2>Livros</h2>
-                            <p>2222</p>
-                        </div>
-                
-                    </Col> 
-                    
-                <Col className='col-sm-3'>
-                        <div className={styles.card}>
-                            <h2>Empréstimos</h2>
-                            <p>2222</p>
-                        </div>
-                
-                    </Col>
-                    
-                <Col className='col-sm-3'>
-                        <div className={styles.card}>
-                            <h2>Usuários</h2>
-                            <p>2222</p>
-                        </div>
-                
-                    </Col>
-                <Col className='col-sm-3'>
-                        <div className={styles.card}>
-                            <h2>Funcionários</h2>
-                            <p>2222</p>
-                        </div>
-                
-                    </Col>
-                
-                </Row>
-
-
-                <h1 className='text-center text-white p-5' id='emprestimos'>Empréstimos</h1>
-
-    <div>
-    <Button className={styles.btn} onClick={handleShow}> + Novo Empréstimo</Button>
-</div>
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Register Emprestimo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form>
+          <Form id='my-form'>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>CPF</Form.Label>
               <Form.Control
@@ -210,50 +127,18 @@ export default function Dashboard() {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" onClick={createPost}>
+          <Button variant="primary" >
             Criar
           </Button>
         </Modal.Footer>
       </Modal>
     <br></br>
-    
-    <Table striped bordered hover className='p-4'>
-      <thead>
-        <tr>
-          <th>#</th>
-          <th>First Name</th>
-          <th>Last Name</th>
-          <th>Username</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr>
-          <td>1</td>
-          <td>Mark</td>
-          <td>Otto</td>
-          <td>@mdo</td>
-        </tr>
-        <tr>
-          <td>2</td>
-          <td>Jacob</td>
-          <td>Thornton</td>
-          <td>@fat</td>
-        </tr>
-        <tr>
-          <td>3</td>
-          <td colSpan={2}>Larry the Bird</td>
-          <td>@twitter</td>
-        </tr>
-      </tbody>
-    </Table>
-    {loanResult}
+    <Row className='p-4'>  
 
+  </Row> 
+  {loans.length === 0 ?( <h3 className='text-center'>Carregando...</h3>): loansResult}
             </Container>
-        </Container>
-       
-  </div>
         <Footer />
-        
         </>
     )
 

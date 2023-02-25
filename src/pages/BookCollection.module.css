@@ -6,13 +6,37 @@
   border: none;
 }
   
-  .btn{
-    background-color: rgb(255, 255, 255);
-    text-align: center;
-    border: none;
-    border-radius: 9px;
-    
-    color: #006a5d;
-    font-family: 'Poppins', sans-serif;
-    font-weight: 800;
+.btn{
+  background-color: rgb(44, 212, 18);
+  text-align: center;
+  border: none;
+  border-radius: 9px;
+  margin-right: 2%;
+  
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+}
+
+.btn2{
+  background-color: rgb(211, 177, 38);
+  text-align: center;
+  border: none;
+  border-radius: 9px;
+  margin-right: 2%;
+  
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
+}
+.btn3{
+  background-color: rgb(255, 0, 0);
+  text-align: center;
+  border: none;
+  border-radius: 9px;
+  margin-right: 2%;
+  
+  color: #fff;
+  font-family: 'Poppins', sans-serif;
+  font-weight: 800;
 }

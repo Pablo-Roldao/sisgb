@@ -1,5 +1,5 @@
 import React from 'react';
-import { Container, Image, Table } from 'react-bootstrap';
+import { Col, Container, Image, Row, Table } from 'react-bootstrap';
 
 import styles from './Loan.module.css'
 
@@ -13,16 +13,20 @@ export default function Loan(props) {
 
     return (
 
-        <Container key={props.isbn}>
-            <Table>
-    <tbody>
-        <tr>
-                <td>{props.id}</td>
-                <td>{props.isbn}</td>
-                <td>{props.cpf}</td>
-        </tr>
-    </tbody>
-            </Table>
-        </Container>
+        <Container key={props.userCpf}>
+            <Row>
+                <Col>
+                    <h3><strong>{props.userCpf}</strong></h3>
+                    <h3><strong>{props.bookIsbn}</strong></h3>
+                    <h3><strong>{props.startDate}</strong></h3>
+                    <h3><strong>{props.finishDate}</strong></h3>
+                </Col>
+            </Row>
+       
+       
+
+       
+    </Container>
+       
     );
 }
