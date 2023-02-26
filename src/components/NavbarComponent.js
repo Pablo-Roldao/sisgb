@@ -21,9 +21,9 @@ export default function NavbarComponent(props) {
     }
     if (props.contoleLoan) {
         nav.push(<Nav.Link key={'loan'}><Link to='/bookDsh'>Controle de Livros</Link></Nav.Link>);
-    }    if (props.contoleLoan) {
+    } if (props.contoleLoan) {
         nav.push(<Nav.Link key={'loan'}><Link to='/dashboard'>Controle de Funcionários</Link></Nav.Link>);
-    }    if (props.contoleLoan) {
+    } if (props.contoleLoan) {
         nav.push(<Nav.Link key={'loan'}><Link to='/dashboard'>Controle de Reserva</Link></Nav.Link>);
     }
     return (

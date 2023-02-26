@@ -8,6 +8,7 @@ import { useState, useEffect } from 'react';
 import Footer from '../components/Footer';
 import Loan from '../components/Loan';
 import NavbarComponent from '../components/NavbarComponent';
+import Users from '../components/Users';
 
 export default function Dashboard() {
 
@@ -114,7 +115,8 @@ export default function Dashboard() {
         </Row>
         {loans.length === 0 ? (<h3 className='text-center'>Carregando...</h3>) : loansResult}
   </Container>*/}
-  Dashboard
+      Dashboard
+      <Users />
       <Footer />
     </>
   )
