@@ -9,7 +9,7 @@ export default function Loan(props) {
     authors = authors.replace("[\"", "");
     authors = authors.replace("\"]", "");
     authors = authors.replaceAll("\",\"", ", ");
-    
+
 
     return (
 
@@ -22,11 +22,8 @@ export default function Loan(props) {
                     <h3><strong>{props.finishDate}</strong></h3>
                 </Col>
             </Row>
-       
-       
 
-       
-    </Container>
-       
+        </Container>
+
     );
 }
