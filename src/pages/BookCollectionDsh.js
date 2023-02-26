@@ -64,17 +64,15 @@ export default function BookDsh() {
 
   return (
     <>
-      <NavbarComponent about={true} signUp={true} />
+     <NavbarComponent contoleLoan={true} />
 
       <Container fluid className={styles.welcome}>
         <Container className='p-4'>
 
           <Row className='p-4'>
             <Col><h1 className='text-center'>Acervo</h1></Col>
-            <Col className='p-2'>
-            <div>
-    <Button className={styles.btn} onClick={handleShow}> + Novo Empréstimo</Button>
-</div>
+            </Row>
+           
     <Modal show={show} onHide={handleClose}>
         <Modal.Header closeButton>
           <Modal.Title>Register Book</Modal.Title>
@@ -119,8 +117,12 @@ export default function BookDsh() {
         </Modal.Footer>
       </Modal>
     <br></br>
-            </Col>
-          </Row>
+            
+         
+          <Row className='p-4'><Col> <Button className={styles.btn} onClick={handleShow}> ➕ Novo Empréstimo</Button>
+      <Button className={styles.btn2} onClick={handleShow}> ✏️ Editar Empréstimo</Button>
+      <Button className={styles.btn3} onClick={handleShow}> 🗑️ Deletar Empréstimo</Button></Col></Row>
+     
 
           <Row className='p-4'>
             {books.length === 0 ? (

@@ -2,7 +2,7 @@
 
 
 .welcome {
-    background-color: #006a5d;
+    background-image: linear-gradient(to top, #fff 10%, #006a5d);
     padding: 5%;
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
@@ -20,12 +20,6 @@
     font-family: 'Poppins', sans-serif;
     font-weight: bold;
 
-}
-
-.sed{
-    display: flex; 
-    height: 100vh; 
-    overflow: scroll initial;
 }
 
 .nav{
@@ -46,12 +40,36 @@ table{
 }
 
 .btn{
-    background-color: rgb(255, 255, 255);
+    background-color: rgb(44, 212, 18);
     text-align: center;
     border: none;
     border-radius: 9px;
+    margin-right: 2%;
     
-    color: #006a5d;
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}
+
+.btn2{
+    background-color: rgb(211, 177, 38);
+    text-align: center;
+    border: none;
+    border-radius: 9px;
+    margin-right: 2%;
+    
+    color: #fff;
+    font-family: 'Poppins', sans-serif;
+    font-weight: 800;
+}
+.btn3{
+    background-color: rgb(255, 0, 0);
+    text-align: center;
+    border: none;
+    border-radius: 9px;
+    margin-right: 2%;
+    
+    color: #fff;
     font-family: 'Poppins', sans-serif;
     font-weight: 800;
 }
