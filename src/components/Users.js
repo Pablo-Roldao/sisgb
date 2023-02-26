@@ -12,7 +12,6 @@ const Users = () => {
 
     useEffect(() => {
         const getUsers = async () => {
-
             try {
                 const response = await axiosPrivate.get(USER_URL);
                 setUsers(response.data);

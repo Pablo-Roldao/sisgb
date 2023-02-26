@@ -16,16 +16,16 @@ export default function NavbarComponent(props) {
         nav.push(<Nav.Link key={'signUp'}><Link to='/signUp'>Cadastre-se</Link></Nav.Link>);
     }
 
-    if (props.contoleLoan) {
-        nav.push(<Nav.Link key={'loan'}><Link to='/dashboard'>Controle de Empréstimos</Link></Nav.Link>);
+    if (props.loanDashboard) {
+        nav.push(<Nav.Link key={'loanDashboard'}><Link to='/loanDashboard'>Empréstimos</Link></Nav.Link>);
     }
-    if (props.contoleLoan) {
-        nav.push(<Nav.Link key={'loan'}><Link to='/bookDsh'>Controle de Livros</Link></Nav.Link>);
-    } if (props.contoleLoan) {
-        nav.push(<Nav.Link key={'loan'}><Link to='/dashboard'>Controle de Funcionários</Link></Nav.Link>);
-    } if (props.contoleLoan) {
-        nav.push(<Nav.Link key={'loan'}><Link to='/dashboard'>Controle de Reserva</Link></Nav.Link>);
+    if (props.dashboard) {
+        nav.push(<Nav.Link key={'dashboard'}><Link to='/dashboard'>Dashboard</Link></Nav.Link>);
     }
+    if (props.dashboardBook) {
+        nav.push(<Nav.Link key={'dashboardBook'}><Link to='/dashboardBook'>Livros</Link></Nav.Link>);
+    }
+
     return (
         <Navbar id='navbar' className={styles.navbar}>
             <Container>

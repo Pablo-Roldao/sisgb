@@ -1,0 +1,13 @@
+.offscreen {
+    position: absolute;
+    left: -9999px;
+}
+
+.err_msg {
+    background-color: lightpink;
+    color: firebrick;
+    font-weight: bold;
+    padding: 0.5rem;
+    border-radius: 0.75rem;
+    margin-bottom: 0.5rem;
+}
