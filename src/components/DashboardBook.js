@@ -26,6 +26,14 @@ const DashboardBook = () => {
         getBooks();
     }, []);
 
+    const updateBook = (bookIsbn) => {
+        ;
+    }
+
+    const deleteBook = (bookIsbn) => {
+
+    }
+
     const booksResult = books.map((book) => {
         return (
             <tr>
@@ -42,6 +50,12 @@ const DashboardBook = () => {
                             ? "Reservado"
                             : "Livre"
                 }</td>
+                <td>
+                    {"Função de atualizar"}
+                </td>
+                <td>
+                    {"Função de excluir"}
+                </td>
             </tr>
         );
     })
@@ -69,6 +83,8 @@ const DashboardBook = () => {
                             <th>Edição</th>
                             <th>Gênero</th>
                             <th>Estado</th>
+                            <th>*</th>
+                            <th>*</th>
                         </tr>
                     </thead>
                     <tbody>
