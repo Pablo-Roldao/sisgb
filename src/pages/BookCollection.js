@@ -20,8 +20,8 @@ export default function BookCollection() {
       const response = await axios.get(BOOK_URL);
       const data = response.data;
       setBooks(data);
-    } catch (error) {
-      console.log(error);
+    } catch (err) {
+      console.log(err);
     }
   }
 

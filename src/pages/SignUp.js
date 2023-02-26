@@ -62,7 +62,12 @@ export default function SignUp() {
           addres: addres,
           email: email,
           password: pwd,
-          isFunctionary: false
+          roles: [
+            {
+                name: "User",
+                code: 2001
+            }
+        ]
         }),
         {
           headers: { 'Content-Type': 'application/json' }

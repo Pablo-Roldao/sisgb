@@ -1,22 +1,26 @@
-import { useContext, useEffect, useRef, useState } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import { Container, Form, Row, Col, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import AuthContext from '../current/AuthProvider';
+import { Link, useNavigate, useLocation } from 'react-router-dom';
 import axios from '../api/axios';
+import useAuth from '../hooks/useAuth';
 
 import styles from './LoginForm.module.css';
 
 const LOGIN_URL = '/auth'
 
 export default function LoginForm() {
-  const { setAuth } = useContext(AuthContext);
+  const { setAuth } = useAuth();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+  const to = location.state?.from?.pathname || "/dashboard";
+
   const cpfRef = useRef();
   const errRef = useRef();
 
   const [cpf, setCpf] = useState('');
   const [pwd, setPwd] = useState('');
   const [errMsg, setErrMsg] = useState('');
-  const [success, setSuccess] = useState(false);
 
   useEffect(() => {
     cpfRef.current.focus();
@@ -27,7 +31,7 @@ export default function LoginForm() {
   }, [cpf, pwd]);
 
 
-  const handlerSubmit = async (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
@@ -39,13 +43,14 @@ export default function LoginForm() {
           withCrendentials: true
         }
       );
-      console.log(JSON.stringify(response?.data));
       const accessToken = response?.data?.accessToken;
+      const refreshToken = response?.data?.refreshToken;
       const roles = response?.data?.roles;
-      setAuth({ cpf, pwd, roles, accessToken });
+
+      setAuth({ cpf, pwd, roles, accessToken, refreshToken });
       setCpf('');
       setPwd('');
-      setSuccess(true);
+      navigate(to, { replace: true });
     } catch (err) {
       if (!err?.response) {
         setErrMsg("Sem resposta do servidor!");
@@ -61,53 +66,46 @@ export default function LoginForm() {
   }
 
   return (
-    <>
-      {success ? (
-        <h1 className='text-light'><strong>Sessão iniciada!</strong></h1>
-      ) : (
-        <Container id='login-form' className={styles.login_form + ' p-3'}>
-          <h1><strong>Entrar</strong></h1>
-          <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
-          <Form onSubmit={handlerSubmit}>
-            <Form.Group>
-              <Form.Label htmlFor='cpf'>CPF</Form.Label>
-              <Form.Control
-                type='text'
-                id='cpf'
-                placeholder='Insira seu CPF...'
-                ref={cpfRef}
-                onChange={(e) => setCpf(e.target.value)}
-                value={cpf}
-                required
-              />
-            </Form.Group>
-            <Form.Group>
-              <Form.Label htmlFor='password'>Senha</Form.Label>
-              <Form.Control
-                type='password'
-                id='password'
-                onChange={(e) => setPwd(e.target.value)}
-                value={pwd}
-                placeholder='Insira sua senha...'
-                required
-              />
-            </Form.Group>
-            <Row className='text-center'>
-              <Col>
-                <Button type='submit'>
-                  Entrar
-                </Button>
-              </Col>
-              <Col sm>
-                <Link to='/signUp'>
-                  <Button>Cadastre-se</Button>
-                </Link>
-              </Col>
-            </Row>
-          </Form>
-        </Container>
-      )
-      }
-    </>
+    <Container id='login-form' className={styles.login_form + ' p-3'}>
+      <h1><strong>Entrar</strong></h1>
+      <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
+      <Form onSubmit={handleSubmit}>
+        <Form.Group>
+          <Form.Label htmlFor='cpf'>CPF</Form.Label>
+          <Form.Control
+            type='text'
+            id='cpf'
+            placeholder='Insira seu CPF...'
+            ref={cpfRef}
+            onChange={(e) => setCpf(e.target.value)}
+            value={cpf}
+            required
+          />
+        </Form.Group>
+        <Form.Group>
+          <Form.Label htmlFor='password'>Senha</Form.Label>
+          <Form.Control
+            type='password'
+            id='password'
+            onChange={(e) => setPwd(e.target.value)}
+            value={pwd}
+            placeholder='Insira sua senha...'
+            required
+          />
+        </Form.Group>
+        <Row className='text-center'>
+          <Col>
+            <Button type='submit'>
+              Entrar
+            </Button>
+          </Col>
+          <Col sm>
+            <Link to='/signUp'>
+              <Button>Cadastre-se</Button>
+            </Link>
+          </Col>
+        </Row>
+      </Form>
+    </Container>
   );
 }
