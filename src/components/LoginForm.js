@@ -43,11 +43,11 @@ export default function LoginForm() {
           withCrendentials: true
         }
       );
-      console.log(JSON.stringify(response?.data));
       const accessToken = response?.data?.accessToken;
+      const refreshToken = response?.data?.refreshToken;
       const roles = response?.data?.roles;
 
-      setAuth({ cpf, pwd, roles, accessToken });
+      setAuth({ cpf, pwd, roles, accessToken, refreshToken });
       setCpf('');
       setPwd('');
       navigate(to, { replace: true });
