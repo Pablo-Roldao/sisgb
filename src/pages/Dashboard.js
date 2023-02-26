@@ -12,25 +12,34 @@ import NavbarComponent from '../components/NavbarComponent';
 export default function Dashboard() {
 
 
-  /*const [dataa, setData] = useState({
-    userCpf: '000.000.000-00',
-  bookIsbn: '000-00-0000-000-1',
-  startDate: 12/11/2023,
-  finishDate: 15/11/2023
+const [dataa, setData] = useState({
+    userCpf: "",
+  bookIsbn: "",
+  startDate: "",
+  finishDate: ""
   });
 
+  const handleChange = (e) => {
+    const value = e.target.value;
+    setData({
+      ...dataa,
+      [e.target.name]: value
+    });
+  };
+  const handleSubmit = (e) => {
+    e.preventDefault();
   const userData = {
     userCpf: dataa.userCpf,
     bookIsbn: dataa.bookIsbn,
     startDate: dataa.startDate,
     finishDate: dataa.finishDate
 
-  };
+  }
+
   axios.post("https://sisgb-api.vercel.app/loan/", userData).then((response) => {
     console.log(response.status);
-  });
-*/
-
+  })
+};
 
 
 
@@ -93,12 +102,14 @@ const loansResult = loans.map((loan) => {
           <Modal.Title>Register Emprestimo</Modal.Title>
         </Modal.Header>
         <Modal.Body>
-          <Form id='my-form'>
+          <Form id='my-form' onSubmit={handleSubmit}>
             <Form.Group className="mb-3" controlId="exampleForm.ControlInput1">
               <Form.Label>CPF</Form.Label>
               <Form.Control
                name='userCpf'
                 type="nunber"
+                value={dataa.userCpf}
+                onChange={handleChange}
                 placeholder="12345601256"
                 autoFocus
               />
@@ -106,17 +117,26 @@ const loansResult = loans.map((loan) => {
               <Form.Control
                 type="nunber"
                 placeholder="12345601256"
+                onChange={handleChange}
+                name="isbn"
+                value={dataa.bookIsbn}
                 autoFocus
               />
                <Form.Label>Data de Inicio</Form.Label>
               <Form.Control
                 type='date'
+                name='startDate'
+                onChange={handleChange}
+                value={dataa.startDate}
                 autoFocus
               />
 
           <Form.Label>Data de termino</Form.Label>
               <Form.Control
                 type='date'
+                name='finishDate'
+                onChange={handleChange}
+                value={dataa.finishDate}
                 autoFocus
               />
             </Form.Group>
@@ -127,7 +147,7 @@ const loansResult = loans.map((loan) => {
           <Button variant="secondary" onClick={handleClose}>
             Close
           </Button>
-          <Button variant="primary" >
+          <Button variant="primary" type="submit" >
             Criar
           </Button>
         </Modal.Footer>
@@ -136,7 +156,7 @@ const loansResult = loans.map((loan) => {
     <Row className='p-4'>  
 
   </Row> 
-  {loans.length === 0 ?( <h3 className='text-center'>Carregando...</h3>): loansResult}
+ {loans.length === 0 ?( <h3 className='text-center'>Carregando...</h3>): loansResult}
             </Container>
         <Footer />
         </>
