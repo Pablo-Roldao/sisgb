@@ -5,8 +5,8 @@ import { Col, Container, Row, Image } from 'react-bootstrap';
 import styles from './About.module.css'
 
 
-import Navbar from '../components/NavbarComponent';
-import Footer from '../components/Footer';
+import Navbar from '../../components/NavbarComponent';
+import Footer from '../../components/Footer';
 
 export default class About extends Component {
   render() {

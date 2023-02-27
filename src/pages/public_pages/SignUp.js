@@ -4,12 +4,12 @@ import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faInfoCircle, faCheck, faTimes } from '@fortawesome/free-solid-svg-icons';
-import axios from '../api/axios';
+import axios from '../../api/axios';
 
 import styles from './SignUp.module.css'
 
-import NavbarComponent from '../components/NavbarComponent';
-import Footer from '../components/Footer';
+import NavbarComponent from '../../components/NavbarComponent';
+import Footer from '../../components/Footer';
 
 const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const REGISTER_URL = '/user/';
@@ -64,10 +64,10 @@ export default function SignUp() {
           password: pwd,
           roles: [
             {
-                name: "User",
-                code: 2001
+              name: "User",
+              code: 2001
             }
-        ]
+          ]
         }),
         {
           headers: { 'Content-Type': 'application/json' }

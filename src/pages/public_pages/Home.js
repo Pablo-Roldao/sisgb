@@ -2,10 +2,10 @@ import { useState } from 'react';
 import { Button, Col, Container, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
 
-import Navbar from '../components/NavbarComponent';
-import Footer from '../components/Footer';
-import Book from '../components/Book';
-import LoginForm from '../components/LoginForm';
+import Navbar from '../../components/NavbarComponent';
+import Footer from '../../components/Footer';
+import Book from '../../components/Book';
+import LoginForm from '../../components/LoginForm';
 import styles from './Home.module.css';
 
 export default function Home() {
@@ -47,7 +47,7 @@ export default function Home() {
 
   return (
     <section className={styles.home}>
-      <Navbar about={true} bookCollection={true} signUp={true} />
+      <Navbar about={true} signUp={true} />
 
       <Container id='welcome-area' className={styles.welcome_area} fluid>
         <Container>

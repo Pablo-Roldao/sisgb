@@ -1,21 +1,38 @@
 import { Route, Routes } from "react-router-dom";
 
 import Layout from "./components/Layout";
-
-import Home from './pages/Home';
-import About from './pages/About';
-import SignUp from './pages/SignUp';
-import BookCollection from './pages/BookCollection';
-import Unauthorized from './components/Unauthorized';
-
 import RequireAuth from './components/RequireAuth';
 
-import Profile from './pages/Perfil';
+import About from './pages/public_pages/About';
+import Home from './pages/public_pages/Home';
+import SignUp from './pages/public_pages/SignUp';
+import Unauthorized from './pages/public_pages/Unauthorized';
 
-import Dashboard from './pages/Dashboard';
-import DashboardBook from "./components/DashboardBook";
-import RegisterBook from "./components/RegisterBook";
-import UpdateBook from "./components/UpdateBook";
+import AdminDashboard from './pages/admin_access/AdminDashboard';
+import DashboardFunctionary from './pages/admin_access/DashboardFuncionary';
+import RegisterFunctionary from './pages/admin_access/RegisterFuncionary';
+import UpdateFunctionary from './pages/admin_access/UpdateFunctionary';
+
+import DashboardBook from './pages/functionary_access/DashboardBook';
+import DashboardLoan from './pages/functionary_access/DashboardLoan';
+import DashboardReservation from './pages/functionary_access/DashboardReservation';
+import DashboardUser from './pages/functionary_access/DashboardUser';
+import FunctionaryDashboard from './pages/functionary_access/FunctionaryDashboard';
+import RegisterBook from './pages/functionary_access/RegisterBook';
+import RegisterLoan from './pages/functionary_access/RegisterLoan';
+import RegisterReservation from './pages/functionary_access/RegisterReservation';
+import RegisterUser from './pages/functionary_access/RegisterUser';
+import TranformReservation from './pages/functionary_access/TransformReservation';
+import UpdateBook from './pages/functionary_access/UpdateBook';
+import UpdateLoan from './pages/functionary_access/UpdateLoan';
+import UpdateReservation from './pages/functionary_access/UpdateReservation';
+import UpdateUser from './pages/functionary_access/UpdateUser';
+
+import BookCollectionUser from './pages/user_access/BookCollectionUser';
+import LoansUser from './pages/user_access/LoansUser';
+import Profile from './pages/user_access/Profile';
+import ReservationsUser from './pages/user_access/ReservationsUser';
+
 
 const ROLES = {
   'User': 2001,
@@ -30,21 +47,47 @@ function App() {
         {/*rotas públicas*/}
         <Route path='/' element={<Home />} />
         <Route path='/about' element={<About />} />
-        <Route path='/signup' element={<SignUp />} />
-        <Route path='/bookCollection' element={<BookCollection />} />
+        <Route path='/signUp' element={<SignUp />} />
         <Route path='/unauthorized' element={<Unauthorized />} />
 
         {/*rotas protegidas*/}
-        <Route element={<RequireAuth allowedRoles={[ROLES.User]} />}>
-          <Route path='/profile' element={<Profile />} />
+        <Route element={<RequireAuth allowedRoles={[ROLES.Admin]} />}>
+          <Route path='/adminDashboard' element={<AdminDashboard />} />
+
+          <Route path='/dashboardFunctionary' element={<DashboardFunctionary />} />
+          <Route path='/registerFunctionary' element={<RegisterFunctionary />} />
+          <Route path='/updateFunctionary' element={<UpdateFunctionary />} />
         </Route>
+
         <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.Functionary]} />}>
-          <Route path='/dashboard' element={<Dashboard />} />
+          <Route path='/functionaryDashboard' element={<FunctionaryDashboard />} />
 
           <Route path='/dashboardBook' element={<DashboardBook />} />
           <Route path='/registerBook' element={<RegisterBook />} />
           <Route path='/updateBook' element={<UpdateBook />} />
+
+          <Route path='/dashboardUser' element={<DashboardUser />} />
+          <Route path='/registerUser' element={<RegisterUser />} />
+          <Route path='/updateUser' element={<UpdateUser />} />
+
+          <Route path='/dashboardLoan' element={<DashboardLoan />} />
+          <Route path='/registerLoan' element={<RegisterLoan />} />
+          <Route path='/updateLoan' element={<UpdateLoan />} />
+
+          <Route path='/dashboardReservation' element={<DashboardReservation />} />
+          <Route path='/registerReservation' element={<RegisterReservation />} />
+          <Route path='/updateReservation' element={<UpdateReservation />} />
+          <Route path='/transformReservation' element={<TranformReservation />} />
         </Route>
+
+        <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.Functionary, ROLES.User]} />}>
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/bookCollectionUser' element={<BookCollectionUser />} />
+          <Route path='/reservationsUser' element={<ReservationsUser />} />
+          <Route path='/loansUser' element={<LoansUser />} />
+        </Route>
+
+
       </Route>
     </Routes>
   );

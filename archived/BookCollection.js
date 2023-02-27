@@ -1,13 +1,13 @@
 import React, { useEffect, useState } from 'react';
-import axios from '../api/axios';
+import axios from '../src/api/axios';
 
 import styles from './BookCollection.module.css'
 
 import { Col, Container, Row, Form } from 'react-bootstrap';
 
-import Footer from '../components/Footer';
-import NavbarComponent from '../components/NavbarComponent';
-import Book from '../components/Book';
+import Footer from '../src/components/Footer';
+import NavbarComponent from '../src/components/NavbarComponent';
+import Book from './Book';
 
 const BOOK_URL = '/book'
 
