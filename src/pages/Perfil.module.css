@@ -3,4 +3,6 @@
     padding: 5%;
   
   }
- 
+ .card{
+  border-radius: 25px;
+ }

@@ -9,13 +9,56 @@ import {
   MDBCardImage,
   MDBBtn
 } from 'mdb-react-ui-kit';
-
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import useAxiosPrivate from '../hooks/useAxiosPrivate';
+import { useEffect, useState } from 'react';  
 import NavbarComponent from '../components/NavbarComponent';
 
 import styles from './Perfil.module.css'
 import Footer from '../components/Footer';
 
+
 export default function Profile() {
+
+  const USER_URL = '/user';
+  const [user, setUser] = useState([]);
+  const axiosPrivate = useAxiosPrivate();
+  const navigate = useNavigate();
+  const location = useLocation();
+
+
+  useEffect(() => {
+    const getUser = async () => {
+        try {
+            const response = await axiosPrivate.get(USER_URL);
+            setUser(response.data);
+        } catch (err) {
+            navigate('/', { state: { from: location }, replace: true });
+        }
+    }
+    getUser();
+}, []);
+
+const userName = user.map((user) => {
+  return (
+      
+          <h6>{user.name}</h6>
+      
+  );
+})
+const userMail = user.map((user) => {
+  return (
+    <h6>{user.email}</h6>
+  );
+})
+const userCpf = user.map((user) => {
+  return (
+    <h6>{user.cpf}</h6>
+  );
+})
+
+
+
   return (
   <>
   <NavbarComponent />
@@ -26,32 +69,16 @@ export default function Profile() {
         
       
         <MDBRow>
-          <MDBCol lg="4">
-            <MDBCard className="mb-4">
-              <MDBCardBody className="text-center">
-                <MDBCardImage
-                  src="https://mdbcdn.b-cdn.net/img/Photos/new-templates/bootstrap-chat/ava3.webp"
-                  alt="avatar"
-                  className="rounded-circle"
-                  style={{ width: '150px' }}
-                  fluid />
-                <p className="text-muted mb-1">Full Stack Developer</p>
-                <p className="text-muted mb-4">Bay Area, San Francisco, CA</p>
-                
-              </MDBCardBody>
-            </MDBCard>
-
-            
-          </MDBCol>
-          <MDBCol lg="8">
-            <MDBCard className="mb-4">
+         
+          <MDBCol lg="12">
+            <MDBCard className={styles.card}>
               <MDBCardBody>
                 <MDBRow>
                   <MDBCol sm="3">
                     <MDBCardText>Full Name</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Johnatan Smith</MDBCardText>
+                    <MDBCardText className="text-muted"> {userName}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
@@ -60,42 +87,26 @@ export default function Profile() {
                     <MDBCardText>Email</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">example@example.com</MDBCardText>
+                    <MDBCardText className="text-muted">{userMail}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
                 <hr />
                 <MDBRow>
                   <MDBCol sm="3">
-                    <MDBCardText>Phone</MDBCardText>
+                    <MDBCardText>Cpf</MDBCardText>
                   </MDBCol>
                   <MDBCol sm="9">
-                    <MDBCardText className="text-muted">(097) 234-5678</MDBCardText>
+                    <MDBCardText className="text-muted">{userCpf}</MDBCardText>
                   </MDBCol>
                 </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Mobile</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">(098) 765-4321</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
-                <hr />
-                <MDBRow>
-                  <MDBCol sm="3">
-                    <MDBCardText>Address</MDBCardText>
-                  </MDBCol>
-                  <MDBCol sm="9">
-                    <MDBCardText className="text-muted">Bay Area, San Francisco, CA</MDBCardText>
-                  </MDBCol>
-                </MDBRow>
+            
               </MDBCardBody>
             </MDBCard>
 
           </MDBCol>
         </MDBRow>
       </MDBContainer>
+      
 
       
     </section>
