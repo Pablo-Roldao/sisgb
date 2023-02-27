@@ -32,6 +32,8 @@ import BookCollectionUser from './pages/user_access/BookCollectionUser';
 import LoansUser from './pages/user_access/LoansUser';
 import Profile from './pages/user_access/Profile';
 import ReservationsUser from './pages/user_access/ReservationsUser';
+import UserDashboard from './pages/user_access/UserDashboard';
+
 
 
 const ROLES = {
@@ -81,6 +83,7 @@ function App() {
         </Route>
 
         <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.Functionary, ROLES.User]} />}>
+          <Route path='/userDashboard' element={<UserDashboard />} />
           <Route path='/profile' element={<Profile />} />
           <Route path='/bookCollectionUser' element={<BookCollectionUser />} />
           <Route path='/reservationsUser' element={<ReservationsUser />} />

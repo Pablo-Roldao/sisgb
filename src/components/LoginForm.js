@@ -13,7 +13,7 @@ export default function LoginForm() {
 
   const navigate = useNavigate();
   const location = useLocation();
-  const to = location.state?.from?.pathname || "/dashboard";
+  let to = location.state?.from?.pathname;
 
   const cpfRef = useRef();
   const errRef = useRef();
@@ -47,7 +47,17 @@ export default function LoginForm() {
       const refreshToken = response?.data?.refreshToken;
       const roles = response?.data?.roles;
 
-      setAuth({ cpf, pwd, roles, accessToken, refreshToken });
+      if (!to) {
+        if (roles.includes(5150)) {
+          to = '/adminDashboard';
+        } else if (roles.includes(1984)) {
+          to = '/functionaryDashboard';
+        } else {
+          to = '/userDashboard';
+        }
+      }
+
+        setAuth({ cpf, pwd, roles, accessToken, refreshToken });
       setCpf('');
       setPwd('');
       navigate(to, { replace: true });
