@@ -65,7 +65,7 @@ const DashboardBook = () => {
               : "Livre"
         }</td>
         <td>
-          <Link to='/updateBook' state={{ isbn: book.isbn, state: book.state }} >
+          <Link to='/updateBook' state={{ bookData: book }} >
             <Button> {"✏️"}</Button>
           </Link>
         </td>
