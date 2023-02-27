@@ -67,8 +67,10 @@ const RegisterBook = () => {
                         <p>Voltar para <Link to='/dashboardBook'>Livros</Link>...</p>
                     </>
                 ) : (
-                    <Container>
-                        <h2>Registrar livro</h2>
+
+                    <Container fluid className={styles.form}>
+                    <Container >
+                        <h2 className="text-center text-white">Registrar livro</h2>
                         <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
                         <Form onSubmit={handleSubmit(onSubmit)}>
                             <Form.Group>
@@ -121,18 +123,17 @@ const RegisterBook = () => {
                                 <Form.Control type='url' ref={isbnRef} name='imgSrc' placeholder='Insira o link da imagem da capa...'
                                     {...register('imgSrc')} required />
                             </Form.Group>
-                            <Row>
+                            <Row >
                                 <Col sm>
                                     <Link to='/dashboardBook'>
-                                        <Button>Cancelar</Button>
+                                        <Button>Cancelar</Button> 
+                                        <Button type='submit'>Registrar</Button>
                                     </Link>
                                 </Col>
-                                <Col sm>
-                                    <Button type='submit'>Registrar</Button>
-                                </Col>
+                               
                             </Row>
                         </Form>
-                    </Container>
+                    </Container></Container>
                 )
             }
 

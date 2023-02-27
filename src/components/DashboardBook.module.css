@@ -1,0 +1,21 @@
+
+
+
+.screenone{
+    background-image: linear-gradient(to left, #006a5e73 , #006a5d);
+    padding: 3%;
+
+}
+
+.books{
+    background-color: rgb(255, 255, 255);
+    border-radius: 10px;
+}
+
+.btn{
+    background-color: #fff;
+    border: none;
+    color: #006a5d;
+    font-weight: bold;
+    
+}

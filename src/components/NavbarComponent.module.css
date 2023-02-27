@@ -1,8 +1,8 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 .navbar {
-    background-image: linear-gradient(to left, #fff, #006a5d);
-    box-shadow: 3px 3px 8px 8px rgba(0, 0, 0, 0.24);
+    background-image: linear-gradient(to left, #006a5e73 , #006a5d);
+    box-shadow: 3px 3px 8px 8px rgba(0, 0, 0, 0.131);
     font-weight: bold;
 }
 

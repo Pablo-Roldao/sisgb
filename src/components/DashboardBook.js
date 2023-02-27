@@ -4,6 +4,7 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../hooks/useAxiosPrivate';
 import Footer from './Footer';
 import NavbarComponent from './NavbarComponent';
+import styles from './DashboardBook.module.css'
 
 const BOOK_URL = '/book';
 
@@ -51,10 +52,10 @@ const DashboardBook = () => {
                             : "Livre"
                 }</td>
                 <td>
-                    {"Função de atualizar"}
+                    {"✏️"}
                 </td>
                 <td>
-                    {"Função de excluir"}
+                    {"🗑️"}
                 </td>
             </tr>
         );
@@ -63,17 +64,22 @@ const DashboardBook = () => {
     return (
         <>
             <NavbarComponent dashboard={true} />
-            <Container>
-                <h1>Livros</h1>
-                <Row>
-                    <Col >
-                        <Link to='/registerBook'>
-                            <Button> ➕ Cadastrar livro</Button>
-                        </Link>
-                    </Col>
-                </Row>
+            <Container fluid className={styles.screenone}> 
+            <h1 className='text-center p-4 text-white'>Controle de Livros</h1>
+            
+             <Container className='p-2'>
+                      <Row>
+                            <Col>
+                                <Link to='/registerBook' >
+                                    <Button className={styles.btn}> ➕ Cadastrar livro</Button>
+                                </Link>
+                            </Col>
+                        </Row></Container>
+            <Container className={styles.books}>
+              
+               
 
-                <Table striped responsive>
+                <Table striped responsive className='p-4'>
                     <thead>
                         <tr>
                             <th >ISBN</th>
@@ -83,14 +89,15 @@ const DashboardBook = () => {
                             <th>Edição</th>
                             <th>Gênero</th>
                             <th>Estado</th>
-                            <th>*</th>
-                            <th>*</th>
+                            <th>Editar</th>
+                            <th>Excluir</th>
                         </tr>
                     </thead>
                     <tbody>
                         {booksResult}
                     </tbody>
                 </Table>
+            </Container>
             </Container>
             <Footer />
         </>
