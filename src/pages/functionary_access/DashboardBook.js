@@ -3,13 +3,17 @@ import { Button, Container, Table } from 'react-bootstrap';
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import useAuth from '../../hooks/useAuth';
 
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
+import { faL } from '@fortawesome/free-solid-svg-icons';
 
 const BOOK_URL = '/book';
 
 const DashboardBook = () => {
+
+  const { auth } = useAuth();
 
   const axiosPrivate = useAxiosPrivate();
 
@@ -30,7 +34,7 @@ const DashboardBook = () => {
     getBooks();
   }, []);
 
-  useEffect(() => {}, [books]);
+  useEffect(() => { }, [books]);
 
   async function deleteBook(isbn) {
     try {
@@ -82,11 +86,18 @@ const DashboardBook = () => {
   return (
     <>
       <NavbarComponent
-        adminDashboard={true}
-        dashboardUser={true}
-        dashboardLoan={true}
-        dashboardReservation={true}
-        dashboardFunctionary={true}
+        adminDashboard={auth?.roles.includes(5150)}
+        functionaryDashboard={
+          auth?.roles.includes(1984)
+            ? !auth?.roles.includes(5150)
+              ? true
+              : false
+            : false
+        }
+        dashboardUser={auth?.roles.includes(1984)}
+        dashboardLoan={auth?.roles.includes(1984)}
+        dashboardReservation={auth?.roles.includes(1984)}
+        dashboardFunctionary={auth?.roles.includes(5150)}
       />
       <Container fluid>
         <h1 className='text-center fw-bold'>Controle de livros</h1>

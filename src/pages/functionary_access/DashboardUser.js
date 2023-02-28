@@ -82,11 +82,18 @@ const DashboardUser = () => {
   return (
     <>
       <NavbarComponent
-        adminDashboard={true}
-        dashboardLoan={true}
-        dashboardReservation={true}
-        dashboardBook={true}
-        dashboardFunctionary={true}
+        adminDashboard={auth?.roles.includes(5150)}
+        functionaryDashboard={
+          auth?.roles.includes(1984)
+            ? !auth?.roles.includes(5150)
+              ? true
+              : false
+            : false
+        }
+        dashboardBook={auth?.roles.includes(1984)}
+        dashboardLoan={auth?.roles.includes(1984)}
+        dashboardReservation={auth?.roles.includes(1984)}
+        dashboardFunctionary={auth?.roles.includes(5150)}
       />
       <Container fluid>
         <h1 className='text-center fw-bold'>Controle de usuários</h1>

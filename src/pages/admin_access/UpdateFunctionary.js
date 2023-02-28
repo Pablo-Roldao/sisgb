@@ -4,6 +4,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, Row, Col, Container, Form } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Link, useLocation } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 
 import styles from '../../components/Registers.module.css';
 
@@ -15,6 +16,8 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const FUNCTIONARY_URL = '/user';
 
 export default function UpdateFunctionary() {
+
+  const { auth } = useAuth();
 
   const axiosPrivate = useAxiosPrivate();
 
@@ -94,11 +97,19 @@ export default function UpdateFunctionary() {
   return (
     <>
       <NavbarComponent
-        adminDashboard={true}
-        dashboardLoan={true}
-        dashboardReservation={true}
-        dashboardBook={true}
-        dashboardUser={true}
+        adminDashboard={auth?.roles.includes(5150)}
+        functionaryDashboard={
+          auth?.roles.includes(1984)
+            ? !auth?.roles.includes(5150)
+              ? true
+              : false
+            : false
+        }
+        dashboardBook={auth?.roles.includes(1984)}
+        dashboardUser={auth?.roles.includes(1984)}
+        dashboardLoan={auth?.roles.includes(1984)}
+        dashboardReservation={auth?.roles.includes(1984)}
+        dashboardFunctionary={auth?.roles.includes(5150)}
       />
 
       <div >

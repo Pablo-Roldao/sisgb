@@ -1,10 +1,11 @@
 import { faCheck, faInfoCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useRef, useState } from 'react';
-import { Button, Row, Col, Container, Form } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import axios from '../../api/axios';
+import useAuth from '../../hooks/useAuth';
 
 import styles from '../../components/Registers.module.css';
 
@@ -15,6 +16,8 @@ const PWD_REGEX = /^(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9])(?=.*[!@#$%]).{8,24}$/;
 const USER_URL = '/user/';
 
 export default function RegisterUser() {
+
+  const { auth } = useAuth();
 
   const errRef = useRef();
 
@@ -89,10 +92,19 @@ export default function RegisterUser() {
   return (
     <>
       <NavbarComponent
-        adminDashboard={true}
-        dashboardLoan={true}
-        dashboardReservation={true}
-        dashboardBook={true}
+        adminDashboard={auth?.roles.includes(5150)}
+        functionaryDashboard={
+          auth?.roles.includes(1984)
+            ? !auth?.roles.includes(5150)
+              ? true
+              : false
+            : false
+        }
+        dashboardBook={auth?.roles.includes(1984)}
+        dashboardUser={auth?.roles.includes(1984)}
+        dashboardLoan={auth?.roles.includes(1984)}
+        dashboardReservation={auth?.roles.includes(1984)}
+        dashboardFunctionary={auth?.roles.includes(5150)}
       />
 
       <div >

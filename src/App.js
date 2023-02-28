@@ -22,7 +22,6 @@ import RegisterBook from './pages/functionary_access/RegisterBook';
 import RegisterLoan from './pages/functionary_access/RegisterLoan';
 import RegisterReservation from './pages/functionary_access/RegisterReservation';
 import RegisterUser from './pages/functionary_access/RegisterUser';
-import TranformReservation from './pages/functionary_access/TransformReservation';
 import UpdateBook from './pages/functionary_access/UpdateBook';
 import UpdateLoan from './pages/functionary_access/UpdateLoan';
 import UpdateReservation from './pages/functionary_access/UpdateReservation';
@@ -79,7 +78,6 @@ function App() {
           <Route path='/dashboardReservation' element={<DashboardReservation />} />
           <Route path='/registerReservation' element={<RegisterReservation />} />
           <Route path='/updateReservation' element={<UpdateReservation />} />
-          <Route path='/transformReservation' element={<TranformReservation />} />
         </Route>
 
         <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.Functionary, ROLES.User]} />}>

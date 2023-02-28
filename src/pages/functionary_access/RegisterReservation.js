@@ -2,6 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 import styles from '../../components/Registers.module.css';
@@ -12,6 +13,8 @@ import NavbarComponent from '../../components/NavbarComponent';
 const RESERVATION_URL = '/reservation';
 
 const RegisterReservation = () => {
+
+  const { auth } = useAuth();
 
   const axiosPrivate = useAxiosPrivate();
 
@@ -57,11 +60,19 @@ const RegisterReservation = () => {
   return (
     <>
       <NavbarComponent
-        adminDashboard={true}
-        dashboardUser={true}
-        dashboardFunctionary={true}
-        dashboardBook={true}
-        dashboardReservation={true}
+        adminDashboard={auth?.roles.includes(5150)}
+        functionaryDashboard={
+          auth?.roles.includes(1984)
+            ? !auth?.roles.includes(5150)
+              ? true
+              : false
+            : false
+        }
+        dashboardBook={auth?.roles.includes(1984)}
+        dashboardUser={auth?.roles.includes(1984)}
+        dashboardLoan={auth?.roles.includes(1984)}
+        dashboardReservation={auth?.roles.includes(1984)}
+        dashboardFunctionary={auth?.roles.includes(5150)}
       />
       {success
         ? (
