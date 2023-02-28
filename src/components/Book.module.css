@@ -3,15 +3,36 @@
 .book {
   box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
   border-radius: 0.5rem;
+  height: 100%;
   padding: 5%;
-  margin: 5%;
+}
+
+.book:hover {
   transition: 0.3s;
+  transform: scale(1.1);
 }
 
 .book img {
   border-radius: 0.5rem;
 }
 
-.book:hover {
+.book h5 {
+  font-weight: bold;
+  margin-top: 5%;
+}
+
+.reserve_button {
+  background-color: #006a5d;
+  border: none;
+  vertical-align: bottom;
+}
+
+.reserve_button:hover {
   transform: scale(1.1);
+  transition: all 0.5s;
+  background-color: #006a5d;
+}
+
+.reserve_button[disabled] {
+  background-color: gray;
 }

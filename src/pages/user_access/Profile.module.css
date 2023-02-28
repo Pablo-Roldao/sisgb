@@ -1,8 +1,16 @@
-.welcome {
-    background-image: linear-gradient(to left, #fff, #006a5d);
-    padding: 5%;
-  
-  }
- .card{
+.profile {
+  background-image: linear-gradient(to left, #fff, #006a5d);
+  padding: 5%;
+  font-weight: bold;
+}
+
+.profile h1 {
+  text-align: center;
+}
+
+.card {
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  background-image: linear-gradient(to left, #fff, #006a5d);
   border-radius: 25px;
- }
+  border: none;
+}

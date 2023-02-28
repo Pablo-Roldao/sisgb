@@ -1,9 +1,11 @@
 import { Button, Container, Table } from 'react-bootstrap';
 
 import { useEffect, useState } from 'react';
-import { Link, useLocation, useNavigate } from 'react-router-dom';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+
+import styles from '../../components/Dashboard.module.css';
 
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
@@ -23,8 +25,17 @@ const ReservationsUser = () => {
     try {
       const response = await axiosPrivate.get(RESERVATION_URL);
       const reservationsFilter = response.data.filter((reservation) => {
-        if (reservation.userCpf === auth?.cpf)
+        if (reservation.userCpf === auth?.cpf) {
           return reservation;
+        }
+      })
+      const responseBooks = await axiosPrivate.get('/book');
+      responseBooks.data.map((book) => {
+        for (let i = 0; i < reservationsFilter.length; i++) {
+          if (book.isbn === reservationsFilter[i].bookIsbn) {
+            reservationsFilter[i].bookTitle = book.title;
+          }
+        }
       })
       setReservations(reservationsFilter);
     } catch (err) {
@@ -59,11 +70,14 @@ const ReservationsUser = () => {
   const reservationsResult = reservations.map((reservation) => {
     return (
       <tr key={reservation._id}>
-        <td>{reservation.bookIsbn}</td>
+        <td>{reservation.bookTitle}</td>
         <td>{reservation.startDate.split('T')[0]}</td>
         <td>{reservation.finishDate.split('T')[0]}</td>
         <td>
-          <Button onClick={() => deleteReservation(reservation._id)}>
+          <Button
+            className={styles.delete_button}
+            onClick={() => deleteReservation(reservation._id)}
+          >
             {"🗑️"}
           </Button>
         </td>
@@ -75,14 +89,17 @@ const ReservationsUser = () => {
     <>
       <NavbarComponent
         userDashboard={true}
+        loansUser={true}
+        profile={auth?.username}
+        userCpf={auth?.cpf}
       />
-      <Container fluid>
+      <Container className={styles.dashboard} fluid>
         <h1 className='text-center fw-bold'>Reservas em andamento</h1>
-
+        <br />
         <Table striped responsive>
           <thead>
             <tr>
-              <th>ISBN do livro</th>
+              <th>Livro</th>
               <th>Data de início</th>
               <th>Data de término</th>
               <th>Excluir</th>

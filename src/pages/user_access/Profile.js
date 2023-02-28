@@ -11,7 +11,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Footer from '../../components/Footer';
 import styles from './Profile.module.css';
 
-const USER_URL = '/user';
+const USER_URL = '/user/get-by-cpf';
 
 export default function Profile() {
 
@@ -24,7 +24,11 @@ export default function Profile() {
   useEffect(() => {
     const getUser = async () => {
       try {
-        const response = await axiosPrivate.get(USER_URL);
+        const response = await axiosPrivate.post(USER_URL,
+          JSON.stringify({
+            "cpf": location.state?.userCpf
+          })
+        );
         setUser(response.data);
       } catch (err) {
         navigate('/', { state: { from: location }, replace: true });
@@ -33,65 +37,74 @@ export default function Profile() {
     getUser();
   }, []);
 
-  const userName = user.map((user) => {
-    return (
-      <h6>{user.name}</h6>
-    );
-  })
-  const userMail = user.map((user) => {
-    return (
-      <h6>{user.email}</h6>
-    );
-  })
-  const userCpf = user.map((user) => {
-    return (
-      <h6>{user.cpf}</h6>
-    );
-  })
-
-
-
   return (
     <>
-      <NavbarComponent />
-      <section className={styles.welcome}>
-        <h1 className='text-center text-white p-4'> Perfil</h1>
-        <MDBContainer className="py-5">
-
-
-
+      <NavbarComponent 
+        userDashboard={true}
+        reservationsUser={true}
+        loansUser={true}
+      />
+      <section className={styles.profile}>
+        <h1>Perfil</h1>
+        <MDBContainer>
           <MDBRow>
 
             <MDBCol lg="12">
               <MDBCard className={styles.card}>
                 <MDBCardBody>
                   <MDBRow>
-                    <MDBCol sm="3">
-                      <MDBCardText>Full Name</MDBCardText>
+                    <MDBCol sm="6">
+                      <MDBCardText>Nome</MDBCardText>
                     </MDBCol>
-                    <MDBCol sm="9">
-                      <MDBCardText className="text-muted"> {userName}</MDBCardText>
-                    </MDBCol>
-                  </MDBRow>
-                  <hr />
-                  <MDBRow>
-                    <MDBCol sm="3">
-                      <MDBCardText>Email</MDBCardText>
-                    </MDBCol>
-                    <MDBCol sm="9">
-                      <MDBCardText className="text-muted">{userMail}</MDBCardText>
+                    <MDBCol sm="6">
+                      <MDBCardText className="text-muted"> {user.name}</MDBCardText>
                     </MDBCol>
                   </MDBRow>
                   <hr />
                   <MDBRow>
-                    <MDBCol sm="3">
-                      <MDBCardText>Cpf</MDBCardText>
+                    <MDBCol sm="6">
+                      <MDBCardText>CPF</MDBCardText>
                     </MDBCol>
-                    <MDBCol sm="9">
-                      <MDBCardText className="text-muted">{userCpf}</MDBCardText>
+                    <MDBCol sm="6">
+                      <MDBCardText className="text-muted"> {user.cpf}</MDBCardText>
                     </MDBCol>
                   </MDBRow>
-
+                  <hr />
+                  <MDBRow>
+                    <MDBCol sm="6">
+                      <MDBCardText>E-mail</MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="6">
+                      <MDBCardText className="text-muted"> {user.email}</MDBCardText>
+                    </MDBCol>
+                  </MDBRow>
+                  <hr />
+                  <MDBRow>
+                    <MDBCol sm="6">
+                      <MDBCardText>Data de nascimento</MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="6">
+                      <MDBCardText className="text-muted"> {user?.birthDate?.split('T')[0]}</MDBCardText>
+                    </MDBCol>
+                  </MDBRow>
+                  <hr />
+                  <MDBRow>
+                    <MDBCol sm="6">
+                      <MDBCardText>Endereço</MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="6">
+                      <MDBCardText className="text-muted"> {user.addres}</MDBCardText>
+                    </MDBCol>
+                  </MDBRow>
+                  <hr />
+                  <MDBRow>
+                    <MDBCol sm="6">
+                      <MDBCardText>Reservas/Empréstimos em andamento</MDBCardText>
+                    </MDBCol>
+                    <MDBCol sm="6">
+                      <MDBCardText className="text-muted">{user.currentReservationsLoansQuantity}</MDBCardText>
+                    </MDBCol>
+                  </MDBRow>
                 </MDBCardBody>
               </MDBCard>
 

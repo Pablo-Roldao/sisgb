@@ -4,6 +4,8 @@ import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
+import styles from './UserDashboard.module.css';
+
 import Book from '../../components/Book';
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
@@ -46,7 +48,7 @@ const DashboardBook = () => {
 
   const booksResult = books.map((book) => {
     return (
-      <Col sm={3} key={book.isbn} className='shadow p-2'>
+      <Col sm={3} key={book.isbn} >
         <Book book={book} user={currentUser} />
       </Col>
     );
@@ -54,8 +56,13 @@ const DashboardBook = () => {
 
   return (
     <>
-      <NavbarComponent reservationsUser={true} />
-      <Container>
+      <NavbarComponent
+      reservationsUser={true}
+      loansUser={true}
+      profile={auth?.username}
+      userCpf={auth?.cpf}
+      />
+      <Container className={styles.dashboard} fluid>
         <Row className='d-flex justify-content-center'>
           {books.length === 0 ? (
             <h3 className='text-center'>Carregando...</h3>

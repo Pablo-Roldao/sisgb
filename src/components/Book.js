@@ -8,9 +8,8 @@ const RESERVATION_URL = '/reservation';
 export default function Book(props) {
 
     let authors = JSON.stringify(props.book?.authors);
-    authors = authors?.replace("[\"", "");
-    authors = authors?.replace("\"]", "");
-    authors = authors?.replaceAll("\",\"", ", ");
+    authors = authors?.replace("\"", "");
+    authors = authors?.replace("\"", "");
 
     const axiosPrivate = useAxiosPrivate();
 
@@ -41,14 +40,15 @@ export default function Book(props) {
     }
 
     return (
-        <Container key={props.book.isbn}>
+        <Container key={props.book.isbn} className={styles.book}>
             <Image src={props.book.imgSrc} fluid />
-            <h3><strong>{props.book.title}</strong></h3>
+            <h5><strong>{props.book.title}</strong></h5>
             <p>{authors}</p>
             {success ? (
                 <>Livro reservado com sucesso!</>
             ) : (
                 <Button
+                    className={styles.reserve_button}
                     onClick={() => reserveBook(props.book.isbn, props.user?.cpf)}
                     disabled={props.book?.state !== 'free' || props.user?.currentReservationsLoansQuantity >= 3 ? true : false}
                 >

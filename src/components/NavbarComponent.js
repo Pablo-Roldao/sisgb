@@ -1,9 +1,12 @@
 import React from 'react';
 import { Col, Container, Image, Nav, Navbar, Row } from 'react-bootstrap';
 import { Link } from 'react-router-dom';
-import styles from './NavbarComponent.module.css'
+import useAuth from '../hooks/useAuth';
+import styles from './NavbarComponent.module.css';
 
 export default function NavbarComponent(props) {
+
+    const {auth} = useAuth;
 
     const nav = [];
 
@@ -23,7 +26,7 @@ export default function NavbarComponent(props) {
     if (props.bookCollectionUser)  { nav.push(<Nav.Item key={'bookCollectionUser'}><Link to='/bookCollectionUser'>Livros</Link></Nav.Item>); }
     if (props.reservationsUser)  { nav.push(<Nav.Item key={'reservationsUser'}><Link to='/reservationsUser'>Reservas</Link></Nav.Item>); }
     if (props.loansUser)  { nav.push(<Nav.Item key={'loansUser'}><Link to='/loansUser'>Empréstimos</Link></Nav.Item>); }
-    if (props.profile)  { nav.push(<Nav.Item key={'profile'}><Link to='/profile'>Perfil</Link></Nav.Item>); }
+    if (props.profile)  { nav.push(<Nav.Item key={'profile'}><Link to='/profile' state={{userCpf: props.userCpf}}>{props.profile}</Link></Nav.Item>); }
 
 
     return (
