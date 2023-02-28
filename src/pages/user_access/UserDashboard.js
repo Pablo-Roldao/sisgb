@@ -1,9 +1,70 @@
-import React from 'react'
+import { useEffect, useState } from 'react';
+import { Col, Container, Row } from 'react-bootstrap';
+import { useLocation, useNavigate } from 'react-router-dom';
+import useAuth from '../../hooks/useAuth';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
-const UserDashboard = () => {
+import Book from '../../components/Book';
+import Footer from '../../components/Footer';
+import NavbarComponent from '../../components/NavbarComponent';
+
+const BOOK_URL = '/book';
+
+const DashboardBook = () => {
+
+  const { auth } = useAuth();
+
+  const axiosPrivate = useAxiosPrivate();
+
+  const navigate = useNavigate();
+  const location = useLocation();
+
+  const [books, setBooks] = useState([]);
+  const [currentUser, setCurrentUser] = useState();
+
+  useEffect(() => {
+    const getBooks = async () => {
+      try {
+        const response = await axiosPrivate.get(BOOK_URL);
+        setBooks(response.data);
+      } catch (err) {
+        navigate('/', { state: { from: location }, replace: true });
+      }
+    }
+    getBooks();
+    const getCurrentUser = async () => {
+      const response1 = await axiosPrivate.post('/user/get-by-cpf',
+        JSON.stringify({
+          "cpf": auth?.cpf
+        }));
+      return response1.data;
+    }
+    setCurrentUser(getCurrentUser());
+  }, []);
+
+  useEffect(() => { }, [books]);
+
+  const booksResult = books.map((book) => {
+    return (
+      <Col sm={3} key={book.isbn} className='shadow p-2'>
+        <Book book={book} user={currentUser} />
+      </Col>
+    );
+  });
+
   return (
-    <div>UserDashboard</div>
-  )
+    <>
+      <NavbarComponent />
+      <Container fluid>
+        <Row className='d-flex justify-content-center'>
+          {books.length === 0 ? (
+            <h3 className='text-center'>Carregando...</h3>
+          ) : booksResult}
+        </Row>
+      </Container>
+      <Footer />
+    </>
+  );
 }
 
-export default UserDashboard
+export default DashboardBook;

@@ -24,7 +24,6 @@ const RegisterReservation = () => {
 
   const [userCpf, setUserCpf] = useState('');
   const [bookIsbn, setBookIsbn] = useState('');
-  const [finishDate, setFinishDate] = useState('');
 
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
@@ -39,8 +38,7 @@ const RegisterReservation = () => {
       await axiosPrivate.post(RESERVATION_URL,
         JSON.stringify({
           "bookIsbn": bookIsbn,
-          "userCpf": userCpf,
-          "finishDate": finishDate
+          "userCpf": userCpf
         }));
       setSuccess(true);
     } catch (err) {
@@ -95,11 +93,6 @@ const RegisterReservation = () => {
                 <Form.Label>CPF do usuário</Form.Label>
                 <Form.Control type='text' name='cpf' placeholder='Insira CPF do usuário...'
                   onChange={(e) => setUserCpf(e.target.value)} required />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Data de término</Form.Label>
-                <Form.Control type='date' name='finishDate' placeholder='Insira a data de término...'
-                  onChange={(e) => setFinishDate(e.target.value)} required />
               </Form.Group>
               <Row >
                 <Col sm>

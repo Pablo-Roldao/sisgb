@@ -134,7 +134,7 @@ export default function SignUp() {
                     onBlur={() => setPwdFocus(false)} onChange={(e) => setPwd(e.target.value)}
                     value={pwd} type='password' name='pwd' placeholder='Insira sua senha...' required />
                   <p id="pwdnote" className={pwdFocus && !validPwd ? styles.instructions : styles.offscreen}>
-                    <span class="bi bi-exclamation"></span>
+                    <span className="bi bi-exclamation"></span>
                     <strong>Regras para elaboração da senha:</strong> <br />
                     8 a 24 caracteres.<br />
                     Deve conter letras maiúsculas, minúsculas, um número e um caracter especial.<br />

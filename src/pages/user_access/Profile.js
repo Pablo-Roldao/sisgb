@@ -11,9 +11,10 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import Footer from '../../components/Footer';
 import styles from './Profile.module.css';
 
+const USER_URL = '/user';
+
 export default function Profile() {
 
-  const USER_URL = '/user';
   const [user, setUser] = useState([]);
   const axiosPrivate = useAxiosPrivate();
   const navigate = useNavigate();
@@ -34,9 +35,7 @@ export default function Profile() {
 
   const userName = user.map((user) => {
     return (
-
       <h6>{user.name}</h6>
-
     );
   })
   const userMail = user.map((user) => {

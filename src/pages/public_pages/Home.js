@@ -73,7 +73,7 @@ export default function Home() {
         <h1><strong>Livros em alta</strong></h1>
         <h6>Navegue pela imensidão de livros presentes em nossa biblioteca...</h6>
         <Row className='d-flex justify-content-center'>
-          {booksResult}
+          {/*booksResult*/}
         </Row>
         <br />
         <div className='text-center'>
