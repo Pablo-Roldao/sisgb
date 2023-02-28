@@ -63,7 +63,7 @@ export default function UpdateUser() {
     }
 
     try {
-      const response = await axiosPrivate.put(USER_URL,
+      await axiosPrivate.put(USER_URL,
         JSON.stringify({
           name,
           cpf: location.state?.userData?.cpf,

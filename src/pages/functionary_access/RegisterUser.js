@@ -57,7 +57,7 @@ export default function RegisterUser() {
     const { name, birthDate, addres, email } = data;
 
     try {
-      const response = await axios.post(USER_URL,
+      await axios.post(USER_URL,
         JSON.stringify({
           name: name,
           cpf: cpf,
