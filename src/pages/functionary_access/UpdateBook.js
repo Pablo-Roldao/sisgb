@@ -82,7 +82,7 @@ const UpdateBook = () => {
           </>
         ) : (
           <Container fluid>
-            <h2 className="text-center text-white">Atualizar livro</h2>
+            <h2>Atualizar livro</h2>
             <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
             <Form onSubmit={handleSubmit(onSubmit)}>
               <Form.Group>

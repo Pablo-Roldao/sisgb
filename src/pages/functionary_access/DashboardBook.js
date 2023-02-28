@@ -10,22 +10,23 @@ import NavbarComponent from '../../components/NavbarComponent';
 const BOOK_URL = '/book';
 
 const DashboardBook = () => {
+
   const axiosPrivate = useAxiosPrivate();
+
   const navigate = useNavigate();
   const location = useLocation();
 
   const [books, setBooks] = useState([]);
 
-  const getBooks = async () => {
-    try {
-      const response = await axiosPrivate.get(BOOK_URL);
-      setBooks(response.data);
-    } catch (err) {
-      navigate('/', { state: { from: location }, replace: true });
-    }
-  }
-
   useEffect(() => {
+    const getBooks = async () => {
+      try {
+        const response = await axiosPrivate.get(BOOK_URL);
+        setBooks(response.data);
+      } catch (err) {
+        navigate('/', { state: { from: location }, replace: true });
+      }
+    }
     getBooks();
   }, []);
 
@@ -50,7 +51,7 @@ const DashboardBook = () => {
 
   const booksResult = books.map((book) => {
     return (
-      <tr>
+      <tr key={book.isbn}>
         <td>{book.isbn}</td>
         <td>{book.title}</td>
         <td>{book.authors}</td>
@@ -85,6 +86,7 @@ const DashboardBook = () => {
         dashboardUser={true}
         dashboardLoan={true}
         dashboardReservation={true}
+        dashboardFunctionary={true}
       />
       <Container fluid>
         <h1 className='text-center fw-bold'>Controle de livros</h1>

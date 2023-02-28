@@ -86,6 +86,7 @@ const DashboardUser = () => {
         dashboardLoan={true}
         dashboardReservation={true}
         dashboardBook={true}
+        dashboardFunctionary={true}
       />
       <Container fluid>
         <h1 className='text-center fw-bold'>Controle de usuários</h1>

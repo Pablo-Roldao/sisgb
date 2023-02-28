@@ -49,12 +49,11 @@ const DashboardReservation = () => {
     }
   }
 
-  async function transformReservation(id, finishDate) {
+  async function transformReservation(id) {
     try {
       await axiosPrivate.post((RESERVATION_URL + '/transform'),
         JSON.stringify({
-          "id": id,
-          "finishDate": finishDate
+          "id": id
         })
       );
       const reservationsFilter = reservations.filter((reservation) => {
@@ -69,7 +68,7 @@ const DashboardReservation = () => {
 
   const reservationsResult = reservations.map((reservation) => {
     return (
-      <tr>
+      <tr key={reservation._id}>
         <td>{reservation._id}</td>
         <td>{reservation.bookIsbn}</td>
         <td>{reservation.userCpf}</td>
@@ -86,7 +85,7 @@ const DashboardReservation = () => {
           </Button>
         </td>
         <td>
-          <Button onClick={() => transformReservation(reservation._id, reservation.finishDate)}>
+          <Button onClick={() => transformReservation(reservation._id)}>
             Transformar
           </Button>
         </td>

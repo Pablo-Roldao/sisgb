@@ -46,6 +46,7 @@ export default function LoginForm() {
       const accessToken = response?.data?.accessToken;
       const refreshToken = response?.data?.refreshToken;
       const roles = response?.data?.roles;
+      const username = response?.data?.username;
 
       if (!to) {
         if (roles.includes(5150)) {
@@ -57,7 +58,7 @@ export default function LoginForm() {
         }
       }
 
-        setAuth({ cpf, pwd, roles, accessToken, refreshToken });
+      setAuth({ cpf, username, pwd, roles, accessToken, refreshToken });
       setCpf('');
       setPwd('');
       navigate(to, { replace: true });

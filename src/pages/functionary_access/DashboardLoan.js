@@ -51,7 +51,7 @@ const DashboardLoan = () => {
 
   const loansResult = loans.map((loan) => {
     return (
-      <tr>
+      <tr key={loan._id}>
         <td>{loan._id}</td>
         <td>{loan.bookIsbn}</td>
         <td>{loan.userCpf}</td>
@@ -78,6 +78,7 @@ const DashboardLoan = () => {
         dashboardUser={true}
         dashboardReservation={true}
         dashboardBook={true}
+        dashboardFunctionary={true}
       />
       <Container fluid>
         <h1 className='text-center fw-bold'>Controle de empréstimos</h1>

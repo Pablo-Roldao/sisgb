@@ -1,10 +1,13 @@
 import React from 'react';
 import { Container } from 'react-bootstrap';
+import useAuth from '../../hooks/useAuth';
 
-import NavbarComponent from '../../components/NavbarComponent';
 import Footer from '../../components/Footer';
+import NavbarComponent from '../../components/NavbarComponent';
 
 const AdminDashboard = () => {
+  const { auth } = useAuth();
+
   return (
     <>
       <NavbarComponent
@@ -15,7 +18,7 @@ const AdminDashboard = () => {
         dashboardReservation={true}
       />
       <Container fluid>
-        <h1 className='text-center fw-bold'>Bem vindo, Administrador!</h1>
+        <h1 className='text-center fw-bold'>Bem vindo, {auth?.username}!</h1>
       </Container>
       <Footer />
     </>
