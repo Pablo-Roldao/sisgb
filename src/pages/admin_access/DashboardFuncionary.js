@@ -5,6 +5,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
 
+import styles from '../../components/Dashboard.module.css';
+
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
 
@@ -60,19 +62,19 @@ const DashboardFunctionary = () => {
 
   const functionariesResult = functionaries.map((functionary) => {
     return (
-      <tr>
+      <tr key={functionary.cpf}>
         <td>{functionary.cpf}</td>
         <td>{functionary.name}</td>
         <td>{functionary.email}</td>
         <td>{functionary.currentReservationsLoansQuantity}</td>
         <td>{functionary.birthDate.split('T')[0]}</td>
         <td>
-          <Link to='/updateFunctionary' state={{ functionaryData: functionary }} >
-            <Button> {"✏️"}</Button>
+          <Link to='/updateFunctionary' state={{ functionaryData: functionary }}  >
+            <Button className={styles.update_button}> {"✏️"}</Button>
           </Link>
         </td>
         <td>
-          <Button onClick={() => deleteFunctionary(functionary.cpf)}>
+          <Button onClick={() => deleteFunctionary(functionary.cpf)} className={styles.delete_button}>
             {"🗑️"}
           </Button>
         </td>
@@ -96,11 +98,11 @@ const DashboardFunctionary = () => {
         dashboardLoan={auth?.roles.includes(1984)}
         dashboardReservation={auth?.roles.includes(1984)}
       />
-      <Container fluid>
+      <Container fluid className={styles.dashboard}>
         <h1 className='text-center fw-bold'>Controle de funcionários</h1>
 
-        <Link to='/registerFunctionary' >
-          <Button> ➕ Cadastrar funcionário</Button>
+        <Link to='/registerFunctionary'>
+          <Button className={styles.register_button}>+ Cadastrar funcionário</Button>
         </Link>
 
         <Table striped responsive>

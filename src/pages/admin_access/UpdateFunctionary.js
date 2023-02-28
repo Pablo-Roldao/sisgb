@@ -113,7 +113,7 @@ export default function UpdateFunctionary() {
       />
 
       <div >
-        <Container>
+        <Container className={styles.register} fluid>
           {success ? (
             <>
               <h2 className='text-center'>Funcionário atualizado com sucesso!</h2>
@@ -180,7 +180,7 @@ export default function UpdateFunctionary() {
                     value={pwd}
                     type='password'
                     name='pwd'
-                    placeholder='Insira sua senha...'
+                    placeholder='Insira a senha...'
                     required
                   />
                   <p id="pwdnote" className={pwdFocus && !validPwd ? styles.instructions : styles.offscreen}>
@@ -202,19 +202,19 @@ export default function UpdateFunctionary() {
                     aria-invalid={validMatch ? false : true}
                     aria-describedby="confirmnote"
                     onChange={(e) => setMatchPwd(e.target.value)}
-                    value={matchPwd} type='password' name='confirm_pwd' placeholder='Insira sua senha novamente...' required />
+                    value={matchPwd} type='password' name='confirm_pwd' placeholder='Insira a senha novamente...' required />
                   <p id="confirmnote" className={!validMatch ? styles.instructions : styles.offscreen}>
                     <FontAwesomeIcon icon={faInfoCircle} />
                     As senhas não coincidem
                   </p>
                 </Form.Group>
                 <Row>
-                  <Col>
+                  <Col className='text-center'>
                     <Link to='/dashboardFunctionary'>
                       <Button>Cancelar</Button>
                     </Link>
                   </Col>
-                  <Col>
+                  <Col className='text-center'>
                     <Button type='submit'
                       className='shadow shadow-lg'
                       disabled={!validPwd || !validMatch ? true : false}>

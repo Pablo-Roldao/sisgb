@@ -5,6 +5,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
 
+import styles from '../../components/Dashboard.module.css';
+
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
 
@@ -23,7 +25,8 @@ const DashboardUser = () => {
       const response = await axiosPrivate.get(USER_URL);
       const usersFilter = response.data.filter((user) => {
         if (user.cpf !== auth?.cpf)
-          return user;
+          if (user.roles.some(role => role.code === 2001))
+            return user;
       })
       setUsers(usersFilter);
 
@@ -67,11 +70,15 @@ const DashboardUser = () => {
         <td>{user.birthDate.split('T')[0]}</td>
         <td>
           <Link to='/updateUser' state={{ userData: user }} >
-            <Button> {"✏️"}</Button>
+            <Button className={styles.update_button}> {"✏️"}</Button>
           </Link>
         </td>
         <td>
-          <Button onClick={() => deleteUser(user.cpf)}>
+          <Button
+            onClick={() => deleteUser(user.cpf)}
+            disabled={user.currentReservationsLoansQuantity ? true : false}
+            className={styles.delete_button}
+          >
             {"🗑️"}
           </Button>
         </td>
@@ -95,11 +102,11 @@ const DashboardUser = () => {
         dashboardReservation={auth?.roles.includes(1984)}
         dashboardFunctionary={auth?.roles.includes(5150)}
       />
-      <Container fluid>
+      <Container fluid className={styles.dashboard}>
         <h1 className='text-center fw-bold'>Controle de usuários</h1>
 
         <Link to='/registerUser' >
-          <Button> ➕ Cadastrar usuário</Button>
+          <Button className={styles.register_button}> + Cadastrar usuário</Button>
         </Link>
 
         <Table striped responsive>

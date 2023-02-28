@@ -19,8 +19,9 @@ export default function NavbarComponent(props) {
     if (props.dashboardLoan) { nav.push(<Nav.Item key={'dashboardLoan'}><Link to='/dashboardLoan'>Empréstimos</Link></Nav.Item>); }
     if (props.dashboardReservation) { nav.push(<Nav.Item key={'dashboardReservation'}><Link to='/dashboardReservation'>Reservas</Link></Nav.Item>); }
 
+    if (props.userDashboard) { nav.push(<Nav.Item key={'userDashboard'}><Link to='/userDashboard'>Dashboard</Link></Nav.Item>); }
     if (props.bookCollectionUser)  { nav.push(<Nav.Item key={'bookCollectionUser'}><Link to='/bookCollectionUser'>Livros</Link></Nav.Item>); }
-    if (props.reservationsuser)  { nav.push(<Nav.Item key={'reservationsUser'}><Link to='/reservationsUser'>Reservas</Link></Nav.Item>); }
+    if (props.reservationsUser)  { nav.push(<Nav.Item key={'reservationsUser'}><Link to='/reservationsUser'>Reservas</Link></Nav.Item>); }
     if (props.loansUser)  { nav.push(<Nav.Item key={'loansUser'}><Link to='/loansUser'>Empréstimos</Link></Nav.Item>); }
     if (props.profile)  { nav.push(<Nav.Item key={'profile'}><Link to='/profile'>Perfil</Link></Nav.Item>); }
 

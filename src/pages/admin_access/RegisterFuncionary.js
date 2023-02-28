@@ -108,7 +108,7 @@ export default function RegisterFunctionary() {
       />
 
       <div >
-        <Container>
+        <Container className={styles.register} fluid>
           {success ? (
             <>
               <h2 className='text-center'>Funcionário cadastrado com sucesso!</h2>
@@ -148,7 +148,7 @@ export default function RegisterFunctionary() {
                   </Form.Label>
                   <Form.Control aria-invalid={validPwd ? false : true} aria-describedby="pwdnote" onFocus={() => setPwdFocus(true)}
                     onBlur={() => setPwdFocus(false)} onChange={(e) => setPwd(e.target.value)}
-                    value={pwd} type='password' name='pwd' placeholder='Insira sua senha...' required />
+                    value={pwd} type='password' name='pwd' placeholder='Insira a senha...' required />
                   <p id="pwdnote" className={pwdFocus && !validPwd ? styles.instructions : styles.offscreen}>
                     <span class="bi bi-exclamation"></span>
                     <strong>Regras para elaboração da senha:</strong> <br />
@@ -168,19 +168,19 @@ export default function RegisterFunctionary() {
                     aria-invalid={validMatch ? false : true}
                     aria-describedby="confirmnote"
                     onChange={(e) => setMatchPwd(e.target.value)}
-                    value={matchPwd} type='password' name='confirm_pwd' placeholder='Insira sua senha novamente...' required />
+                    value={matchPwd} type='password' name='confirm_pwd' placeholder='Insira a senha novamente...' required />
                   <p id="confirmnote" className={!validMatch ? styles.instructions : styles.offscreen}>
                     <FontAwesomeIcon icon={faInfoCircle} />
                     As senhas não coincidem
                   </p>
                 </Form.Group>
                 <Row>
-                  <Col>
+                  <Col className='text-center'>
                     <Link to='/dashboardFunctionary'>
                       <Button>Cancelar</Button>
                     </Link>
                   </Col>
-                  <Col>
+                  <Col className='text-center'>
                     <Button type='submit'
                       className='shadow shadow-lg'
                       disabled={!validPwd || !validMatch ? true : false}>

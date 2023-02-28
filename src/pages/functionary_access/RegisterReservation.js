@@ -80,7 +80,7 @@ const RegisterReservation = () => {
           </>
         ) : (
 
-          <Container fluid>
+          <Container className={styles.register} fluid>
             <h2>Registrar reserva</h2>
             <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
             <Form onSubmit={handleSubmit(onSubmit)}>
@@ -95,13 +95,14 @@ const RegisterReservation = () => {
                   onChange={(e) => setUserCpf(e.target.value)} required />
               </Form.Group>
               <Row >
-                <Col sm>
+                <Col className='text-center'>
                   <Link to='/dashboardReservation'>
                     <Button>Cancelar</Button>
                   </Link>
+                </Col>
+                <Col className='text-center'>
                   <Button type='submit'>Registrar</Button>
                 </Col>
-
               </Row>
             </Form>
           </Container>

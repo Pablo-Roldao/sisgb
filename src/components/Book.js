@@ -33,6 +33,7 @@ export default function Book(props) {
             } else if (err?.response?.status === 409) {
                 setErrMsg("Livro ocupado!");
             } else {
+                console.log(err);
                 setErrMsg("Falha no registro! " + err);
             }
             errRef.current.focus();
@@ -49,7 +50,7 @@ export default function Book(props) {
             ) : (
                 <Button
                     onClick={() => reserveBook(props.book.isbn, props.user?.cpf)}
-                    disabled={props.book?.state !== 'free' ? true : false}
+                    disabled={props.book?.state !== 'free' || props.user?.currentReservationsLoansQuantity >= 3 ? true : false}
                 >
                     Reservar
                 </Button>

@@ -81,7 +81,7 @@ const UpdateLoan = () => {
           </>
         ) : (
 
-          <Container fluid>
+          <Container className={styles.register} fluid>
             <h2>Alterar data de término do empréstimo {location.state?.loanData?._id}</h2>
             <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
             <Form onSubmit={handleSubmit(onSubmit)}>
@@ -91,13 +91,14 @@ const UpdateLoan = () => {
                   onChange={(e) => setFinishDate(e.target.value)} value={finishDate} required />
               </Form.Group>
               <Row >
-                <Col sm>
+                <Col className='text-center'>
                   <Link to='/dashboardLoan'>
                     <Button>Cancelar</Button>
                   </Link>
+                </Col>
+                <Col className='text-center'>
                   <Button type='submit'>Atualizar</Button>
                 </Col>
-
               </Row>
             </Form>
           </Container>

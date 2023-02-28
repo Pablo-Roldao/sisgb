@@ -92,7 +92,7 @@ const UpdateBook = () => {
             <p>Voltar para <Link to='/dashboardBook'>Livros</Link>...</p>
           </>
         ) : (
-          <Container fluid>
+          <Container className={styles.register} fluid>
             <h2>Atualizar livro</h2>
             <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
             <Form onSubmit={handleSubmit(onSubmit)}>
@@ -199,10 +199,12 @@ const UpdateBook = () => {
                 />
               </Form.Group>
               <Row >
-                <Col sm>
+                <Col className='text-center'>
                   <Link to='/dashboardBook'>
                     <Button>Cancelar</Button>
                   </Link>
+                </Col>
+                <Col className='text-center'>
                   <Button type='submit'>Atualizar</Button>
                 </Col>
               </Row>

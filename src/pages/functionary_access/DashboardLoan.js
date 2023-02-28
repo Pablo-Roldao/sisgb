@@ -5,6 +5,8 @@ import { Link, useLocation, useNavigate } from 'react-router-dom';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
 
+import styles from '../../components/Dashboard.module.css';
+
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
 
@@ -62,11 +64,14 @@ const DashboardLoan = () => {
         <td>{loan.finishDate.split('T')[0]}</td>
         <td>
           <Link to='/updateLoan' state={{ loanData: loan }} >
-            <Button> {"✏️"}</Button>
+            <Button className={styles.update_button}> {"✏️"}</Button>
           </Link>
         </td>
         <td>
-          <Button onClick={() => deleteLoan(loan._id)}>
+          <Button 
+          onClick={() => deleteLoan(loan._id)}
+          className={styles.delete_button}
+          >
             {"🗑️"}
           </Button>
         </td>
@@ -90,11 +95,11 @@ const DashboardLoan = () => {
         dashboardReservation={auth?.roles.includes(1984)}
         dashboardFunctionary={auth?.roles.includes(5150)}
       />
-      <Container fluid>
+      <Container fluid className={styles.dashboard}>
         <h1 className='text-center fw-bold'>Controle de empréstimos</h1>
 
         <Link to='/registerLoan' >
-          <Button> ➕ Cadastrar empréstimo</Button>
+          <Button className={styles.register_button}> + Cadastrar empréstimo</Button>
         </Link>
 
         <Table striped responsive>

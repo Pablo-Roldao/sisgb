@@ -2,12 +2,13 @@ import { Button, Container, Table } from 'react-bootstrap';
 
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
+
+import styles from '../../components/Dashboard.module.css';
 
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
-import { faL } from '@fortawesome/free-solid-svg-icons';
 
 const BOOK_URL = '/book';
 
@@ -71,11 +72,15 @@ const DashboardBook = () => {
         }</td>
         <td>
           <Link to='/updateBook' state={{ bookData: book }} >
-            <Button> {"✏️"}</Button>
+            <Button className={styles.update_button}> {"✏️"}</Button>
           </Link>
         </td>
         <td>
-          <Button onClick={() => deleteBook(book.isbn)}>
+          <Button
+            onClick={() => deleteBook(book.isbn)}
+            disabled={book.state !== 'free' ? true : false}
+            className={styles.delete_button}
+            >
             {"🗑️"}
           </Button>
         </td>
@@ -99,11 +104,11 @@ const DashboardBook = () => {
         dashboardReservation={auth?.roles.includes(1984)}
         dashboardFunctionary={auth?.roles.includes(5150)}
       />
-      <Container fluid>
+      <Container fluid className={styles.dashboard}>
         <h1 className='text-center fw-bold'>Controle de livros</h1>
 
-        <Link to='/registerBook' >
-          <Button> ➕ Cadastrar livro</Button>
+        <Link to='/registerBook'>
+          <Button className={styles.register_button}> + Cadastrar livro</Button>
         </Link>
 
         <Table striped responsive>
@@ -130,4 +135,4 @@ const DashboardBook = () => {
   );
 }
 
-export default DashboardBook
+export default DashboardBook;

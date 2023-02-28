@@ -1,3 +1,58 @@
+.register {
+    background-image: linear-gradient(to left, #fff, #006a5d);
+    padding: 5%;
+    padding-left: 20%;
+    padding-right: 20%;
+}
+
+.register h2 {
+    font-weight: bold;
+    text-align: center;
+}
+
+.register ::placeholder {
+    color: #006a5d;
+    font-weight: bold;
+}
+
+.register input {
+    color: #006a5d;
+    font-weight: bold;
+    margin-bottom: 1%;
+}
+
+.register label {
+    font-weight: bold;
+}
+
+.register button {
+    color: black;
+    font-weight: bold;
+    letter-spacing: 1px;
+    display: inline-block;
+    padding: 14px 40px;
+    border-radius: 0.7rem;
+    transition: 0.3s;
+    background: #006a5d;
+    box-shadow: 0 0 15px rgba(0, 0, 0, 0.08);
+    border: none;
+    margin: 2%;
+}
+
+.register button:hover {
+    border-color: rgba(255, 255, 255, 0.5);
+    background-color: #006a5d;
+    transform: scale(1.1);
+    transition: all 0.5s;
+}
+
+.register button:disabled,
+.register button[disabled] {
+    color: gray;
+    background-color: white;
+    border: none;
+}
+
 .offscreen {
     position: absolute;
     left: -9999px;

@@ -86,7 +86,7 @@ const RegisterBook = () => {
           </>
         ) : (
 
-          <Container fluid>
+          <Container className={styles.register} fluid>
             <h2>Registrar livro</h2>
             <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
             <Form onSubmit={handleSubmit(onSubmit)}>
@@ -141,13 +141,14 @@ const RegisterBook = () => {
                   {...register('imgSrc')} required />
               </Form.Group>
               <Row >
-                <Col sm>
+                <Col className='text-center'>
                   <Link to='/dashboardBook'>
                     <Button>Cancelar</Button>
                   </Link>
+                </Col>
+                <Col className='text-center' >
                   <Button type='submit'>Registrar</Button>
                 </Col>
-
               </Row>
             </Form>
           </Container>

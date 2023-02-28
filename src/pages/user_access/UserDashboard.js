@@ -20,7 +20,7 @@ const DashboardBook = () => {
   const location = useLocation();
 
   const [books, setBooks] = useState([]);
-  const [currentUser, setCurrentUser] = useState();
+  const [currentUser, setCurrentUser] = useState({});
 
   useEffect(() => {
     const getBooks = async () => {
@@ -37,9 +37,9 @@ const DashboardBook = () => {
         JSON.stringify({
           "cpf": auth?.cpf
         }));
-      return response1.data;
+      setCurrentUser(response1.data);
     }
-    setCurrentUser(getCurrentUser());
+    getCurrentUser();
   }, []);
 
   useEffect(() => { }, [books]);
@@ -54,8 +54,8 @@ const DashboardBook = () => {
 
   return (
     <>
-      <NavbarComponent />
-      <Container fluid>
+      <NavbarComponent reservationsUser={true} />
+      <Container>
         <Row className='d-flex justify-content-center'>
           {books.length === 0 ? (
             <h3 className='text-center'>Carregando...</h3>
