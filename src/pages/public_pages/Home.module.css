@@ -84,9 +84,9 @@ h6 {
 }
 
 .donation_incentive_area {
-  background-image: linear-gradient(to left, #fff, #006a5d);
+  background-color: #fff;
   padding: 10%;
-  color: white;
+  color: #006a5d;
 }
 
 @media (max-width: 760px) {
@@ -101,8 +101,8 @@ h6 {
 }
 
 .donation_incentive_area p {
-  background-color: white;
-  color: #006a5d;
+ background-color: #006a5d;
+  color: #fff;
   padding: 1%;
   border-radius: 0.5rem;
 }

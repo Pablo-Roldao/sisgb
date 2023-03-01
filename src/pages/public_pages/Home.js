@@ -69,20 +69,7 @@ export default function Home() {
 
       </Container>
 
-      <Container id='welcome-books-area' className={styles.welcome_books_area}>
-        <h1><strong>Livros em alta</strong></h1>
-        <h6>Navegue pela imensidão de livros presentes em nossa biblioteca...</h6>
-        <Row className='d-flex justify-content-center'>
-          {/*booksResult*/}
-        </Row>
-        <br />
-        <div className='text-center'>
-          <Link to='/bookCollection'>
-            <Button>Navegue pelo acervo...</Button>
-          </Link>
-        </div>
-      </Container>
-
+      
       <Container id='donation-incentive-area' className={styles.donation_incentive_area + ' d-flex justify-content-center'} fluid>
         <Row className='container'>
           <Col sm className={styles.donation_incentive_area_message}>
