@@ -7,6 +7,7 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 import styles from '../../components/Dashboard.module.css';
 
+import DeleteSvg from '../../components/DeleteSvg';
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
 
@@ -78,7 +79,7 @@ const ReservationsUser = () => {
             className={styles.delete_button}
             onClick={() => deleteReservation(reservation._id)}
           >
-            {"🗑️"}
+            <DeleteSvg />
           </Button>
         </td>
       </tr>

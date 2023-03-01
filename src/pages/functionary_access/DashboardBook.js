@@ -1,4 +1,4 @@
-import { Button, Container, Table } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row, Table } from 'react-bootstrap';
 
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -24,12 +24,16 @@ const DashboardBook = () => {
   const location = useLocation();
 
   const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
+
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const getBooks = async () => {
       try {
         const response = await axiosPrivate.get(BOOK_URL);
         setBooks(response.data);
+        setFilteredBooks(response.data);
       } catch (err) {
         navigate('/', { state: { from: location }, replace: true });
       }
@@ -37,7 +41,26 @@ const DashboardBook = () => {
     getBooks();
   }, []);
 
-  useEffect(() => { }, [books]);
+  useEffect(() => { }, [filteredBooks]);
+
+  useEffect(() => {
+    if (!search) {
+      setFilteredBooks(books);
+    } else {
+      const filterBook = books.filter((book) => {
+        if (
+          book.isbn.includes(search) ||
+          book.title.toLowerCase().includes(search.toLocaleLowerCase()) ||
+          book.authors.toLowerCase().includes(search.toLocaleLowerCase()) ||
+          book.publisher.toLowerCase().includes(search.toLocaleLowerCase()) ||
+          book.genre.toLowerCase().includes(search.toLocaleLowerCase())
+        )
+          return book;
+      })
+      setFilteredBooks(filterBook);
+    }
+
+  }, [search]);
 
   async function deleteBook(isbn) {
     try {
@@ -56,7 +79,7 @@ const DashboardBook = () => {
     }
   }
 
-  const booksResult = books.map((book) => {
+  const booksResult = filteredBooks.map((book) => {
     return (
       <tr key={book.isbn}>
         <td>{book.isbn}</td>
@@ -111,9 +134,24 @@ const DashboardBook = () => {
       <Container fluid className={styles.dashboard}>
         <h1 className='text-center fw-bold'>Controle de livros</h1>
 
-        <Link to='/registerBook'>
-          <Button className={styles.register_button}> + Cadastrar livro</Button>
-        </Link>
+        <Row>
+          <Col sm>
+            <Link to='/registerBook'>
+              <Button className={styles.register_button}> + Cadastrar livro</Button>
+            </Link>
+          </Col>
+          <Col sm>
+            <Form onSubmit={(e) => e.preventDefault()}>
+              <Form.Control
+                className={styles.search}
+                type='seach'
+                placeholder='Buscar...'
+                aria-label='search'
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </Form>
+          </Col>
+        </Row>
 
         <Table striped responsive>
           <thead>

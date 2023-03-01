@@ -24,7 +24,6 @@
 .reserve_button {
   background-color: #006a5d;
   border: none;
-  vertical-align: bottom;
 }
 
 .reserve_button:hover {

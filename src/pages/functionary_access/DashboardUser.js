@@ -1,4 +1,4 @@
-import { Button, Container, Table } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row, Table } from 'react-bootstrap';
 
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -21,6 +21,8 @@ const DashboardUser = () => {
   const location = useLocation();
 
   const [users, setUsers] = useState([]);
+  const [filteredUsers, setFilteredUsers] = useState([]);
+  const [search, setSearch] = useState('');
 
   const getUsers = async () => {
     try {
@@ -31,7 +33,7 @@ const DashboardUser = () => {
             return user;
       })
       setUsers(usersFilter);
-
+      setFilteredUsers(usersFilter);
     } catch (err) {
       navigate('/', { state: { from: location }, replace: true });
     }
@@ -41,7 +43,24 @@ const DashboardUser = () => {
     getUsers();
   }, []);
 
-  useEffect(() => { }, [users]);
+  useEffect(() => { }, [filteredUsers]);
+
+  useEffect(() => {
+    if (!search) {
+      setFilteredUsers(users);
+    } else {
+      const filterUsers = users.filter((user) => {
+        if (
+          user.cpf.includes(search) ||
+          user.name.toLowerCase().includes(search.toLocaleLowerCase()) ||
+          user.email.toLowerCase().includes(search.toLocaleLowerCase())
+        )
+          return user;
+      })
+      setFilteredUsers(filterUsers);
+    }
+
+  }, [search])
 
   async function deleteUser(cpf) {
     try {
@@ -62,7 +81,7 @@ const DashboardUser = () => {
     }
   }
 
-  const usersResult = users.map((user) => {
+  const usersResult = filteredUsers.map((user) => {
     return (
       <tr>
         <td>{user.cpf}</td>
@@ -109,9 +128,26 @@ const DashboardUser = () => {
       <Container fluid className={styles.dashboard}>
         <h1 className='text-center fw-bold'>Controle de usuários</h1>
 
-        <Link to='/registerUser' >
-          <Button className={styles.register_button}> + Cadastrar usuário</Button>
-        </Link>
+        <Row>
+          <Col sm>
+            <Link to='/registerUser' >
+              <Button className={styles.register_button}> + Cadastrar usuário</Button>
+            </Link>
+          </Col>
+          <Col sm>
+            <Form onSubmit={(e) => e.preventDefault()}>
+              <Form.Control
+                className={styles.search}
+                type='seach'
+                placeholder='Buscar...'
+                aria-label='search'
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </Form>
+          </Col>
+        </Row>
+
+
 
         <Table striped responsive>
           <thead>

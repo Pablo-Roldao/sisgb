@@ -1,4 +1,4 @@
-import { Button, Container, Table } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row, Table } from 'react-bootstrap';
 
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -21,6 +21,8 @@ const DashboardFunctionary = () => {
   const location = useLocation();
 
   const [functionaries, setFunctionaries] = useState([]);
+  const [filteredFunctionaries, setFilteredFunctionaries] = useState([]);
+  const [search, setSearch] = useState('');
 
   const getFunctionaries = async () => {
     try {
@@ -31,7 +33,7 @@ const DashboardFunctionary = () => {
             return functionary;
       })
       setFunctionaries(functionariesFilter);
-
+      setFilteredFunctionaries(functionariesFilter);
     } catch (err) {
       navigate('/', { state: { from: location }, replace: true });
     }
@@ -41,7 +43,24 @@ const DashboardFunctionary = () => {
     getFunctionaries();
   }, []);
 
-  useEffect(() => { }, [functionaries]);
+  useEffect(() => { }, [filteredFunctionaries]);
+
+  useEffect(() => {
+    if (!search) {
+      setFilteredFunctionaries(functionaries);
+    } else {
+      const filterFunctionaries = functionaries.filter((functionary) => {
+        if (
+          functionary.cpf.includes(search) ||
+          functionary.name.toLowerCase().includes(search.toLocaleLowerCase()) ||
+          functionary.email.toLowerCase().includes(search.toLocaleLowerCase())
+        )
+          return functionary;
+      })
+      setFilteredFunctionaries(filterFunctionaries);
+    }
+
+  }, [search]);
 
   async function deleteFunctionary(cpf) {
     try {
@@ -62,7 +81,7 @@ const DashboardFunctionary = () => {
     }
   }
 
-  const functionariesResult = functionaries.map((functionary) => {
+  const functionariesResult = filteredFunctionaries.map((functionary) => {
     return (
       <tr key={functionary.cpf}>
         <td>{functionary.cpf}</td>
@@ -79,7 +98,7 @@ const DashboardFunctionary = () => {
         </td>
         <td>
           <Button onClick={() => deleteFunctionary(functionary.cpf)} className={styles.delete_button}>
-              <DeleteSvg />
+            <DeleteSvg />
           </Button>
         </td>
       </tr>
@@ -105,9 +124,27 @@ const DashboardFunctionary = () => {
       <Container fluid className={styles.dashboard}>
         <h1 className='text-center fw-bold'>Controle de funcionários</h1>
 
-        <Link to='/registerFunctionary'>
-          <Button className={styles.register_button}>+ Cadastrar funcionário</Button>
-        </Link>
+        <Row>
+          <Col sm>
+            <Link to='/registerFunctionary'>
+              <Button className={styles.register_button}>+ Cadastrar funcionário</Button>
+            </Link>
+          </Col>
+          <Col sm>
+            <Form onSubmit={(e) => e.preventDefault()}>
+              <Form.Control
+                className={styles.search}
+                type='seach'
+                placeholder='Buscar...'
+                aria-label='search'
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </Form>
+          </Col>
+        </Row>
+
+
+
 
         <Table striped responsive>
           <thead>

@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { Col, Container, Row } from 'react-bootstrap';
+import { Col, Container, Form, Row } from 'react-bootstrap';
 import { useLocation, useNavigate } from 'react-router-dom';
 import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
@@ -22,13 +22,17 @@ const DashboardBook = () => {
   const location = useLocation();
 
   const [books, setBooks] = useState([]);
+  const [filteredBooks, setFilteredBooks] = useState([]);
   const [currentUser, setCurrentUser] = useState({});
+
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
     const getBooks = async () => {
       try {
         const response = await axiosPrivate.get(BOOK_URL);
         setBooks(response.data);
+        setFilteredBooks(response.data);
       } catch (err) {
         navigate('/', { state: { from: location }, replace: true });
       }
@@ -44,9 +48,28 @@ const DashboardBook = () => {
     getCurrentUser();
   }, []);
 
-  useEffect(() => { }, [books]);
+  useEffect(() => { }, [filteredBooks]);
 
-  const booksResult = books.map((book) => {
+  useEffect(() => {
+    if (!search) {
+      setFilteredBooks(books);
+    } else {
+      const filterBook = books.filter((book) => {
+        if (
+          book.isbn.includes(search) ||
+          book.title.toLowerCase().includes(search.toLocaleLowerCase()) ||
+          book.authors.toLowerCase().includes(search.toLocaleLowerCase()) ||
+          book.publisher.toLowerCase().includes(search.toLocaleLowerCase()) ||
+          book.genre.toLowerCase().includes(search.toLocaleLowerCase())
+        )
+          return book;
+      })
+      setFilteredBooks(filterBook);
+    }
+
+  }, [search]);
+
+  const booksResult = filteredBooks.map((book) => {
     return (
       <Col sm={3} key={book.isbn} >
         <Book book={book} user={currentUser} />
@@ -57,13 +80,29 @@ const DashboardBook = () => {
   return (
     <>
       <NavbarComponent
-      reservationsUser={true}
-      loansUser={true}
-      profile={auth?.username}
-      userCpf={auth?.cpf}
-      logout={true}
+        reservationsUser={true}
+        loansUser={true}
+        profile={auth?.username}
+        userCpf={auth?.cpf}
+        logout={true}
       />
       <Container className={styles.dashboard} fluid>
+        <Row>
+          <Col sm>
+            <h1>Acervo</h1>
+          </Col>
+          <Col sm>
+            <Form onSubmit={(e) => e.preventDefault()}>
+              <Form.Control
+                className={styles.search}
+                type='seach'
+                placeholder='Buscar...'
+                aria-label='search'
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </Form>
+          </Col>
+        </Row>
         <Row className='d-flex justify-content-center'>
           {books.length === 0 ? (
             <h3 className='text-center'>Carregando...</h3>

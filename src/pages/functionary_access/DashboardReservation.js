@@ -1,4 +1,4 @@
-import { Button, Container, Table } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row, Table } from 'react-bootstrap';
 
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -6,7 +6,6 @@ import useAuth from '../../hooks/useAuth';
 import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 import styles from '../../components/Dashboard.module.css';
-
 
 import DeleteSvg from '../../components/DeleteSvg';
 import Footer from '../../components/Footer';
@@ -23,11 +22,15 @@ const DashboardReservation = () => {
   const location = useLocation();
 
   const [reservations, setReservations] = useState([]);
+  const [filteredReservations, setFilteredReservations] = useState([]);
+
+  const [search, setSearch] = useState('');
 
   const getReservations = async () => {
     try {
       const response = await axiosPrivate.get(RESERVATION_URL);
       setReservations(response.data);
+      setFilteredReservations(response.data);
     } catch (err) {
       console.log(err);
       navigate('/', { state: { from: location }, replace: true });
@@ -38,7 +41,23 @@ const DashboardReservation = () => {
     getReservations();
   }, []);
 
-  useEffect(() => { }, [reservations]);
+  useEffect(() => { }, [filteredReservations]);
+
+  useEffect(() => {
+    if (!search) {
+      setFilteredReservations(reservations);
+    } else {
+      const filterReservation = reservations.filter((reservation) => {
+        if (
+          reservation.bookIsbn.includes(search) ||
+          reservation.userCpf.toLowerCase().includes(search.toLocaleLowerCase())
+        )
+          return reservation;
+      })
+      setFilteredReservations(filterReservation);
+    }
+
+  }, [search]);
 
   async function deleteReservation(id) {
     try {
@@ -74,7 +93,7 @@ const DashboardReservation = () => {
     }
   }
 
-  const reservationsResult = reservations.map((reservation) => {
+  const reservationsResult = filteredReservations.map((reservation) => {
     return (
       <tr key={reservation._id}>
         <td>{reservation.bookIsbn}</td>
@@ -129,9 +148,24 @@ const DashboardReservation = () => {
       <Container fluid className={styles.dashboard}>
         <h1 className='text-center fw-bold'>Controle de reservas</h1>
 
-        <Link to='/registerReservation' >
-          <Button className={styles.register_button}> + Cadastrar reserva</Button>
-        </Link>
+        <Row>
+          <Col sm>
+            <Link to='/registerReservation' >
+              <Button className={styles.register_button}> + Cadastrar reserva</Button>
+            </Link>
+          </Col>
+          <Col sm>
+            <Form onSubmit={(e) => e.preventDefault()}>
+              <Form.Control
+                className={styles.search}
+                type='seach'
+                placeholder='Buscar...'
+                aria-label='search'
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </Form>
+          </Col>
+        </Row>
 
         <Table striped responsive>
           <thead>

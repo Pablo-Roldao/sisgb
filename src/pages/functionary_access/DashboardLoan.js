@@ -1,4 +1,4 @@
-import { Button, Container, Table } from 'react-bootstrap';
+import { Button, Col, Container, Row, Form, Table } from 'react-bootstrap';
 
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
@@ -22,11 +22,15 @@ const DashboardLoan = () => {
   const location = useLocation();
 
   const [loans, setLoans] = useState([]);
+  const [filteredLoans, setFilteredLoans] = useState([]);
+
+  const [search, setSearch] = useState('');
 
   const getLoans = async () => {
     try {
       const response = await axiosPrivate.get(LOAN_URL);
       setLoans(response.data);
+      setFilteredLoans(response.data);
     } catch (err) {
       console.log(err);
       navigate('/', { state: { from: location }, replace: true });
@@ -37,7 +41,23 @@ const DashboardLoan = () => {
     getLoans();
   }, []);
 
-  useEffect(() => { }, [loans]);
+  useEffect(() => { }, [filteredLoans]);
+
+  useEffect(() => {
+    if (!search) {
+      setFilteredLoans(loans);
+    } else {
+      const filterLoan = loans.filter((loan) => {
+        if (
+          loan.bookIsbn.includes(search) ||
+          loan.userCpf.toLowerCase().includes(search.toLocaleLowerCase())
+        )
+          return loan;
+      })
+      setFilteredLoans(filterLoan);
+    }
+
+  }, [search]);
 
   async function deleteLoan(id) {
     try {
@@ -56,7 +76,7 @@ const DashboardLoan = () => {
     }
   }
 
-  const loansResult = loans.map((loan) => {
+  const loansResult = filteredLoans.map((loan) => {
     return (
       <tr key={loan._id}>
         <td>{loan.bookIsbn}</td>
@@ -65,8 +85,8 @@ const DashboardLoan = () => {
         <td>{loan.finishDate.split('T')[0]}</td>
         <td>
           <Link to='/updateLoan' state={{ loanData: loan }} >
-            <Button className={styles.update_button}> 
-            <UpdateSvg />
+            <Button className={styles.update_button}>
+              <UpdateSvg />
             </Button>
           </Link>
         </td>
@@ -101,9 +121,26 @@ const DashboardLoan = () => {
       <Container fluid className={styles.dashboard}>
         <h1 className='text-center fw-bold'>Controle de empréstimos</h1>
 
-        <Link to='/registerLoan' >
-          <Button className={styles.register_button}> + Cadastrar empréstimo</Button>
-        </Link>
+        <Row>
+          <Col sm>
+            <Link to='/registerLoan' >
+              <Button className={styles.register_button}> + Cadastrar empréstimo</Button>
+            </Link>
+          </Col>
+          <Col sm>
+            <Form onSubmit={(e) => e.preventDefault()}>
+              <Form.Control
+                className={styles.search}
+                type='seach'
+                placeholder='Buscar...'
+                aria-label='search'
+                onChange={(e) => setSearch(e.target.value)}
+              />
+            </Form>
+          </Col>
+        </Row>
+
+
 
         <Table striped responsive>
           <thead>
