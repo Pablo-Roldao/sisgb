@@ -81,54 +81,65 @@ const UpdateLoan = () => {
         dashboardReservation={auth?.roles.includes(1984)}
         dashboardFunctionary={auth?.roles.includes(5150)}
       />
-      {success
-        ? (
-          <Container className={styles.success_msg} fluid>
-            <h1>Empréstimo atualizado com sucesso!</h1>
-            <h5>Voltar para <Link to='/dashboardLoan'>empréstimos</Link>...</h5>
-          </Container>
-        ) : (
 
-          <Container className={styles.register} fluid>
-            <h2>Alterar data de término do empréstimo</h2>
-            <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
-            <Form onSubmit={handleSubmit(onSubmit)}>
-              <Form.Group>
-                <Form.Label>Data de término</Form.Label>
-                <Form.Control
-                  type='date'
-                  name='finishDate'
-                  placeholder='Insira a data de término...'
-                  onChange={(e) => setFinishDate(e.target.value)}
-                  value={finishDate}
-                  aria-invalid={validFinishDate ? false : true}
-                  aria-describedby="datenote"
-                  required
-                />
-                <p id="datenote" className={validFinishDate || !finishDate ? styles.offscreen : styles.instructions}>
-                  <FontAwesomeIcon icon={faInfoCircle} />
-                  {"  "}A data não pode ser anterior a data atual.
-                </p>
-              </Form.Group>
-              <Row >
-                <Col className='text-center'>
-                  <Link to='/dashboardLoan'>
-                    <Button>Cancelar</Button>
-                  </Link>
-                </Col>
-                <Col className='text-center'>
-                  <Button
-                    type='submit'
-                    disabled={!validFinishDate ? true : false}
-                  >Atualizar</Button>
-                </Col>
-              </Row>
-            </Form>
-          </Container>
-        )
-      }
-
-      <Footer />
+      <Container className={styles.register} fluid>
+        {success
+          ? (
+            <Container className={styles.success_msg} fluid>
+              <h1>Empréstimo atualizado com sucesso!</h1>
+              <h5>Voltar para <Link to='/dashboardLoan'>empréstimos</Link>...</h5>
+            </Container>
+          ) : (
+            <>
+              <h2>Alterar data de término do empréstimo</h2>
+              <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
+              <Form onSubmit={handleSubmit(onSubmit)}>
+                <Form.Group>
+                  <Form.Label>Data de término</Form.Label>
+                  <Form.Control
+                    type='date'
+                    name='finishDate'
+                    placeholder='Insira a data de término...'
+                    onChange={(e) => setFinishDate(e.target.value)}
+                    value={finishDate}
+                    aria-invalid={validFinishDate ? false : true}
+                    aria-describedby="datenote"
+                    required
+                  />
+                  <p id="datenote" className={validFinishDate || !finishDate ? styles.offscreen : styles.instructions}>
+                    <FontAwesomeIcon icon={faInfoCircle} />
+                    {"  "}A data não pode ser anterior a data atual.
+                  </p>
+                </Form.Group>
+                <Row >
+                  <Col className='text-center'>
+                    <Link to='/dashboardLoan'>
+                      <Button>Cancelar</Button>
+                    </Link>
+                  </Col>
+                  <Col className='text-center'>
+                    <Button
+                      type='submit'
+                      disabled={!validFinishDate ? true : false}
+                    >Atualizar</Button>
+                  </Col>
+                </Row>
+              </Form>
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+              <br />
+            </>
+          )
+        }
+        <Footer />
+      </Container>
     </>
   )
 }

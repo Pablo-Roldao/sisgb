@@ -141,13 +141,14 @@ export default function RegisterUser() {
         dashboardReservation={auth?.roles.includes(1984)}
         dashboardFunctionary={auth?.roles.includes(5150)}
       />
+      <Container className={styles.register} fluid>
         {success ? (
           <Container className={styles.success_msg} fluid>
             <h1 className='text-center'>Usuário cadastrado com sucesso!</h1>
             <h3 className='text-center'>Seguir para <Link to='/dashboardUser' className={styles.login_button + ' text-decoration-none'}>usuários</Link>...</h3>
           </Container>
         ) : (
-          <Container className={styles.register} fluid>
+          <>
             <h2 className='text-center'>Cadastrar usuário</h2>
             <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
             <Form onSubmit={handleSubmit(onSubmit)}>
@@ -239,10 +240,11 @@ export default function RegisterUser() {
                 </Col>
               </Row>
             </Form>
-          </Container>
+          </>
         )}
 
         <Footer />
+      </Container>
     </>
   )
 }

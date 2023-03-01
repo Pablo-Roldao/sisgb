@@ -115,10 +115,10 @@ export default function UpdateUser() {
       <div >
         <Container className={styles.register} fluid>
           {success ? (
-            <>
+            <Container className={styles.success_msg}>
               <h2 className='text-center'>Usuário cadastrado com sucesso!</h2>
               <h3 className=' text-center'>Seguir para <Link to='/dashboardUser' className={styles.login_button + ' text-decoration-none'}>usuários</Link>...</h3>
-            </>
+            </Container>
           ) : (
             <>
               <h2 className='text-center'>Alterar usuário de CPF {location.state?.userData?.cpf}</h2>
@@ -225,10 +225,11 @@ export default function UpdateUser() {
               </Form>
             </>
           )}
+          
+      <Footer />
         </Container>
       </div>
 
-      <Footer />
     </>
   )
 }

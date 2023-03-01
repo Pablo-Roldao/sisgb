@@ -183,8 +183,9 @@ const DashboardReservation = () => {
             {reservationsResult}
           </tbody>
         </Table>
+
+        <Footer />
       </Container>
-      <Footer />
     </>
   );
 }

@@ -110,8 +110,8 @@ const ReservationsUser = () => {
             {reservationsResult}
           </tbody>
         </Table>
-      </Container>
       <Footer />
+      </Container>
     </>
   );
 }

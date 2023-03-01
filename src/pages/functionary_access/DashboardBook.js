@@ -171,8 +171,8 @@ const DashboardBook = () => {
             {booksResult}
           </tbody>
         </Table>
+        <Footer />
       </Container>
-      <Footer />
     </>
   );
 }

@@ -72,44 +72,53 @@ const RegisterReservation = () => {
         dashboardReservation={auth?.roles.includes(1984)}
         dashboardFunctionary={auth?.roles.includes(5150)}
       />
-      {success
-        ? (
-          <>
-            <h2>Reserva cadastrada com sucesso!</h2>
-            <p>Voltar para <Link to='/dashboardReservation'>Reservas</Link>...</p>
-          </>
-        ) : (
+      <Container className={styles.register} fluid>
+        {success
+          ? (
+            <Container className={styles.success_msg}>
+              <h2>Reserva cadastrada com sucesso!</h2>
+              <p>Voltar para <Link to='/dashboardReservation'>Reservas</Link>...</p>
+            </Container>
+          ) : (
 
-          <Container className={styles.register} fluid>
-            <h2>Registrar reserva</h2>
-            <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
-            <Form onSubmit={handleSubmit(onSubmit)}>
-              <Form.Group>
-                <Form.Label>ISBN do livro</Form.Label>
-                <Form.Control type='text' name='isbn' placeholder='Insira o ISBN do livro...'
-                  onChange={(e) => setBookIsbn(e.target.value)} required />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>CPF do usuário</Form.Label>
-                <Form.Control type='text' name='cpf' placeholder='Insira CPF do usuário...'
-                  onChange={(e) => setUserCpf(e.target.value)} required />
-              </Form.Group>
-              <Row >
-                <Col className='text-center'>
-                  <Link to='/dashboardReservation'>
-                    <Button>Cancelar</Button>
-                  </Link>
-                </Col>
-                <Col className='text-center'>
-                  <Button type='submit'>Registrar</Button>
-                </Col>
-              </Row>
-            </Form>
-          </Container>
-        )
-      }
+            <>
+              <h2>Registrar reserva</h2>
+              <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
+              <Form onSubmit={handleSubmit(onSubmit)}>
+                <Form.Group>
+                  <Form.Label>ISBN do livro</Form.Label>
+                  <Form.Control type='text' name='isbn' placeholder='Insira o ISBN do livro...'
+                    onChange={(e) => setBookIsbn(e.target.value)} required />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>CPF do usuário</Form.Label>
+                  <Form.Control type='text' name='cpf' placeholder='Insira CPF do usuário...'
+                    onChange={(e) => setUserCpf(e.target.value)} required />
+                </Form.Group>
+                <Row >
+                  <Col className='text-center'>
+                    <Link to='/dashboardReservation'>
+                      <Button>Cancelar</Button>
+                    </Link>
+                  </Col>
+                  <Col className='text-center'>
+                    <Button type='submit'>Registrar</Button>
+                  </Col>
+                </Row>
+              </Form>
+            </>
+          )
+        }
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
 
-      <Footer />
+        <Footer />
+      </Container>
     </>
   )
 }

@@ -245,10 +245,11 @@ export default function RegisterFunctionary() {
               </Form>
             </>
           )}
+
+          <Footer />
         </Container>
       </div>
 
-      <Footer />
     </>
   )
 }

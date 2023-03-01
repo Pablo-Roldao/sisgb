@@ -225,10 +225,11 @@ export default function UpdateFunctionary() {
               </Form>
             </>
           )}
+
+          <Footer />
         </Container>
       </div>
 
-      <Footer />
     </>
   )
 }
