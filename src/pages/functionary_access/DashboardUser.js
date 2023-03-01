@@ -165,8 +165,8 @@ const DashboardUser = () => {
             {usersResult}
           </tbody>
         </Table>
-      </Container>
       <Footer />
+      </Container>
     </>
   );
 }

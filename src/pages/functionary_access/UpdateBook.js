@@ -85,135 +85,138 @@ const UpdateBook = () => {
         dashboardReservation={auth?.roles.includes(1984)}
         dashboardFunctionary={auth?.roles.includes(5150)}
       />
-      {success
-        ? (
-          <>
-            <h2>Livro atualizado com sucesso!</h2>
-            <p>Voltar para <Link to='/dashboardBook'>Livros</Link>...</p>
-          </>
-        ) : (
-          <Container className={styles.register} fluid>
-            <h2>Atualizar livro</h2>
-            <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
-            <Form onSubmit={handleSubmit(onSubmit)}>
-              <Form.Group>
-                <Form.Label>Título</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='title'
-                  placeholder='Insira o título...'
-                  onChange={(e) => setTitle(e.target.value)}
-                  value={title}
-                  required
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Autores</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='authors'
-                  placeholder='Insira os autores...'
-                  onChange={(e) => setAuthors(e.target.value)}
-                  value={authors}
-                  required />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Número de páginas</Form.Label>
-                <Form.Control
-                  type='number'
-                  min='0'
-                  name='numberOfPages'
-                  placeholder='Insira o número de páginas...'
-                  onChange={(e) => setNumberOfPages(e.target.value)}
-                  value={numberOfPages}
-                  required
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Editora</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='publisher'
-                  placeholder='Insira a editora...'
-                  onChange={(e) => setPublisher(e.target.value)}
-                  value={publisher}
-                  required
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Ano de publicação</Form.Label>
-                <Form.Control
-                  type='number'
-                  max='2099'
-                  min='0'
-                  name='publishDate'
-                  placeholder='Insira o ano de publicação...'
-                  onChange={(e) => setPublishDate(e.target.value)}
-                  value={publishDate}
-                  required
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Edição</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='edition'
-                  placeholder='Insira a edição...'
-                  onChange={(e) => setEdition(e.target.value)}
-                  value={edition}
-                  required
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Gênero</Form.Label>
-                <Form.Control
-                  type='text'
-                  name='genre'
-                  placeholder='Insira o gênero...'
-                  onChange={(e) => setGenre(e.target.value)}
-                  value={genre}
-                  required
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Descrição</Form.Label>
-                <Form.Control
-                  as='textarea'
-                  type='text'
-                  name='description'
-                  placeholder='Insira a descrição...'
-                  onChange={(e) => setDescription(e.target.value)}
-                  value={description}
-                  required
-                />
-              </Form.Group>
-              <Form.Group>
-                <Form.Label>Link da imagem da capa</Form.Label>
-                <Form.Control
-                  type='url'
-                  name='imgSrc'
-                  placeholder='Insira o link da imagem da capa...'
-                  onChange={(e) => setImgSrc(e.target.value)}
-                  value={imgSrc}
-                  required
-                />
-              </Form.Group>
-              <Row >
-                <Col className='text-center'>
-                  <Link to='/dashboardBook'>
-                    <Button>Cancelar</Button>
-                  </Link>
-                </Col>
-                <Col className='text-center'>
-                  <Button type='submit'>Atualizar</Button>
-                </Col>
-              </Row>
-            </Form>
-          </Container>
-        )
-      }
 
-      <Footer />
+      <Container className={styles.register} fluid>
+        {success
+          ? (
+            <Container className={styles.success_msg}>
+              <h1>Livro atualizado com sucesso!</h1>
+              <h3>Voltar para <Link to='/dashboardBook' className='text-decoration-none'>livros</Link>...</h3>
+            </Container>
+          ) : (
+            <>
+              <h2>Atualizar livro</h2>
+              <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
+              <Form onSubmit={handleSubmit(onSubmit)}>
+                <Form.Group>
+                  <Form.Label>Título</Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='title'
+                    placeholder='Insira o título...'
+                    onChange={(e) => setTitle(e.target.value)}
+                    value={title}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Autores</Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='authors'
+                    placeholder='Insira os autores...'
+                    onChange={(e) => setAuthors(e.target.value)}
+                    value={authors}
+                    required />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Número de páginas</Form.Label>
+                  <Form.Control
+                    type='number'
+                    min='0'
+                    name='numberOfPages'
+                    placeholder='Insira o número de páginas...'
+                    onChange={(e) => setNumberOfPages(e.target.value)}
+                    value={numberOfPages}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Editora</Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='publisher'
+                    placeholder='Insira a editora...'
+                    onChange={(e) => setPublisher(e.target.value)}
+                    value={publisher}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Ano de publicação</Form.Label>
+                  <Form.Control
+                    type='number'
+                    max='2099'
+                    min='0'
+                    name='publishDate'
+                    placeholder='Insira o ano de publicação...'
+                    onChange={(e) => setPublishDate(e.target.value)}
+                    value={publishDate}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Edição</Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='edition'
+                    placeholder='Insira a edição...'
+                    onChange={(e) => setEdition(e.target.value)}
+                    value={edition}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Gênero</Form.Label>
+                  <Form.Control
+                    type='text'
+                    name='genre'
+                    placeholder='Insira o gênero...'
+                    onChange={(e) => setGenre(e.target.value)}
+                    value={genre}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Descrição</Form.Label>
+                  <Form.Control
+                    as='textarea'
+                    type='text'
+                    name='description'
+                    placeholder='Insira a descrição...'
+                    onChange={(e) => setDescription(e.target.value)}
+                    value={description}
+                    required
+                  />
+                </Form.Group>
+                <Form.Group>
+                  <Form.Label>Link da imagem da capa</Form.Label>
+                  <Form.Control
+                    type='url'
+                    name='imgSrc'
+                    placeholder='Insira o link da imagem da capa...'
+                    onChange={(e) => setImgSrc(e.target.value)}
+                    value={imgSrc}
+                    required
+                  />
+                </Form.Group>
+                <Row >
+                  <Col className='text-center'>
+                    <Link to='/dashboardBook'>
+                      <Button>Cancelar</Button>
+                    </Link>
+                  </Col>
+                  <Col className='text-center'>
+                    <Button type='submit'>Atualizar</Button>
+                  </Col>
+                </Row>
+              </Form>
+            </>
+          )
+        }
+
+        <Footer />
+      </Container>
     </>
   )
 }

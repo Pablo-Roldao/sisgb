@@ -39,7 +39,7 @@ export default function Profile() {
 
   return (
     <>
-      <NavbarComponent 
+      <NavbarComponent
         userDashboard={true}
         reservationsUser={true}
         loansUser={true}
@@ -114,8 +114,8 @@ export default function Profile() {
 
 
 
+        <Footer />
       </section>
-      <Footer />
     </>
 
   );

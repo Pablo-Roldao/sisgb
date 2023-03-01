@@ -108,8 +108,8 @@ const DashboardBook = () => {
             <h3 className='text-center'>Carregando...</h3>
           ) : booksResult}
         </Row>
+        <Footer />
       </Container>
-      <Footer />
     </>
   );
 }

@@ -236,9 +236,10 @@ export default function SignUp() {
             </>
           )}
         </Container>
+        
+      <Footer />
       </div>
 
-      <Footer />
     </>
   )
 }

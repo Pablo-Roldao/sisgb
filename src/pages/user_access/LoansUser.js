@@ -107,18 +107,18 @@ const LoansUser = () => {
         <Table striped responsive rounded bordered>
           <thead>
             <tr>
-              <th>ISBN do livro</th>
+              <th>Título do livro</th>
               <th>Data de início</th>
               <th>Data de término</th>
-              <th></th>
+              <th>*</th>
             </tr>
           </thead>
           <tbody>
             {loansResult}
           </tbody>
         </Table>
-      </Container>
       <Footer />
+      </Container>
     </>
   );
 }

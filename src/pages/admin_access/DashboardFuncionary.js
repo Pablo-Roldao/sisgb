@@ -162,8 +162,8 @@ const DashboardFunctionary = () => {
             {functionariesResult}
           </tbody>
         </Table>
+        <Footer />
       </Container>
-      <Footer />
     </>
   );
 }

@@ -23,8 +23,17 @@ const FunctionaryDashboard = () => {
       <Container className={styles.dashboard} fluid>
         <h1 className='text-center fw-bold'>Bem vindo, {auth?.username}!</h1>
         <p>Acesse suas funções na barra de navegação que está localizada na <strong>parte superior da tela</strong>...</p>
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <br />
+        <Footer />
       </Container>
-      <Footer />
     </>
   )
 }

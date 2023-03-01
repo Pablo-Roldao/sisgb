@@ -157,8 +157,8 @@ const DashboardLoan = () => {
             {loansResult}
           </tbody>
         </Table>
+        <Footer />
       </Container>
-      <Footer />
     </>
   );
 }
