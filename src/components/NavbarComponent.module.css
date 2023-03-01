@@ -36,6 +36,11 @@
     justify-content: flex-end;
 }
 
+.nav_item {
+    margin: 1%;
+    text-align: center;
+}
+
 @media (max-width: 760px) {
     .brand_col {
         text-align: center;
