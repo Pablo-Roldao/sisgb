@@ -2,6 +2,8 @@ import React from 'react';
 import { Container } from 'react-bootstrap';
 import useAuth from '../../hooks/useAuth';
 
+import styles from './AdminDashboard.module.css';
+
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
 
@@ -23,9 +25,11 @@ const AdminDashboard = () => {
         dashboardLoan={auth?.roles.includes(1984)}
         dashboardReservation={auth?.roles.includes(1984)}
         dashboardFunctionary={auth?.roles.includes(5150)}
+        logout={true}
       />
-      <Container fluid>
-        <h1 className='text-center fw-bold'>Bem vindo, {auth?.username}!</h1>
+      <Container className={styles.dashboard} fluid>
+        <h1>Bem vindo, {auth?.username}!</h1>
+        <p>Acesse suas funções na barra de navegação que está localizada na <strong>parte superior da tela</strong>...</p>
       </Container>
       <Footer />
     </>

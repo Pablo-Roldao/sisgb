@@ -2,13 +2,15 @@ import { Button, Container, Table } from 'react-bootstrap';
 
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 import styles from '../../components/Dashboard.module.css';
 
+import DeleteSvg from '../../components/DeleteSvg';
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
+import UpdateSvg from '../../components/UpdateSvg';
 
 const USER_URL = '/user';
 
@@ -70,7 +72,9 @@ const DashboardUser = () => {
         <td>{user.birthDate.split('T')[0]}</td>
         <td>
           <Link to='/updateUser' state={{ userData: user }} >
-            <Button className={styles.update_button}> {"✏️"}</Button>
+            <Button className={styles.update_button}>
+              <UpdateSvg />
+            </Button>
           </Link>
         </td>
         <td>
@@ -79,7 +83,7 @@ const DashboardUser = () => {
             disabled={user.currentReservationsLoansQuantity ? true : false}
             className={styles.delete_button}
           >
-            {"🗑️"}
+            <DeleteSvg />
           </Button>
         </td>
       </tr>

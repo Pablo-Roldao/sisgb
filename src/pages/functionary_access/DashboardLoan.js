@@ -2,11 +2,13 @@ import { Button, Container, Table } from 'react-bootstrap';
 
 import { useEffect, useState } from 'react';
 import { Link, useLocation, useNavigate } from 'react-router-dom';
-import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 import useAuth from '../../hooks/useAuth';
+import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 import styles from '../../components/Dashboard.module.css';
 
+import UpdateSvg from '../../components/UpdateSvg';
+import DeleteSvg from '../../components/DeleteSvg';
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
 
@@ -57,22 +59,23 @@ const DashboardLoan = () => {
   const loansResult = loans.map((loan) => {
     return (
       <tr key={loan._id}>
-        <td>{loan._id}</td>
         <td>{loan.bookIsbn}</td>
         <td>{loan.userCpf}</td>
         <td>{loan.startDate.split('T')[0]}</td>
         <td>{loan.finishDate.split('T')[0]}</td>
         <td>
           <Link to='/updateLoan' state={{ loanData: loan }} >
-            <Button className={styles.update_button}> {"✏️"}</Button>
+            <Button className={styles.update_button}> 
+            <UpdateSvg />
+            </Button>
           </Link>
         </td>
         <td>
-          <Button 
-          onClick={() => deleteLoan(loan._id)}
-          className={styles.delete_button}
+          <Button
+            onClick={() => deleteLoan(loan._id)}
+            className={styles.delete_button}
           >
-            {"🗑️"}
+            <DeleteSvg />
           </Button>
         </td>
       </tr>
@@ -105,7 +108,6 @@ const DashboardLoan = () => {
         <Table striped responsive>
           <thead>
             <tr>
-              <th>Id</th>
               <th>ISBN do livro</th>
               <th>CPF do usuário</th>
               <th>Data de início</th>

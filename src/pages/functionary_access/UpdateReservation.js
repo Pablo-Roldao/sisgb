@@ -1,3 +1,5 @@
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useRef, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -26,6 +28,7 @@ const UpdateReservation = () => {
 
   const id = location.state?.reservationId;
   const [finishDate, setFinishDate] = useState('');
+  const [validFinishDate, setValidFinishDate] = useState(false);
 
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
@@ -33,6 +36,16 @@ const UpdateReservation = () => {
   useEffect(() => {
     setErrMsg('');
   }, [finishDate]);
+
+  useEffect(() => {
+    const now = new Date((new Date()).toISOString().split('T')[0]).getTime();
+    const fd = new Date(finishDate).getTime();
+    setValidFinishDate(
+      now <= fd
+        ? true
+        : false
+    );
+  }, [finishDate])
 
   const onSubmit = async () => {
 
@@ -75,10 +88,10 @@ const UpdateReservation = () => {
       />
       {success
         ? (
-          <>
-            <h2>Reserva atualizada com sucesso!</h2>
-            <p>Voltar para <Link to='/dashboardReservation'>Reservas</Link>...</p>
-          </>
+          <Container className={styles.success_msg} fluid>
+            <h1>Reserva atualizada com sucesso!</h1>
+            <h5>Voltar para <Link to='/dashboardReservation'>reservas</Link>...</h5>
+          </Container>
         ) : (
 
           <Container className={styles.register} fluid>
@@ -87,8 +100,20 @@ const UpdateReservation = () => {
             <Form onSubmit={handleSubmit(onSubmit)}>
               <Form.Group>
                 <Form.Label>Data de término</Form.Label>
-                <Form.Control type='date' name='finishDate' placeholder='Insira a data de término...'
-                  onChange={(e) => setFinishDate(e.target.value)} value={finishDate} required />
+                <Form.Control
+                  type='date'
+                  name='finishDate'
+                  placeholder='Insira a data de término...'
+                  onChange={(e) => setFinishDate(e.target.value)}
+                  value={finishDate}
+                  aria-invalid={validFinishDate ? false : true}
+                  aria-describedby="datenote"
+                  required
+                />
+                <p id="datenote" className={validFinishDate || !finishDate ? styles.offscreen : styles.instructions}>
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  {"  "}A data não pode ser anterior a data atual.
+                </p>
               </Form.Group>
               <Row >
                 <Col className='text-center'>
@@ -97,7 +122,12 @@ const UpdateReservation = () => {
                   </Link>
                 </Col>
                 <Col className='text-center'>
-                  <Button type='submit'>Atualizar</Button>
+                  <Button
+                    type='submit'
+                    disabled={!validFinishDate ? true : false}
+                  >
+                    Atualizar
+                  </Button>
                 </Col>
               </Row>
             </Form>

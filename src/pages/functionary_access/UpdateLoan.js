@@ -1,3 +1,5 @@
+import { faInfoCircle } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useRef, useState } from 'react';
 import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
@@ -15,17 +17,13 @@ const LOAN_URL = '/loan';
 const UpdateLoan = () => {
 
   const { auth } = useAuth();
-
   const location = useLocation();
-
   const axiosPrivate = useAxiosPrivate();
-
   const { handleSubmit } = useForm();
-
   const errRef = useRef();
 
-  const id = location.state?.loanData?._id;
   const [finishDate, setFinishDate] = useState('');
+  const [validFinishDate, setValidFinishDate] = useState(false);
 
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
@@ -34,12 +32,22 @@ const UpdateLoan = () => {
     setErrMsg('');
   }, [finishDate]);
 
+  useEffect(() => {
+    const now = new Date((new Date()).toISOString().split('T')[0]).getTime();
+    const fd = new Date(finishDate).getTime();
+    setValidFinishDate(
+      now <= fd
+        ? true
+        : false
+    );
+  }, [finishDate])
+
   const onSubmit = async () => {
 
     try {
       await axiosPrivate.put(LOAN_URL,
         JSON.stringify({
-          "id": id,
+          "id": location.state?.loanData?._id,
           "finishDate": finishDate
         }));
       setSuccess(true);
@@ -75,20 +83,32 @@ const UpdateLoan = () => {
       />
       {success
         ? (
-          <>
-            <h2>Empréstimo atualizado com sucesso!</h2>
-            <p>Voltar para <Link to='/dashboardLoan'>Empréstimos</Link>...</p>
-          </>
+          <Container className={styles.success_msg} fluid>
+            <h1>Empréstimo atualizado com sucesso!</h1>
+            <h5>Voltar para <Link to='/dashboardLoan'>empréstimos</Link>...</h5>
+          </Container>
         ) : (
 
           <Container className={styles.register} fluid>
-            <h2>Alterar data de término do empréstimo {location.state?.loanData?._id}</h2>
+            <h2>Alterar data de término do empréstimo</h2>
             <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
             <Form onSubmit={handleSubmit(onSubmit)}>
               <Form.Group>
                 <Form.Label>Data de término</Form.Label>
-                <Form.Control type='date' name='finishDate' placeholder='Insira a data de término...'
-                  onChange={(e) => setFinishDate(e.target.value)} value={finishDate} required />
+                <Form.Control
+                  type='date'
+                  name='finishDate'
+                  placeholder='Insira a data de término...'
+                  onChange={(e) => setFinishDate(e.target.value)}
+                  value={finishDate}
+                  aria-invalid={validFinishDate ? false : true}
+                  aria-describedby="datenote"
+                  required
+                />
+                <p id="datenote" className={validFinishDate || !finishDate ? styles.offscreen : styles.instructions}>
+                  <FontAwesomeIcon icon={faInfoCircle} />
+                  {"  "}A data não pode ser anterior a data atual.
+                </p>
               </Form.Group>
               <Row >
                 <Col className='text-center'>
@@ -97,7 +117,10 @@ const UpdateLoan = () => {
                   </Link>
                 </Col>
                 <Col className='text-center'>
-                  <Button type='submit'>Atualizar</Button>
+                  <Button
+                    type='submit'
+                    disabled={!validFinishDate ? true : false}
+                  >Atualizar</Button>
                 </Col>
               </Row>
             </Form>

@@ -72,12 +72,32 @@
 }
 
 .instructions {
+    text-align: left;
     font-size: 0.75rem;
     border-radius: 0.5rem;
-    background: #006a5d;
-    color: white;
+    background: transparent;
+    color: black;
     font-weight: bold;
     padding: 0.25rem;
-    position: relative;
-    bottom: -10px;
+    border: 1px solid black;
+}
+
+.register select {
+    color: #006a5d;
+    font-weight: bold;
+}
+
+.success_msg {
+    background-image: linear-gradient(to left, #fff, #006a5d);
+    text-align: center;
+    padding: 10%;
+    padding-bottom: 35%;
+}
+
+@media (max-width: 760px) {
+    .success_msg {
+        padding: 50%;
+        padding-left: 10%;
+        padding-right: 10%;
+    }
 }

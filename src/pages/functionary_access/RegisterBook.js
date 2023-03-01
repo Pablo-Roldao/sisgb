@@ -23,6 +23,7 @@ const RegisterBook = () => {
   const errRef = useRef();
 
   const [isbn, setIsbn] = useState('');
+  const [genre, setGenre] = useState('Fantasia');
 
   const [errMsg, setErrMsg] = useState('');
   const [success, setSuccess] = useState(false);
@@ -30,9 +31,8 @@ const RegisterBook = () => {
   useEffect(() => {
     setErrMsg('');
   }, [isbn]);
-
   const onSubmit = async (data) => {
-    const { title, authors, numberOfPages, publisher, publishDate, edition, genre, description, imgSrc } = data;
+    const { title, authors, numberOfPages, publisher, publishDate, edition, description, imgSrc } = data;
 
     try {
       await axiosPrivate.post(BOOK_URL,
@@ -80,10 +80,10 @@ const RegisterBook = () => {
       />
       {success
         ? (
-          <>
-            <h2>Livro cadastrado com sucesso!</h2>
-            <p>Voltar para <Link to='/dashboardBook'>Livros</Link>...</p>
-          </>
+          <Container className={styles.success_msg} fluid>
+            <h1>Livro cadastrado com sucesso!</h1>
+            <h3>Voltar para <Link to='/dashboardBook'>livros</Link>...</h3>
+          </Container>
         ) : (
 
           <Container className={styles.register} fluid>
@@ -127,8 +127,44 @@ const RegisterBook = () => {
               </Form.Group>
               <Form.Group>
                 <Form.Label>Gênero</Form.Label>
-                <Form.Control type='text' name='genre' placeholder='Insira o gênero...'
-                  {...register('genre')} required />
+                <Form.Select
+                  onChange={(e) => setGenre(e.target.value)}
+                >
+                  <option value='Fantasia'>Fantasia</option>
+                  <option value='Ficção científica'>Ficção científica</option>
+                  <option value='Distopia'>Distopia</option>
+                  <option value='Ação e aventura'>Ação e aventura</option>
+                  <option value='Ficção Policial'>Ficção Policial</option>
+                  <option value='Horror'>Horror</option>
+                  <option value='Thriller e Suspense'>Thriller e Suspense</option>
+                  <option value='Ficção histórica'>Ficção histórica</option>
+                  <option value='Romance'>Romance</option>
+                  <option value='Novela'>Novela</option>
+                  <option value='Ficção Feminina'>Ficção Feminina</option>
+                  <option value='LGBTQ+'>LGBTQ+</option>
+                  <option value='Ficção Contemporânea'>Ficção Contemporânea</option>
+                  <option value='Realismo mágico'>Realismo mágico</option>
+                  <option value='Graphic Novel'>Graphic Novel</option>
+                  <option value='Conto'>Conto</option>
+                  <option value='Jovem adulto'>Jovem adulto</option>
+                  <option value='Novo Adulto'>Novo Adulto</option>
+                  <option value='Memórias e autobiografia'>Memórias e autobiografia</option>
+                  <option value='Biografia'>Biografia</option>
+                  <option value='Gastronomia'>Gastronomia</option>
+                  <option value='Arte e Fotografia'>Arte e Fotografia</option>
+                  <option value='Autoajuda'>Autoajuda</option>
+                  <option value='História'>História</option>
+                  <option value='Viagem'>Viagem</option>
+                  <option value='Crimes Reais'>Crimes Reais</option>
+                  <option value='Humor'>Humor</option>
+                  <option value='Ensaios'>Ensaios</option>
+                  <option value='Guias & Como fazer'>Guias & Como fazer</option>
+                  <option value='Religião e Espiritualidade'>Religião e Espiritualidade</option>
+                  <option value='Humanidades e Ciências Sociais'>Humanidades e Ciências Sociais</option>
+                  <option value='Paternidade e família'>Paternidade e família</option>
+                  <option value='Tecnologia e Ciência'>Tecnologia e Ciência</option>
+                  <option value='Infantil'>Infantil</option>
+                </Form.Select>
               </Form.Group>
               <Form.Group>
                 <Form.Label>Descrição</Form.Label>

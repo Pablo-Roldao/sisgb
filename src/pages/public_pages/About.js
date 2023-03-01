@@ -12,7 +12,7 @@ export default class About extends Component {
   render() {
     return (
       <>
-        <Navbar className={styles.nav} bookCollection={true} signUp={true} />
+        <Navbar className={styles.nav} bookCollection={true} signUp={true} logoutHide={true} />
 
         <Container fluid className={styles.welcome}>
           <Container>

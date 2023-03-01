@@ -61,6 +61,7 @@ const DashboardBook = () => {
       loansUser={true}
       profile={auth?.username}
       userCpf={auth?.cpf}
+      logout={true}
       />
       <Container className={styles.dashboard} fluid>
         <Row className='d-flex justify-content-center'>

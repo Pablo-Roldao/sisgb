@@ -7,6 +7,8 @@ import useAuth from '../../hooks/useAuth';
 
 import styles from '../../components/Dashboard.module.css';
 
+import UpdateSvg from '../../components/UpdateSvg';
+import DeleteSvg from '../../components/DeleteSvg';
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
 
@@ -70,12 +72,14 @@ const DashboardFunctionary = () => {
         <td>{functionary.birthDate.split('T')[0]}</td>
         <td>
           <Link to='/updateFunctionary' state={{ functionaryData: functionary }}  >
-            <Button className={styles.update_button}> {"✏️"}</Button>
+            <Button className={styles.update_button}>
+              <UpdateSvg />
+            </Button>
           </Link>
         </td>
         <td>
           <Button onClick={() => deleteFunctionary(functionary.cpf)} className={styles.delete_button}>
-            {"🗑️"}
+              <DeleteSvg />
           </Button>
         </td>
       </tr>

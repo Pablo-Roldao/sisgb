@@ -47,7 +47,7 @@ export default function Home() {
 
   return (
     <section className={styles.home}>
-      <Navbar about={true} signUp={true} />
+      <Navbar about={true} signUp={true} logoutHide={true}/>
 
       <Container id='welcome-area' className={styles.welcome_area} fluid>
         <Container>

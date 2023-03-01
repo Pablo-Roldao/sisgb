@@ -1,7 +1,7 @@
 import { faCheck, faInfoCircle, faTimes } from '@fortawesome/free-solid-svg-icons';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { useEffect, useRef, useState } from 'react';
-import { Button, Row, Col, Container, Form } from 'react-bootstrap';
+import { Button, Col, Container, Form, Row } from 'react-bootstrap';
 import { useForm } from 'react-hook-form';
 import { Link } from 'react-router-dom';
 import axios from '../../api/axios';
@@ -17,13 +17,14 @@ const FUNCTIONARY_URL = '/user/';
 
 export default function RegisterFunctionary() {
 
-  const {auth} = useAuth();
+  const { auth } = useAuth();
 
   const errRef = useRef();
 
   const { register, handleSubmit } = useForm();
 
   const [cpf, setCpf] = useState('');
+  const [validCpf, setValidCpf] = useState(false);
 
   const [pwd, setPwd] = useState('');
   const [validPwd, setValidPwd] = useState(false);
@@ -36,15 +37,49 @@ export default function RegisterFunctionary() {
   const [success, setSuccess] = useState(false);
 
   useEffect(() => {
+    setValidCpf(isCpfValid(cpf));
     const result = PWD_REGEX.test(pwd);
     setValidPwd(result);
     const match = pwd === matchPwd;
     setValidMatch(match);
-  }, [pwd, matchPwd])
+  }, [cpf, pwd, matchPwd])
 
   useEffect(() => {
     setErrMsg('');
   }, [cpf, pwd, matchPwd]);
+
+  function isCpfValid(strCpf) {
+    if (strCpf.length !== 11 ||
+      strCpf === "00000000000" ||
+      strCpf === "11111111111" ||
+      strCpf === "22222222222" ||
+      strCpf === "33333333333" ||
+      strCpf === "44444444444" ||
+      strCpf === "55555555555" ||
+      strCpf === "66666666666" ||
+      strCpf === "77777777777" ||
+      strCpf === "88888888888" ||
+      strCpf === "99999999999")
+      return false;
+    var soma;
+    var resto;
+    soma = 0;
+    if (strCpf === "00000000000") return false;
+
+    for (let i = 1; i <= 9; i++) soma = soma + parseInt(strCpf.substring(i - 1, i)) * (11 - i);
+    resto = (soma * 10) % 11;
+
+    if ((resto === 10) || (resto === 11)) resto = 0;
+    if (resto !== parseInt(strCpf.substring(9, 10))) return false;
+
+    soma = 0;
+    for (let i = 1; i <= 10; i++) soma = soma + parseInt(strCpf.substring(i - 1, i)) * (12 - i);
+    resto = (soma * 10) % 11;
+
+    if ((resto === 10) || (resto === 11)) resto = 0;
+    if (resto !== parseInt(strCpf.substring(10, 11))) return false;
+    return true;
+  }
 
   const onSubmit = async data => {
 
@@ -110,10 +145,10 @@ export default function RegisterFunctionary() {
       <div >
         <Container className={styles.register} fluid>
           {success ? (
-            <>
+            <Container className={styles.success_msg}>
               <h2 className='text-center'>Funcionário cadastrado com sucesso!</h2>
               <h3 className=' text-center'>Seguir para <Link to='/dashboardFunctionary' className={styles.login_button + ' text-decoration-none'}>funcionários</Link>...</h3>
-            </>
+            </Container>
           ) : (
             <>
               <h2>Cadastrar funcionário</h2>
@@ -124,8 +159,26 @@ export default function RegisterFunctionary() {
                   <Form.Control {...register("name")} type='text' name='name' placeholder='Insira o nome...' required />
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label>CPF</Form.Label>
-                  <Form.Control onChange={(e) => setCpf(e.target.value)} type='text' name='cpf' placeholder='Insira o CPF...' required />
+                  <Form.Label>
+                    CPF
+                    {"   "}
+                    <FontAwesomeIcon icon={faCheck} className={validCpf ? "valid" : styles.hide} />
+                    <FontAwesomeIcon icon={faTimes} className={validCpf || !cpf ? styles.hide : "invalid"} />
+                  </Form.Label>
+                  <Form.Control
+                    aria-invalid={validPwd ? false : true}
+                    aria-describedby="cpfnote"
+                    value={cpf}
+                    onChange={(e) => setCpf(e.target.value)}
+                    type='text'
+                    name='cpf'
+                    placeholder='Insira seu CPF...'
+                    required
+                  />
+                  <p id="cpfnote" className={validCpf || !cpf ? styles.offscreen : styles.instructions}>
+                    <FontAwesomeIcon icon={faInfoCircle} />
+                    {"  "}Não coloque caracteres especiais, como . ou -, no CPF.
+                  </p>
                 </Form.Group>
                 <Form.Group>
                   <Form.Label>Data de nascimento</Form.Label>
@@ -171,6 +224,7 @@ export default function RegisterFunctionary() {
                     value={matchPwd} type='password' name='confirm_pwd' placeholder='Insira a senha novamente...' required />
                   <p id="confirmnote" className={!validMatch ? styles.instructions : styles.offscreen}>
                     <FontAwesomeIcon icon={faInfoCircle} />
+                    {'   '}
                     As senhas não coincidem
                   </p>
                 </Form.Group>
@@ -183,7 +237,7 @@ export default function RegisterFunctionary() {
                   <Col className='text-center'>
                     <Button type='submit'
                       className='shadow shadow-lg'
-                      disabled={!validPwd || !validMatch ? true : false}>
+                      disabled={!validPwd || !validMatch || !validCpf ? true : false}>
                       Cadastrar
                     </Button>
                   </Col>

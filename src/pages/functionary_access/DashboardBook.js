@@ -7,6 +7,8 @@ import useAxiosPrivate from '../../hooks/useAxiosPrivate';
 
 import styles from '../../components/Dashboard.module.css';
 
+import UpdateSvg from '../../components/UpdateSvg';
+import DeleteSvg from '../../components/DeleteSvg';
 import Footer from '../../components/Footer';
 import NavbarComponent from '../../components/NavbarComponent';
 
@@ -72,7 +74,9 @@ const DashboardBook = () => {
         }</td>
         <td>
           <Link to='/updateBook' state={{ bookData: book }} >
-            <Button className={styles.update_button}> {"✏️"}</Button>
+            <Button className={styles.update_button}>
+              <UpdateSvg />
+            </Button>
           </Link>
         </td>
         <td>
@@ -80,8 +84,8 @@ const DashboardBook = () => {
             onClick={() => deleteBook(book.isbn)}
             disabled={book.state !== 'free' ? true : false}
             className={styles.delete_button}
-            >
-            {"🗑️"}
+          >
+            <DeleteSvg />
           </Button>
         </td>
       </tr>
