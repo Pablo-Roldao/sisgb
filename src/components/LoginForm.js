@@ -106,14 +106,9 @@ export default function LoginForm() {
         </Form.Group>
         <Row className='text-center'>
           <Col>
-            <Button type='submit'>
+            <Button type='submit' className='w-50'>
               Entrar
             </Button>
-          </Col>
-          <Col sm>
-            <Link to='/signUp'>
-              <Button>Cadastre-se</Button>
-            </Link>
           </Col>
         </Row>
       </Form>

@@ -1,20 +1,26 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 .login_form {
-    background-color: white;
-    color: #006a5d;
+    background-color: transparent;
+    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+    color: black;
     border-radius: 1rem;
-    border: none;
+    border: 1px solid black;
 }
 
 .login_form h1 {
     text-align: center;
 }
 
+.login_form input {
+    background-color: transparent;
+    border: 1px solid black;
+}
+
 .login_form button {
-    border: 1px solid #006a5d;
-    background-color: #006a5d;
-    color: white;
+    border: 1px solid black;
+    background-color: transparent;
+    color: black;
     font-weight: bold;
     margin: 5%;
     width: 75%;
@@ -23,9 +29,9 @@
 .login_form button:hover {
     transform: scale(1.1);
     transition: all 0.5s;
-    background-color: #006a5d;
-    color: white;
-    border: 1px solid #006a5d;
+    background-color: transparent;
+    color: black;
+    border: 1px solid black;
 }
 
 @media (max-width: 760px) {

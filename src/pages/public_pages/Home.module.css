@@ -11,7 +11,7 @@
 }
 
 .welcome_message {
-  color: white;
+  color: black;
   padding: 5%;
 }
 
@@ -22,10 +22,10 @@
 }
 
 .welcome_message button {
-  background-color: #fff;
-  color: #006a5d;
+  background-color: transparent;
+  color: black;
   font-weight: bold;
-  border: none;
+  border: 1px solid black;
   border-radius: 0.5rem;
   padding: 2%;
   margin-top: 5%;
@@ -34,8 +34,9 @@
 .welcome_message button:hover {
   transform: scale(1.1);
   transition: all 0.5s;
-  background-color: #008d7d;
-  color: white;
+  background-color: transparent;
+  color: black;
+  border: 1px solid black;
 }
 
 @media (max-width: 760px) {
@@ -71,9 +72,9 @@ h6 {
 .welcome_books_area button:hover {
   transform: scale(1.1);
   transition: all 0.5s;
-  background-color: #006a5d;
-  border: 1px solid #006a5d;
-  color: white;
+  background-color: transparent;
+  border: 1px solid transparent;
+  color: black;
 }
 
 @media (max-width: 760px) {
@@ -84,9 +85,9 @@ h6 {
 }
 
 .donation_incentive_area {
-  background-color: #fff;
-  padding: 10%;
-  color: #006a5d;
+  background-image: linear-gradient(to left, #fff, #006a5d);
+  padding-left: 10%;
+  padding-right: 10%;
 }
 
 @media (max-width: 760px) {
@@ -95,24 +96,36 @@ h6 {
   }
 }
 
+.donation_incentive_area h1 {
+  text-align: start;
+}
+
+.donation_incentive_area h5 {
+  text-indent: 1rem;
+  text-align: justify;
+  font-weight: bold;
+}
+
 .donation_incentive_area h6 {
   text-align: justify;
   font-weight: bold;
 }
 
-.donation_incentive_area p {
- background-color: #006a5d;
-  color: #fff;
+.donation_incentive_area h6 {
+  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
+  border: 1px solid black;
+  background-color: transparent;
   padding: 1%;
   border-radius: 0.5rem;
 }
 
-.donation_incentive_area p:hover {
+.donation_incentive_area h6:hover {
   transform: scale(1.1);
   transition: 0.5s;
 }
 
 @media (max-width: 760px) {
+
   .welcome_message,
   .welcome_books_area,
   .donation_incentive_area_message,
