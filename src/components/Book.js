@@ -43,7 +43,7 @@ export default function Book(props) {
         <Container key={props.book.isbn} className={styles.book}>
             <Image src={props.book.imgSrc} fluid />
             <h5><strong>{props.book.title}</strong></h5>
-            <p>{authors}</p>
+            <p className='text-start'>{authors}</p>
             {success ? (
                 <>Livro reservado com sucesso!</>
             ) : (
