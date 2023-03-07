@@ -1,0 +1,11 @@
+Cores;
+feedback de validação;
+cpf com informação de caracter especial ou auto formatação do CPF;
+nome do usuário dos controle de reservas;
+sistemas de bonificação para doadores;
+    diminuir multas;
+    abonar;
+    pagamento de multa em doação.
+notificação de empréstimos;
+sugerir livros novos;
+sistema de recomendação;
