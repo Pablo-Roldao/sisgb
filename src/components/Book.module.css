@@ -1,39 +1,73 @@
 @import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
 
 .book {
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-  border-radius: 0.5rem;
-  height: 95%;
+  background-color: #FFF;
+  margin: 5% auto;
   padding: 5%;
-  margin-bottom: 5%;
+  border-radius: 10px;
 }
 
 .book:hover {
   transition: 0.3s;
-  transform: scale(1.1);
+  transform: scale(1.03);
 }
 
-.book img {
-  border-radius: 0.5rem;
-  height: 72%;
+.book__img {
+  box-sizing: border-box;
+  border-radius: 10px;
+  height: 100%;
 }
 
-.book h5 {
-  font-weight: bold;
-  margin-top: 5%;
+.book__title {
+  font-weight: 600;
+  text-align: center;
+  margin-top: 2%;
 }
 
-.reserve_button {
-  background-color: #006a5d;
+.book__authors {
+  font-weight: 550;
+}
+
+.book__reserve_button {
+  background-color: #000;
   border: none;
+  font-weight: 600;
+  width: 100%;
+  text-align: center;
 }
 
-.reserve_button:hover {
-  transform: scale(1.1);
-  transition: all 0.5s;
-  background-color: #006a5d;
+.book__reserve_button:hover {
+  transform: scale(1.03);
+  transition: all 0.3s;
+  background-color: #333;
 }
 
-.reserve_button[disabled] {
-  background-color: gray;
+.book__reserve_button[disabled] {
+  background-color: #7e7676;
+}
+
+.success {
+  font-weight: 600;
+  text-align: center;
+}
+
+@media (min-width: 575px) {
+  .book {
+    height: 33rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .book__img {
+    height: 23rem;
+  }
+
+  .book__title {
+    font-size: 1.2rem;
+  }
+
+  .book__button_area {
+    box-sizing: border-box;
+    margin-top: auto;
+  }
 }

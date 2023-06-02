@@ -41,19 +41,22 @@ export default function Book(props) {
 
     return (
         <Container key={props.book.isbn} className={styles.book}>
-            <Image src={props.book.imgSrc} fluid />
-            <h5 className='text-start'><strong>{props.book.title}</strong></h5>
-            <p className='text-start'>{authors}</p>
+            <Image src={props.book.imgSrc} fluid className={styles.book__img} />
+            <h2 className={styles.book__title}>{props.book.title}</h2>
+            <p className={styles.book__authors}>{authors}</p>
             {success ? (
-                <>Livro reservado com sucesso!</>
+                <p className={styles.success}>Livro reservado com sucesso!</p>
             ) : (
-                <Button
-                    className={styles.reserve_button}
-                    onClick={() => reserveBook(props.book.isbn, props.user?.cpf)}
-                    disabled={props.book?.state !== 'free' || props.user?.currentReservationsLoansQuantity >= 3 ? true : false}
-                >
-                    Reservar
-                </Button>
+                <div className={'text-center ' + styles.book__button_area}>
+                    <Button
+                        className={styles.book__reserve_button}
+                        onClick={() => reserveBook(props.book.isbn, props.user?.cpf)}
+                        disabled={props.book?.state !== 'free' || props.user?.currentReservationsLoansQuantity >= 3 ? true : false}
+                    >
+                        Reservar
+                    </Button>
+                </div>
+
             )
             }
         </Container >

@@ -27,7 +27,6 @@ import UpdateLoan from './pages/functionary_access/UpdateLoan';
 import UpdateReservation from './pages/functionary_access/UpdateReservation';
 import UpdateUser from './pages/functionary_access/UpdateUser';
 
-import BookCollectionUser from './pages/user_access/BookCollectionUser';
 import LoansUser from './pages/user_access/LoansUser';
 import Profile from './pages/user_access/Profile';
 import ReservationsUser from './pages/user_access/ReservationsUser';
@@ -83,7 +82,6 @@ function App() {
         <Route element={<RequireAuth allowedRoles={[ROLES.Admin, ROLES.Functionary, ROLES.User]} />}>
           <Route path='/userDashboard' element={<UserDashboard />} />
           <Route path='/profile' element={<Profile />} />
-          <Route path='/bookCollectionUser' element={<BookCollectionUser />} />
           <Route path='/reservationsUser' element={<ReservationsUser />} />
           <Route path='/loansUser' element={<LoansUser />} />
         </Route>

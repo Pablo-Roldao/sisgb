@@ -71,7 +71,7 @@ const DashboardBook = () => {
 
   const booksResult = filteredBooks.map((book) => {
     return (
-      <Col sm={3} key={book.isbn} >
+      <Col sm={3} key={book.isbn}>
         <Book book={book} user={currentUser} />
       </Col>
     );
@@ -80,17 +80,16 @@ const DashboardBook = () => {
   return (
     <>
       <NavbarComponent
-        reservationsUser={true}
-        loansUser={true}
+        reservationsUser
+        loansUser
         profile={auth?.username}
         userCpf={auth?.cpf}
-        logout={true}
+        logout
       />
-      <Container className={styles.dashboard} fluid>
+
+      <section className={styles.collection}>
         <Row>
-          <Col sm>
-            <h1>Acervo</h1>
-          </Col>
+            <h1 className={styles.collection__title}>Acervo</h1>
           <Col sm>
             <Form onSubmit={(e) => e.preventDefault()}>
               <Form.Control
@@ -108,8 +107,11 @@ const DashboardBook = () => {
             <h3 className='text-center'>Carregando...</h3>
           ) : booksResult}
         </Row>
+      </section>
+
+      <section className={styles.footer}>
         <Footer />
-      </Container>
+      </section>
     </>
   );
 }

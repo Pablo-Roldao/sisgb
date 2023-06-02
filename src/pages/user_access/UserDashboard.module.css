@@ -1,13 +1,45 @@
-.dashboard {
-    background-image: linear-gradient(to left, #fff, #006a5d);
+.collection {
     padding: 5%;
-    padding-left: 10%;
-    padding-right: 10%;
+    background-color: #000;
+}
+
+.collection__title {
+    color: #FFF;
+    text-align: center;
+    font-weight: 700;
+    font-size: 2rem;
 }
 
 .search {
-    box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-    background-color: transparent;
-    border: 1px solid black;
-    margin-bottom: 5%;
+    border: none;
+}
+
+.footer {
+    font-weight: 600;
+}
+
+@media (min-width: 400px) {
+    .collection {
+        grid-template-columns: 1fr 1fr;
+        grid-template-areas: 
+        "book book";
+    }
+
+    .book {
+        grid-area: book;
+    }
+
+
+}
+
+@media (min-width: 600px) {
+
+    .collection {
+        padding: 2% 5%;
+        background-color: #000;
+    }
+
+    .collection__title {
+        font-size: 3rem;
+    }
 }
