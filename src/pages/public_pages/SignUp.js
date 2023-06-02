@@ -124,33 +124,33 @@ export default function SignUp() {
 
   return (
     <>
-      <NavbarComponent about={true} bookCollection={true} logoutHide={true} />
-
-      <div className={styles.sign_up_form}>
-        <Container className={styles.form}>
+      < NavbarComponent about logoutHide />
+      <div className={styles.main}>
+        <div className={styles.signup}>
           {success ? (
             <>
-              <h2 className='text-center'>Usuário cadastrado com sucesso!</h2>
-              <h3 className=' text-center'>Seguir para <Link to='/' className={styles.login_button + ' text-decoration-none'}>entrar</Link>...</h3>
+              <p className='text-center'>Usuário cadastrado com sucesso!</p>
+              <p className=' text-center'>Seguir para <Link to='/' className={styles.login_button + ' text-decoration-none'}>entrar</Link>...</p>
             </>
           ) : (
             <>
-              <h2 className='text-center'>Cadastre-se</h2>
+              <h2 className={styles.signup__title}>Cadastre-se</h2>
               <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
               <Form onSubmit={handleSubmit(onSubmit)}>
                 <Form.Group>
-                  <Form.Label>Nome</Form.Label>
-                  <Form.Control {...register("name")} type='text' name='name' placeholder='Insira seu nome...' required />
+                  <Form.Label className={styles.signup__label}>Nome</Form.Label>
+                  <Form.Control className={styles.signup__input} {...register("name")} type='text' name='name' placeholder='Insira seu nome...' required />
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>
+                  <Form.Label className={styles.signup__label}>
                     CPF
                     {"   "}
                     <FontAwesomeIcon icon={faCheck} className={validCpf ? "valid" : styles.hide} />
                     <FontAwesomeIcon icon={faTimes} className={validCpf || !cpf ? styles.hide : "invalid"} />
                   </Form.Label>
                   <Form.Control
+                    className={styles.signup__input}
                     aria-invalid={validPwd ? false : true}
                     aria-describedby="cpfnote"
                     value={cpf}
@@ -167,28 +167,29 @@ export default function SignUp() {
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>Data de nascimento</Form.Label>
-                  <Form.Control {...register("birthDate")} type='date' name='birthDate' placeholder='Insira sua data de nascimento...' required />
+                  <Form.Label className={styles.signup__label}>Data de nascimento</Form.Label>
+                  <Form.Control className={styles.signup__input} {...register("birthDate")} type='date' name='birthDate' placeholder='Insira sua data de nascimento...' required />
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>Endereço</Form.Label>
-                  <Form.Control {...register("addres")} type='text' name='addres' placeholder='Insira seu endereço...' required />
+                  <Form.Label className={styles.signup__label}>Endereço</Form.Label>
+                  <Form.Control className={styles.signup__input} {...register("addres")} type='text' name='addres' placeholder='Insira seu endereço...' required />
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>E-mail</Form.Label>
-                  <Form.Control {...register("email")} type='email' name='email' placeholder='Insira seu e-mail...' required />
+                  <Form.Label className={styles.signup__label}>E-mail</Form.Label>
+                  <Form.Control className={styles.signup__input} {...register("email")} type='email' name='email' placeholder='Insira seu e-mail...' required />
                 </Form.Group>
 
                 <Form.Group>
-                  <Form.Label>
+                  <Form.Label className={styles.signup__label}>
                     Senha
                     {'  '}
                     <FontAwesomeIcon icon={faCheck} className={validPwd ? "valid" : styles.hide} />
                     <FontAwesomeIcon icon={faTimes} className={validPwd || !pwd ? styles.hide : "invalid"} />
                   </Form.Label>
                   <Form.Control
+                    className={styles.signup__input}
                     aria-invalid={validPwd ? false : true}
                     aria-describedby="pwdnote"
                     onFocus={() => setPwdFocus(true)}
@@ -209,13 +210,14 @@ export default function SignUp() {
                   </p>
                 </Form.Group>
                 <Form.Group>
-                  <Form.Label>
+                  <Form.Label className={styles.signup__label}>
                     Confirmação de senha
                     {"   "}
                     <FontAwesomeIcon icon={faCheck} className={validMatch && matchPwd ? "valid" : styles.hide} />
                     <FontAwesomeIcon icon={faTimes} className={validMatch || !matchPwd ? styles.hide : "invalid"} />
-                  </Form.Label>
+                  </Form.Label >
                   <Form.Control
+                    className={styles.signup__input}
                     aria-invalid={validMatch ? false : true}
                     aria-describedby="confirmnote"
                     onChange={(e) => setMatchPwd(e.target.value)}
@@ -225,9 +227,9 @@ export default function SignUp() {
                     As senhas não coincidem
                   </p>
                 </Form.Group>
-                <div className='p-3 text-center'>
+                <div className='text-center'>
                   <Button type='submit'
-                    className='shadow shadow-lg'
+                    className={styles.signup__button}
                     disabled={!validPwd || !validMatch || !validCpf ? true : false}>
                     Cadastrar
                   </Button>
@@ -235,9 +237,11 @@ export default function SignUp() {
               </Form>
             </>
           )}
-        </Container>
-        
-      <Footer />
+        </div>
+      </div>
+
+      <div className={styles.footer}>
+        <Footer />
       </div>
 
     </>

@@ -1,53 +1,41 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-
 .navbar {
-    background-image: linear-gradient(to left, #006a5e73 , #006a5d);
-    box-shadow: 3px 3px 8px 8px rgba(0, 0, 0, 0.131);
-    font-weight: bold;
+    padding: 0% 5%;
 }
 
-.navbar a {
-    color: black;
-    opacity: 0.8;
-    text-decoration: none;
+.navbar_brand__image {
+    width: 30%;
 }
 
-.navbar a:hover {
-    color: black;
-    opacity: 1;
-    text-decoration: none;
+.navbar_brand {
+    font-size: 1.5rem;
+    font-weight: 800;
 }
 
-.navbar_row {
-    width: 100%;
-    display: flex;
-    align-items: center;
-    justify-content: flex-end;
+.navbar__nav a {
+    color: #000;
+    font-weight: 600;
 }
 
-@media (max-width: 760px) {
-    .navbar_row {
-        justify-content: center;
+.navbar__toggler_icon {
+    color: #000;
+}
+
+@media (min-width: 600px) {
+    .navbar__nav {
+        justify-content: end;
     }
 }
 
-.navbar_nav {
-    display: flex;
-    justify-content: flex-end;
-}
-
-.nav_item {
-    margin: 1%;
-    text-align: center;
-}
-
-@media (max-width: 760px) {
-    .brand_col {
-        text-align: center;
+@media (min-width: 768px) {
+    .navbar_brand {
+        font-size: 2.5rem;
     }
 
-    .navbar_nav {
-        display: flex;
-        justify-content: center;
+    .navbar__nav {
+        justify-content: end;
+    }
+
+    .navbar__nav a {
+        font-size: 1.3rem;
     }
 }

@@ -1,37 +1,62 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-
 .about {
-  background-image: linear-gradient(to left, #fff, #006a5d);
+  background-color: #000;
+  color: #FFF;
   padding: 5%;
 }
 
-h1 {
-  font-weight: bold;
+.about__title {
+  font-weight: 700;
   text-align: center;
-  margin-bottom: 5%;
 }
 
-h4 {
+.about__people {
+  margin-top: 15%;
+  font-weight: 650;
+}
+
+.about__message {
   text-align: justify;
   text-indent: 1rem;
-  font-weight: bold;
+  font-weight: 600;
 }
 
 .img {
-  width: 40%;
+  width: 100%;
   border-radius: 50%;
-  box-shadow: 8px 8px 8px #0000009f;
-
 }
 
-.about p {
-  text-align: center;
-  font-weight: bold;
+.footer {
+  font-weight: 600;
+  padding-top: 5%;
 }
 
+@media (min-width: 768px) {
 
-@media (max-width: 760px) {
+  .about__title {
+    font-size: 3rem;
+  }
+
+  .about__people {
+    margin-top: 5%;
+    font-size: 2rem;
+  }
+
+  .about__message {
+    text-indent: 2rem;
+    font-size: 1.5rem;
+  }
+
   .img {
-    width: 100%;
+    width: 60%;
+  }
+
+  .person {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .footer {
+    padding: 1% 5%;
   }
 }

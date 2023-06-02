@@ -1,5 +1,5 @@
 import React from 'react';
-import { Col, Container, Image, Nav, Navbar, Row } from 'react-bootstrap';
+import { Container, Image, Nav, Navbar, Offcanvas } from 'react-bootstrap';
 import { Link, useNavigate } from 'react-router-dom';
 import styles from './NavbarComponent.module.css';
 
@@ -9,46 +9,38 @@ export default function NavbarComponent(props) {
 
     const nav = [];
 
-    if (props.about) { nav.push(<Nav.Item key={'about'} className={styles.nav_item}><Link to='/about'>Sobre nós</Link></Nav.Item>) };
-    if (props.signUp) { nav.push(<Nav.Item key={'SignUp'} className={styles.nav_item}><Link to='/signUp'>Cadastre-se</Link></Nav.Item>); }
+    if (props.about) { nav.push(<li key={'about'} className={'nav-item'}><Link className='nav-link' to='/about'>Sobre nós</Link></li>) };
+    if (props.signUp) { nav.push(<li key={'SignUp'} className={'nav-item'}><Link className='nav-link' to='/signUp'>Cadastre-se</Link></li>); }
 
-    if (props.adminDashboard) { nav.push(<Nav.Item key={'adminDashboard'} className={styles.nav_item}><Link to='/adminDashboard'>Dashboard</Link></Nav.Item>); }
-    if (props.dashboardFunctionary) { nav.push(<Nav.Item key={'dashboardFunctionary'} className={styles.nav_item}><Link to='/dashboardFunctionary'>Funcionários</Link></Nav.Item>); }
+    if (props.adminDashboard) { nav.push(<li key={'adminDashboard'} className={'nav-item'}><Link to='/adminDashboard'>Dashboard</Link></li>); }
+    if (props.dashboardFunctionary) { nav.push(<li key={'dashboardFunctionary'} className={'nav-item'}><Link to='/dashboardFunctionary'>Funcionários</Link></li>); }
 
-    if (props.functionaryDashboard) { nav.push(<Nav.Item key={'functionaryDashboard'} className={styles.nav_item}><Link to='/functionaryDashboard'>Dashboard</Link></Nav.Item>); }
-    if (props.dashboardBook) { nav.push(<Nav.Item key={'dashboardBook'} className={styles.nav_item}><Link to='/dashboardBook'>Livros</Link></Nav.Item>); }
-    if (props.dashboardUser) { nav.push(<Nav.Item key={'dashboardUser'} className={styles.nav_item}><Link to='/dashboardUser'>Usuários</Link></Nav.Item>); }
-    if (props.dashboardLoan) { nav.push(<Nav.Item key={'dashboardLoan'} className={styles.nav_item}><Link to='/dashboardLoan'>Empréstimos</Link></Nav.Item>); }
-    if (props.dashboardReservation) { nav.push(<Nav.Item key={'dashboardReservation'} className={styles.nav_item}><Link to='/dashboardReservation'>Reservas</Link></Nav.Item>); }
+    if (props.functionaryDashboard) { nav.push(<li key={'functionaryDashboard'} className={'nav-item'}><Link to='/functionaryDashboard'>Dashboard</Link></li>); }
+    if (props.dashboardBook) { nav.push(<li key={'dashboardBook'} className={'nav-item'}><Link to='/dashboardBook'>Livros</Link></li>); }
+    if (props.dashboardUser) { nav.push(<li key={'dashboardUser'} className={'nav-item'}><Link to='/dashboardUser'>Usuários</Link></li>); }
+    if (props.dashboardLoan) { nav.push(<li key={'dashboardLoan'} className={'nav-item'}><Link to='/dashboardLoan'>Empréstimos</Link></li>); }
+    if (props.dashboardReservation) { nav.push(<li key={'dashboardReservation'} className={'nav-item'}><Link to='/dashboardReservation'>Reservas</Link></li>); }
 
-    if (props.userDashboard) { nav.push(<Nav.Item key={'userDashboard'} className={styles.nav_item}><Link to='/userDashboard'>Dashboard</Link></Nav.Item>); }
-    if (props.bookCollectionUser) { nav.push(<Nav.Item key={'bookCollectionUser'} className={styles.nav_item}><Link to='/bookCollectionUser'>Livros</Link></Nav.Item>); }
-    if (props.reservationsUser) { nav.push(<Nav.Item key={'reservationsUser'} className={styles.nav_item}><Link to='/reservationsUser'>Reservas</Link></Nav.Item>); }
-    if (props.loansUser) { nav.push(<Nav.Item key={'loansUser'} className={styles.nav_item}><Link to='/loansUser'>Empréstimos</Link></Nav.Item>); }
-    if (props.profile) { nav.push(<Nav.Item key={'profile'} className={styles.nav_item}><Link to='/profile' state={{ userCpf: props.userCpf }}>{props.profile}</Link></Nav.Item>); }
-    if (!props.logoutHide) { nav.push(<Nav.Item key={'logout'} className={styles.nav_item}><Link to='/'>Sair</Link></Nav.Item>); }
-
-
+    if (props.userDashboard) { nav.push(<li key={'userDashboard'} className={'nav-item'}><Link to='/userDashboard'>Dashboard</Link></li>); }
+    if (props.bookCollectionUser) { nav.push(<li key={'bookCollectionUser'} className={'nav-item'}><Link to='/bookCollectionUser'>Livros</Link></li>); }
+    if (props.reservationsUser) { nav.push(<li key={'reservationsUser'} className={'nav-item'}><Link to='/reservationsUser'>Reservas</Link></li>); }
+    if (props.loansUser) { nav.push(<li key={'loansUser'} className={'nav-item'}><Link to='/loansUser'>Empréstimos</Link></li>); }
+    if (props.profile) { nav.push(<li key={'profile'} className={'nav-item'}><Link to='/profile' state={{ userCpf: props.userCpf }}>{props.profile}</Link></li>); }
+    if (!props.logoutHide) { nav.push(<li key={'logout'} className={'nav-item'}><Link to='/'>Sair</Link></li>); }
 
     return (
-        <Navbar id='navbar' className={styles.navbar}>
-            <Container>
-                <Row className={styles.navbar_row}>
-                    <Col sm={4} className={styles.brand_col}>
-                        <Navbar.Brand>
-                            <Link to='/'>
-                                <Image fluid src='https://icon-library.com/images/icon-for-books/icon-for-books-1.jpg' width='100px' />{' '}SisGB
-                            </Link>
-                        </Navbar.Brand>
-                    </Col>
-                    <Col sm={8}>
-                        <Nav className={styles.navbar_nav}>
-                            {nav}
-                        </Nav>
-                    </Col>
-                </Row>
-
-            </Container>
-        </Navbar>
+        <nav className={'navbar navbar-expand-sm ' + styles.navbar}>
+                <Link to='/' className={'navbar-brand ' + styles.navbar_brand}>
+                    <Image fluid src='./logo192.png' width='192' height='192' className={styles.navbar_brand__image} />{' '}SisGB
+                </Link>
+                <button className='navbar-toggler' type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+                    <span className='navbar-toggler-icon'></span>
+                </button>
+                <div className={'collapse navbar-collapse + ' + styles.navbar__nav} id="navbarSupportedContent">
+                    <ul className={'navbar-nav ' + styles.navbar__nav}>
+                        {nav}
+                    </ul>
+                </div>
+        </nav>
     )
 }

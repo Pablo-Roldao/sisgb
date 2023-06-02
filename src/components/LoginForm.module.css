@@ -1,55 +1,29 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-
-.login_form {
-    background-color: transparent;
-    box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
-    color: black;
-    border-radius: 1rem;
-    border: 1px solid black;
-}
-
-.login_form h1 {
-    text-align: center;
-}
-
-.login_form input {
-    background-color: transparent;
-    border: 1px solid black;
-}
-
-.login_form button {
-    border: 1px solid black;
-    background-color: transparent;
-    color: black;
+.login {
+    padding: 0% 5%;
     font-weight: bold;
-    margin: 5%;
-    width: 75%;
+    color: #000;
+}
+.login__title {
+    font-weight: 700;
 }
 
-.login_form button:hover {
-    transform: scale(1.1);
-    transition: all 0.5s;
-    background-color: transparent;
-    color: black;
-    border: 1px solid black;
+.login__submit_button {
+    background-color: #000;
+    font-weight: bold;
+    border: none;
+    width: 10rem;
 }
 
-@media (max-width: 760px) {
-    .login_form button {
-        width: 90%;
-    }
+.login__input {
+    margin-bottom: 5%;
+
+    border: 1px solid #000;
+}
+
+.login__input::placeholder {
+    color: #000;
 }
 
 .err_msg {
-    background-color: lightpink;
-    color: firebrick;
-    font-weight: bold;
-    padding: 0.5rem;
-    border-radius: 0.75rem;
-    margin-bottom: 0.5rem;
-}
-
-.offscreen {
-    position: absolute;
-    left: -9999px;
+    color: red;
 }

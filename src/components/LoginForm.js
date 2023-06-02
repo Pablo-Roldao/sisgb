@@ -77,13 +77,15 @@ export default function LoginForm() {
   }
 
   return (
-    <Container id='login-form' className={styles.login_form + ' p-3'}>
-      <h1><strong>Entrar</strong></h1>
+    <Container id='login-form' className={styles.login}>
+      <h1 className={styles.login__title}>Entrar</h1>
       <p ref={errRef} className={errMsg ? styles.err_msg : styles.offscreen} aria-live="assertive">{errMsg}</p>
       <Form onSubmit={handleSubmit}>
+
         <Form.Group>
           <Form.Label htmlFor='cpf'>CPF</Form.Label>
           <Form.Control
+            className={styles.login__input}
             type='text'
             id='cpf'
             placeholder='Insira seu CPF...'
@@ -93,9 +95,11 @@ export default function LoginForm() {
             required
           />
         </Form.Group>
+
         <Form.Group>
           <Form.Label htmlFor='password'>Senha</Form.Label>
           <Form.Control
+            className={styles.login__input}
             type='password'
             id='password'
             onChange={(e) => setPwd(e.target.value)}
@@ -104,13 +108,13 @@ export default function LoginForm() {
             required
           />
         </Form.Group>
-        <Row className='text-center'>
-          <Col>
-            <Button type='submit' className='w-50'>
-              Entrar
-            </Button>
-          </Col>
-        </Row>
+
+        <div className='text-center'>
+          <Button type='submit' className={'btn btn-dark ' + styles.login__submit_button}>
+            Entrar
+          </Button>
+        </div>
+
       </Form>
     </Container>
   );

@@ -1,135 +1,110 @@
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300&display=swap');
-
-.home {
-  font-family: 'Poppins', sans-serif;
-  font-weight: bold;
+.main {
+  background-color: #000;
 }
 
-.welcome_area {
-  background-image: linear-gradient(to left, #fff, #006a5d);
+.section {
   padding: 5%;
+  justify-items: center;
 }
 
-.welcome_message {
-  color: black;
-  padding: 5%;
+.welcome {
+  color: #FFF;
 }
 
-
-
-.welcome_message p {
-  text-align: justify;
+.welcome abbr {
+  text-decoration: none;
 }
 
-.welcome_message button {
-  background-color: transparent;
-  color: black;
-  font-weight: bold;
-  border: 1px solid black;
-  border-radius: 0.5rem;
-  padding: 2%;
-  margin-top: 5%;
-}
-
-.welcome_message button:hover {
-  transform: scale(1.1);
-  transition: all 0.5s;
-  background-color: transparent;
-  color: black;
-  border: 1px solid black;
-}
-
-@media (max-width: 760px) {
-  .welcome_message button {
-    display: none;
-  }
-}
-
-.login_form {
-  padding: 5%;
-}
-
-.welcome_books_area {
-  padding: 5%;
-  color: #006a5d;
-  font-weight: bold;
-}
-
-.welcome_books_area h1,
-h6 {
+.welcome__title {
+  font-weight: 700;
+  font-size: 2.2rem;
   text-align: center;
-  font-weight: bold;
 }
 
-.welcome_books_area button {
-  background-color: #006a5d;
-  border: 1px solid #006a5d;
-  font-weight: bold;
-  width: 25%;
-  padding: 1%;
-}
-
-.welcome_books_area button:hover {
-  transform: scale(1.1);
-  transition: all 0.5s;
-  background-color: transparent;
-  border: 1px solid transparent;
-  color: black;
-}
-
-@media (max-width: 760px) {
-  .welcome_books_area button {
-    padding: 3%;
-    width: 75%;
-  }
-}
-
-.donation_incentive_area {
-  background-image: linear-gradient(to left, #fff, #006a5d);
-  padding-left: 10%;
-  padding-right: 10%;
-}
-
-@media (max-width: 760px) {
-  .donation_incentive_area_message {
-    padding: 13%;
-  }
-}
-
-.donation_incentive_area h1 {
-  text-align: start;
-}
-
-.donation_incentive_area h5 {
+.welcome__sis_description {
+  text-align: justify;
   text-indent: 1rem;
-  text-align: justify;
+  font-weight: 600;
+}
+
+.welcome__signup_button {
+  background-color: #FFF;
+  color: #000;
+  border: none;
   font-weight: bold;
+  width: 10rem;
 }
 
-.donation_incentive_area h6 {
+.login {
+  background-color: #FFF;
+  margin: 5%;
+  border-radius: 10px;
+}
+
+.donation {
+  background-color: #FFF;
+  color: #000;
+}
+
+.donation__title {
+  text-transform: uppercase;
+  font-size: 1.5rem;
+  font-weight: 700;
+}
+
+.donation__phrase {
   text-align: justify;
-  font-weight: bold;
+  text-indent: 1rem;
+  font-weight: 600;
 }
 
-.donation_incentive_area h6 {
-  box-shadow: 10px 10px 30px rgba(0, 0, 0, 0.2);
-  border: 1px solid black;
-  background-color: transparent;
-  padding: 1%;
-  border-radius: 0.5rem;
+.footer {
+  background-color: #000;
+  color: #FFF;
 }
 
-.donation_incentive_area h6:hover {
-  transform: scale(1.1);
-  transition: 0.5s;
-}
+@media (min-width: 768px) {
+  .main {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    grid-template-areas:
+      "welcome login"
+      "donation donation"
+      "footer footer";
+  }
 
-@media (max-width: 760px) {
+  .welcome {
+    grid-area: welcome;
 
-  .welcome_message,
-  .welcome_books_area,
-  .donation_incentive_area_message,
-  .donation_incentive_area p {
-    color: black;
+    padding-top: 15%;
+    padding-left: 10%;
+    padding-right: auto;
+  }
+
+  .login {
+    grid-area: login;
+    margin: 5%;
+    border-radius: 10px;
+    margin-right: 10%;
+  }
+
+  .donation {
+    grid-area: donation;
+    background-color: #FFF;
+    color: #000;
+    padding: 2% 5%;
+  }
+
+  .donation li {
+    font-weight: 600;
+  }
+
+  .footer {
+    grid-area: footer;
+    background-color: #000;
+    color: #FFF;
+    font-weight: 600;
+
+    padding: 2% 5%;
   }
 }
